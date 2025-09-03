@@ -1,0 +1,14 @@
+<section class="videos">
+      <h2>Sección de Videos</h2>
+      <p>Aquí puedes mostrar tu galería de videos o integraciones con YouTube.</p>
+
+      <div class="video-list">
+        <div class="video-card" *ngFor="let video of videos">
+          <iframe
+            [src]="video"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
