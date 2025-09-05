@@ -1,10 +1,38 @@
-<section class="home">
-  <h1>Bienvenido a la Página Principal</h1>
-  <p>
-    Esta es la página de inicio de tu aplicación Angular.
-  </p>
-  <img
-    src="https://www.telemundo.com/sites/nbcutelemundo/files/styles/fit-560w/public/images/article/cover/2018/04/19/tigre-caminando.jpg?ramen_itok=iqwQftIcTf"
-    alt="">
-  <a [routerLink]="['/videos']" class="btn">Ir a Videos</a>
-</section>
+<div class="container">
+
+  <!-- Logo -->
+  <header class="header">
+    <img src="https://gramalote.com/wp-content/uploads/2021/02/Gramalote-Logo.svg" alt="Logo Gramalote" class="logo">
+  </header>
+
+  <!-- Personaje -->
+  <main class="main">
+    <img src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png" alt="Personaje" class="personaje">
+  </main>
+
+  <!-- Botón -->
+  <div class="button-container">
+    <button class="btn" (click)="clickSound()">Iniciar experiencia</button>
+  </div>
+
+  <!-- Menú inferior con Angular Material Icons -->
+  <footer class="footer">
+    <a [routerLink]="['/videos']">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" class="icon"></mat-icon>
+    </a>
+
+    <a [routerLink]="['#']">
+      <mat-icon aria-hidden="false" aria-label="Repeat icon" fontIcon="repeat" class="icon"></mat-icon>
+    </a>
+
+    <a [routerLink]="['#']">
+      <mat-icon aria-hidden="false" aria-label="Fast forward icon" fontIcon="fast_forward" class="icon"></mat-icon>
+    </a>
+
+    <a [routerLink]="['#']">
+      <mat-icon aria-hidden="false" aria-label="Volume up icon" fontIcon="volume_up" class="icon"></mat-icon>
+    </a>
+
+
+  </footer>
+</div>
