@@ -18,3 +18,9 @@
   width: 100%;
   height: 100%; // 👈 asegura mismo tamaño
 }
+
+
+body {
+  background: url('assets/images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+}
