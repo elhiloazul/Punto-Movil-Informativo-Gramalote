@@ -25,7 +25,7 @@ import {
             top: 0,
             left: 0,
             width: '100%',
-            height: '100%' // 👈 fuerza que ambas pantallas midan lo mismo
+            height: '100%'
           })
         ], { optional: true }),
 
