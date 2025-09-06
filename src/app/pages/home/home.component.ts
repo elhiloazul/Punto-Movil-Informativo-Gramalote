@@ -3,21 +3,27 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenaiService } from '../../services/openai.service';
+import { FormsModule } from '@angular/forms';
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   imports: [
     CommonModule,
     MatIconModule,
-    RouterLink
+    RouterLink,
+    FormsModule
 
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+
+  volume: number = 1; // volumen inicial (100%)
+  showVolumeControl = false;
 
   constructor(private openaiService: OpenaiService) { }
 
@@ -41,6 +47,7 @@ export class HomeComponent implements OnInit {
     utterance.lang = "es-419";
     utterance.rate = 1;
     utterance.pitch = 1;
+    utterance.volume = this.volume;
 
     utterance.onend = () => {
       console.log("✅ Terminó de hablar");
@@ -126,6 +133,16 @@ export class HomeComponent implements OnInit {
 
     // 👇 empieza desde el primer paso
     driverObj.highlight(steps[currentStep]);
+  }
+
+  toggleVolumeControl() {
+    this.showVolumeControl = !this.showVolumeControl;
+  }
+
+  updateVolume() {
+    setTimeout(() => {
+      this.showVolumeControl = false;
+    }, 3000);
   }
 
 
