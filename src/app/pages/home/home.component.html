@@ -26,17 +26,33 @@
     </a>
 
     <a [routerLink]="['#']">
-      <mat-icon aria-hidden="false" aria-label="Fast forward icon" fontIcon="fast_forward" class="icon fast-forward-btn"></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Fast forward icon" fontIcon="fast_forward"
+        class="icon fast-forward-btn"></mat-icon>
     </a>
 
     <a [routerLink]="['#']">
       <mat-icon aria-hidden="false" aria-label="Gamepad icon" fontIcon="gamepad" class="icon gamepad-btn"></mat-icon>
     </a>
 
-    <a [routerLink]="['#']">
-      <mat-icon aria-hidden="false" aria-label="Volume up icon" fontIcon="volume_up" class="icon volume-up-btn"></mat-icon>
+    <!-- Contenedor especial para el volumen -->
+  <div class="volume-container">
+    <a [routerLink]="['#']" (click)="toggleVolumeControl()">
+      <mat-icon fontIcon="volume_up" class="icon volume-up-btn"></mat-icon>
     </a>
 
+    <!-- Barra de volumen encima -->
+    <div *ngIf="showVolumeControl" class="volume-control">
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        [(ngModel)]="volume"
+        (input)="updateVolume()"
+        orient="vertical"
+      />
+    </div>
+  </div>
 
   </footer>
 </div>
