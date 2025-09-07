@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { OpenaiService } from '../../services/openai.service';
 import { FormsModule } from '@angular/forms';
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { timeout } from 'rxjs';
+import { TutorialService } from '../../services/tutorial.service';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     CommonModule,
     MatIconModule,
-    RouterLink,
-    FormsModule
+    FormsModule,
+    FooterComponent
 
   ],
   templateUrl: './home.component.html',
@@ -22,10 +22,9 @@ import { timeout } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  volume: number = 1; // volumen inicial (100%)
-  showVolumeControl = false;
+  volume: number = 1;
 
-  constructor(private openaiService: OpenaiService) { }
+  constructor(private openaiService: OpenaiService, private tutorialService: TutorialService) { }
 
 
   ngOnInit(): void {
@@ -69,48 +68,7 @@ export class HomeComponent implements OnInit {
   }
 
   startTutorial() {
-    const steps = [
-      {
-        element: '.home-btn',
-        text: "Si en cualquier momento debes irte, te esperaremos de regreso pronto, pero no olvides volver a la pantalla de inicio para dejarme conocer a más personas.",
-        popover: {
-          title: 'Inicio',
-          description: 'Si en cualquier momento debes irte, te esperaremos de regreso pronto, pero no olvides volver a la pantalla de inicio para dejarme conocer a más personas.',
-        }
-      },
-      {
-        element: '.repeat-btn',
-        text: "Si algo no te quedó claro, siempre podrás repetir la información desde aquí.",
-        popover: {
-          title: 'Repetir',
-          description: 'Si algo no te quedó claro, siempre podrás repetir la información desde aquí.',
-        }
-      },
-      {
-        element: '.fast-forward-btn',
-        text: "Cuando tengas todo claro y veas que la información ha terminado, da un toque aquí, para continuar.",
-        popover: {
-          title: 'Continuar',
-          description: 'Cuando tengas todo claro y veas que la información ha terminado, da un toque aquí, para continuar.',
-        }
-      },
-      {
-        element: '.gamepad-btn',
-        text: "Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque a la casilla 'juegos' en la parte inferior derecha.",
-        popover: {
-          title: 'Juegos',
-          description: 'Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque a la casilla "juegos" en la parte inferior derecha.',
-        }
-      },
-      {
-        element: '.volume-up-btn',
-        text: "Si el volumen de mi voz esta muy bajo o muy alto, da un toque a la bocina del lado inferior derecho, donde aparecerá una barrita, con ella podrás manejar el volumen de mi voz.",
-        popover: {
-          title: 'Volumen',
-          description: 'Si el volumen de mi voz esta muy bajo o muy alto, da un toque a la bocina del lado inferior derecho, donde aparecerá una barrita, con ella podrás manejar el volumen de mi voz.',
-        }
-      }
-    ];
+    const steps = this.tutorialService.stepsTutorials;
 
     let currentStep = 0;
 
@@ -134,20 +92,6 @@ export class HomeComponent implements OnInit {
     // 👇 empieza desde el primer paso
     driverObj.highlight(steps[currentStep]);
   }
-
-  toggleVolumeControl() {
-    this.showVolumeControl = !this.showVolumeControl;
-  }
-
-  updateVolume() {
-    setTimeout(() => {
-      this.showVolumeControl = false;
-    }, 3000);
-  }
-
-
-
-
 
 
 }
