@@ -9,10 +9,19 @@
     <img src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png" alt="Personaje" class="personaje">
   </main>
 
-  <!-- Botón -->
+  @if(startExperienced) {
+  <!-- Botón Iniciar Experiencia -->
   <div class="button-container">
     <button class="btn" (click)="clickSound()">Iniciar experiencia</button>
   </div>
+  }
+
+  @if(isName) {
+  <!-- Label similar al botón -->
+  <div class="label-container">
+    <label class="custom-label">Tu nombre: {{name}}</label>
+  </div>
+  }
 
   <!-- Menú Footer -->
   <app-footer></app-footer>
