@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { TutorialService } from '../../services/tutorial.service';
+import { VoiceService } from '../../services/voice.service';
 
 @Component({
   selector: 'app-footer',
@@ -16,7 +16,10 @@ export class FooterComponent {
   volume: number = 1;
   showVolumeControl = false;
 
-  constructor(private tutorialService: TutorialService) {
+  constructor() {
+  }
+
+  ngOnInit() {
   }
 
   toggleVolumeControl() {
@@ -28,4 +31,5 @@ export class FooterComponent {
       this.showVolumeControl = false;
     }, 3000);
   }
+    
 }

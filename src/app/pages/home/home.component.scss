@@ -61,3 +61,21 @@
     transform: scale(1);  
   }
 }
+
+/* Label */
+.label-container {
+  margin: 2vh 0;
+}
+
+.custom-label {
+  background: linear-gradient(to right, #f2c94c, #f2994a);
+  border-radius: 2vh;
+  padding: 1vh 3vh;
+  font-size: 2.5vh;
+  font-weight: bold;
+  color: #004d40;
+  font-family: 'Pacifico', cursive;
+  display: inline-block;
+  text-align: center;
+}
+
