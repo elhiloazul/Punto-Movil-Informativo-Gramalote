@@ -9,7 +9,7 @@ export class TutorialService {
   constructor() { }
 
   stepsTutorials = [
-   /*  {
+   {
       element: '.home-btn',
       text: "Si en cualquier momento debes irte, te esperaremos de regreso pronto, pero no olvides volver a la pantalla de inicio para dejarme conocer a más personas.",
       popover: {
@@ -35,10 +35,10 @@ export class TutorialService {
     },
     {
       element: '.gamepad-btn',
-      text: "Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque a la casilla 'juegos' en la parte inferior derecha.",
+      text: "Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque en esta casilla",
       popover: {
         title: 'Juegos',
-        description: 'Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque a la casilla "juegos" en la parte inferior derecha.',
+        description: 'Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque en esta casilla', 
       }
     },
     {
@@ -47,14 +47,6 @@ export class TutorialService {
       popover: {
         title: 'Volumen',
         description: 'Si el volumen de mi voz esta muy bajo o muy alto, da un toque a la bocina del lado inferior derecho, donde aparecerá una barrita, con ella podrás manejar el volumen de mi voz.',
-      }
-    }, */
-    {
-      element: '.mic-btn',
-      text: "Si el microfono esta de color verde es porque estoy escuchando, pero si esta de color gris es porque no estoy escuchando.",
-      popover: {
-        title: 'Microfono',
-        description: 'Si el microfono esta de color verde es porque estoy escuchando, pero si esta de color gris es porque no estoy escuchando.',
       }
     }
   ];
