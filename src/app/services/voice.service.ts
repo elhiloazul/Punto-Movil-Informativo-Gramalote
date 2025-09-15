@@ -6,20 +6,19 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class VoiceService {
 
-  private isListening = new BehaviorSubject<boolean>(false);
-  isListening$ = this.isListening.asObservable();
+  private isListeningSubject = new BehaviorSubject<boolean>(false);
+  isListening$ = this.isListeningSubject.asObservable();
 
   private errorSubject = new BehaviorSubject<string>("");
   error$ = this.errorSubject.asObservable();
 
-  
   recognition: any;  
 
   constructor(private zone: NgZone) { 
-    this.listen();
+    this.initRecognition();
   }
 
-  listen() {
+  private initRecognition() {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (SpeechRecognition) {
@@ -27,17 +26,29 @@ export class VoiceService {
       this.recognition.lang = 'es-CO';
       this.recognition.continuous = false;
       this.recognition.interimResults = false;
+
+      // eventos básicos
+      this.recognition.onstart = () => this.isListeningSubject.next(true);
+      this.recognition.onend = () => this.isListeningSubject.next(false);
+
+      this.recognition.onerror = (event: any) => {
+        console.error("❌ Error en SpeechRecognition:", event.error);
+        this.errorSubject.next(event.error);
+        this.isListeningSubject.next(false);
+      };
+
     } else {
       console.error("❌ SpeechRecognition no soportado en este navegador.");
     }
-
   }
 
   startListening(callback: (text: string) => void) {
     if (!this.recognition) return;
 
-    this.isListeningFuction(true);
-    this.recognition.start();
+    if (this.isListeningSubject.value) {
+      console.warn("⚠️ Ya está escuchando, se ignora start()");
+      return;
+    }
 
     this.recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
@@ -46,18 +57,11 @@ export class VoiceService {
       });
     };
 
-    this.recognition.onerror = (event: any) => {
-      console.error("Error en SpeechRecognition:", event.error);
-      this.errorSubject.next(event.error);
-    };
-
-    this.recognition.onend = () => {
-      this.isListeningFuction(false);
-    };
+    this.recognition.start();
   }
 
   stopListening() {
-    if (this.recognition) {
+    if (this.recognition && this.isListeningSubject.value) {
       this.recognition.stop();
     }
   }
@@ -73,16 +77,9 @@ export class VoiceService {
 
     utterance.onend = () => {
       console.log("✅ Terminó de hablar");
-      if (callback) {
-        callback();
-      }
+      if (callback) callback();
     };
 
     speechSynthesis.speak(utterance);
   }
-
-  isListeningFuction(nuevoValor: boolean) {
-    this.isListening.next(nuevoValor);
-  }
-  
 }

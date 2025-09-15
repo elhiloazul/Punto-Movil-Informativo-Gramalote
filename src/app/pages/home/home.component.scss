@@ -68,7 +68,7 @@
 }
 
 .custom-label {
-  background: linear-gradient(to right, #f2c94c, #f2994a);
+  background: linear-gradient(to right, #66B165, #66B165);
   border-radius: 2vh;
   padding: 1vh 3vh;
   font-size: 2.5vh;
@@ -77,5 +77,52 @@
   font-family: 'Pacifico', cursive;
   display: inline-block;
   text-align: center;
+}
+
+
+.name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.name-label {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #f9c74f; /* Amarillo cálido */
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-name {
+  background: linear-gradient(to right, #f2c94c, #f2994a);
+  border: none;
+  border-radius: 2vh;
+  padding: 1vh 3vh;
+  font-size: 2.5vh;
+  font-weight: bold;
+  cursor: pointer;
+  color: #004d40;
+  font-family: 'Pacifico', cursive;
+}
+
+.btn.confirm {
+  color: #4caf50;
+  border-color: #4caf50;
+}
+
+.btn.cancel {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.btn:hover {
+  transform: scale(1.2);
 }
 
