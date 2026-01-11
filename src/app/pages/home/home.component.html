@@ -1,58 +1,57 @@
 <div class="container">
 
   @if(!micVisible) {
-    <!-- Logo -->
-    <header class="header">
-      <img src="https://gramalote.com/wp-content/uploads/2021/02/Gramalote-Logo.svg" alt="Logo Gramalote" class="logo">
-    </header>
 
-    <!-- Personaje -->
-    <main class="main">
-      <img src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png" alt="Personaje" class="personaje">
-    </main>
+  <!-- Personaje -->
+  <main class="main">
+    <div class="thought-bubble">
+      <p class="text-white">¡Perfecto! bienvenido a conocer un poco de la historia de Gramalote.</p>
+    </div>
+    <img src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png" alt="Personaje" class="personaje">
+  </main>
 
-    @if(startExperienced) {
-      <div class="button-container">
-        <button class="btn" (click)="clickSound()">Iniciar experiencia</button>
-      </div>
-    }
+  @if(startExperienced) {
+  <div class="button-container">
+    <button class="btn" (click)="clickSound()">Iniciar experiencia</button>
+  </div>
+  }
 
-    <!-- Flujo de pasos dinámico -->
-    @if(currentStep === 'name') {
-      <div class="name-container">
-        <label class="custom-label">Tu nombre: {{name}}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
+  <!-- Flujo de pasos dinámico -->
+  @if(currentStep === 'name') {
+  <div class="name-container">
+    <label class="custom-label">Tu nombre: {{name}}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
 
-    @if(currentStep === 'age') {
-      <div class="name-container">
-        <label class="custom-label">Tu edad: {{age}}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
+  @if(currentStep === 'age') {
+  <div class="name-container">
+    <label class="custom-label">Tu edad: {{age}}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
 
-    @if(currentStep === 'address') {
-      <div class="name-container">
-        <label class="custom-label">Tu vereda o barrio: {{address}}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
+  @if(currentStep === 'address') {
+  <div class="name-container">
+    <label class="custom-label">Tu vereda o barrio: {{address}}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
 
-    <app-footer></app-footer>
+  <app-footer></app-footer>
   }
 
   @if(micVisible) {
-    <app-mic></app-mic>
+  <app-mic></app-mic>
   }
 
 </div>
