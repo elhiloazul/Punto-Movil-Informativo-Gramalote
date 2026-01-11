@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { ActivityService } from '../../services/activity.service';
+import { Activity } from '../../models/activity.model';
 
 @Component({
   selector: 'app-menu',
@@ -10,4 +12,11 @@ import { FooterComponent } from '../../components/footer/footer.component';
 })
 export class MenuComponent {
 
+  activities: Activity[] = [];
+
+  constructor(private activityService: ActivityService) { }
+  
+  ngOnInit() {
+    this.activities = this.activityService.getActivities();
+  }
 }
