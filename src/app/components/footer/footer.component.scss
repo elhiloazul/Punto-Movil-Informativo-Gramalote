@@ -1,0 +1,47 @@
+.footer {
+  position: fixed;
+  bottom: 3vh;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 60vw;
+  max-width: 420vw;
+  height: 6vh;
+  max-height: 50vh;
+
+  background: #ffffff;
+  border-radius: 999px;
+
+  padding: 0 3vh;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones */
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 6vh;
+  height: 6vh;
+
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+/* Íconos */
+.menu-btn mat-icon {
+  font-size: 3.5vh;
+  width: 3.5vh;
+  height: 3.5vh;
+  color: #0a6b5f; /* verde oscuro como la imagen */
+}
+
+/* Efecto toque */
+.menu-btn:active {
+  transform: scale(0.9);
+}
