@@ -10,6 +10,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { VoiceService } from '../../services/voice.service';
 import { MicComponent } from '../../components/mic/mic.component';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -58,7 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private openaiService: OpenaiService,
     private tutorialService: TutorialService,
     private cd: ChangeDetectorRef,
-    private voiceService: VoiceService
+    private voiceService: VoiceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -165,6 +167,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else if (this.currentStep === "address") {
       this.currentStep = null;
       this.voiceService.speak("¡Perfecto! Gracias por compartir tu información.");
+      this.router.navigate(['/menu']);
     }
     this.cd.markForCheck();
   }

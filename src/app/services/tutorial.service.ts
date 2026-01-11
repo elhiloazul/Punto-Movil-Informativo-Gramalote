@@ -26,14 +26,6 @@ export class TutorialService {
       }
     },
     {
-      element: '.fast-forward-btn',
-      text: "Cuando tengas todo claro y veas que la información ha terminado, da un toque aquí, para continuar.",
-      popover: {
-        title: 'Continuar',
-        description: 'Cuando tengas todo claro y veas que la información ha terminado, da un toque aquí, para continuar.',
-      }
-    },
-    {
       element: '.gamepad-btn',
       text: "Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque en esta casilla",
       popover: {
