@@ -1,0 +1,26 @@
+<footer class="footer">
+  <a [routerLink]="['/menu']" class="menu-btn">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+  </a>
+
+  <a [routerLink]="['#']" class="menu-btn">
+    <mat-icon fontIcon="repeat"></mat-icon>
+  </a>
+
+  <a [routerLink]="['#']" class="menu-btn">
+    <mat-icon fontIcon="casino"></mat-icon>
+  </a>
+
+  <!-- Contenedor especial para el volumen -->
+  <div class="volume-container">
+
+    <a [routerLink]="['#']" class="menu-btn">
+      <mat-icon fontIcon="volume_up"></mat-icon>
+    </a>
+
+    <!-- Barra de volumen encima -->
+    <div *ngIf="showVolumeControl" class="volume-control">
+      <input type="range" min="0" max="1" step="0.1" [(ngModel)]="volume" (input)="updateVolume()" orient="vertical" />
+    </div>
+  </div>
+</footer>

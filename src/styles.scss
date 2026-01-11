@@ -1,1 +1,144 @@
-/* You can add global styles to this file, and also import other style files */
+:host {
+  display: block;
+  height: 100vh; // 👈 pantalla completa siempre
+  width: 100%;
+  overflow: hidden; // 👈 evita scroll raro en transiciones
+}
+
+.router-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.router-container > * {
+  position: absolute; // 👈 apila las vistas una encima de la otra
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; // 👈 asegura mismo tamaño
+}
+
+
+body {
+  background: url('assets/images/PANTALLA.svg') no-repeat center center fixed;
+  background-size: cover;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.driver-popover.driverjs-theme {
+  background-color: #fde047;
+  color: #000;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+  font-size: 20px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title,
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+  color: #000;
+}
+
+.driver-popover.driverjs-theme button {
+  flex: 1;
+  text-align: center;
+  background-color: #000;
+  color: #ffffff;
+  border: 2px solid #000;
+  text-shadow: none;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.driver-popover.driverjs-theme button:hover {
+  background-color: #000;
+  color: #ffffff;
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+  color: #9b9b9b;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+  color: #000;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: #fde047;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: #fde047;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: #fde047;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: #fde047;
+}
+
+.thought-bubble {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+
+  background: #7fbccc;
+  border-radius: 3vh;
+  padding: 2vh 2.5vh;
+
+  width: fit-content;
+  max-width: 32vh;
+  margin-top: 10vh;
+
+
+}
+
+/* Cola del globo */
+.thought-bubble::after {
+  content: "";
+  position: absolute;
+
+  bottom: -2.5vh;
+  left: 27vh;
+
+  width: 4vh;
+  height: 4vh;
+
+  background: #7fbccc;
+  border-radius: 0 0 4vh 0;
+  transform: rotate(0deg);
+}
+
+/* Texto */
+.thought-bubble p {
+  margin: 0;
+  line-height: 1.3;
+  font-family: 'Comic Neue', 'Poppins', sans-serif;
+  white-space: normal;
+}
+
+/* Texto blanco */
+.text-white {
+  font-size: 2.2vh;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Texto oscuro */
+.text-dark {
+  font-size: 2.2vh;
+  color: #2f6f73;
+  font-weight: 700;
+}
