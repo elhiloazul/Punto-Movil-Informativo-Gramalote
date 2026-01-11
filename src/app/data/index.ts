@@ -9,7 +9,8 @@ export const ACTIVITIES: Activity[] = [
             {
                 id: 'slide-1',
                 type:'text',
-                text: '¡Perfecto! bienvenido a conocer un poco de la historia de Gramalote.'
+                text: '¡Perfecto! bienvenido a conocer un poco de la historia de Gramalote.',
+                audio: 'audio/actividades/modulo-1/slide-2.mp3'
             },
             {
                 id: 'slide-2',
