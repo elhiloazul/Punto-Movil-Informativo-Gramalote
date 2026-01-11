@@ -1,0 +1,24 @@
+<div class="content">
+
+    @if (currentSlide) {
+        @switch (currentSlide.type) {
+
+            @case ('text') {
+            <p>Show text component</p>
+            }
+
+            @case ('image') {
+            <p>Show image component</p>
+            }
+
+            @case ('video') {
+            <p>Show video component</p>
+            }
+
+            @case ('document') {
+            <p>Show document component</p>
+            }
+        }
+    }
+    <app-footer></app-footer>
+</div>
