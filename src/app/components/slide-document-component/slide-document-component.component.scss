@@ -8,7 +8,7 @@
 /* =========================
    PERSONAJE
 ========================= */
-.bg-img {
+.tico-img {
     position: absolute;
     bottom: 4vh;
     right: 0;
@@ -89,3 +89,9 @@
     border-radius: 4vh 0 0 0;
     transform: rotate(32deg);
 } 
+
+.button-container {
+    position: absolute;
+    bottom: 13vh;
+    right: 22vh;
+}
