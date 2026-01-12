@@ -1,26 +1,30 @@
-<div>
+@if (currentSlide) {
+<div [@screenAnimations]="prepareSlide(currentSlide)">
+        @for (slide of [currentSlide]; track slide.id) {
 
-    @if (currentSlide) {
-        @switch (currentSlide.type) {
+            @switch (currentSlide.type) {
 
-            @case ('text') {
-                <app-slide-text-component [slide]="currentSlide"></app-slide-text-component>
-            }
+                @case ('text') {
+                    <app-slide-text-component [slide]="currentSlide" (completed)="onSlideCompleted()">
+                    </app-slide-text-component>
+                }
 
-            @case ('image') {
-                <app-slide-image-component [slide]="currentSlide"></app-slide-image-component>
-            }
+                @case ('image') {
+                    <app-slide-image-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-image-component>
+                }
 
-            @case ('video') {
-            <p>Show video component</p>
-            }
+                @case ('video') {
+                <p>Show video component</p>
+                }
 
-            @case ('document') {
-            <p>Show document component</p>
+                @case ('document') {
+                <p>Show document component</p>
+                }
             }
         }
-    }
-    <div class="content">
-        <app-footer></app-footer>
+        <div class="content">
+            <app-footer></app-footer>
+        </div>
     </div>
-</div>
+}
