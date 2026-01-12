@@ -12,24 +12,12 @@
 .content-container {
     display: flex;
     flex-direction: column;
-    gap: 15vh; /* Espacio entre el globo superior e inferior */
+    gap: 8vh; /* Espacio entre el globo superior e inferior */
     padding-left: 5vw;
     padding-top: 5vh;
     z-index: 1;
 }
-/* =========================
-   IMAGEN PERSONAJE
-========================= */
-.bg-img {
-    position: absolute;
-    bottom: 24vh;
-    right: 0vw;
-    height: 50vh;
-    width: auto;
-    object-fit: contain;
-    pointer-events: none;
-    z-index: 2;
-}
+
 
 /* =========================
    GLOBO SUPERIOR (IMAGEN)
@@ -46,7 +34,7 @@
 }
 
 .thought-bubble-image img {
-    width: 70%;  /* Esto garantiza que siempre use todo el espacio interno */
+    width: 85%;  /* Esto garantiza que siempre use todo el espacio interno */
     display: block;
     border-radius: 3vh; /* Ajusta el radio para que no se vea tosco */
 }
@@ -75,7 +63,7 @@
     background: #7fbccc;
     border-radius: 5vh;
     padding: 3vh 4vh;
-    width: 37vh;
+    width: 26vh;
     align-self: flex-start; /* Alineado a la izquierda */
     margin-left: 2vh;
 }
@@ -114,11 +102,11 @@
 /* =========================
    PERSONAJE
 ========================= */
-.bg-img {
+.tico-img {
     position: absolute;
-    bottom: 0;
     right: 0;
     width: auto;
-    height: 56vh;
+    height: 44vh;
     z-index: 2; 
+    bottom: 15vh;
 }
