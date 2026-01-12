@@ -1,0 +1,32 @@
+@if (currentSlide) {
+<div [@screenAnimations]="prepareSlide(currentSlide)">
+        @for (slide of [currentSlide]; track slide.id) {
+
+            @switch (currentSlide.type) {
+
+                @case ('text') {
+                    <app-slide-text-component [slide]="currentSlide" (completed)="onSlideCompleted()">
+                    </app-slide-text-component>
+                }
+
+                @case ('image') {
+                    <app-slide-image-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-image-component>
+                }
+
+                @case ('video') {
+                    <app-slide-video-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-video-component>
+                }
+
+                @case ('document') {
+                    <app-slide-document-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-document-component>
+                }
+            }
+        }
+        <div class="content">
+            <app-footer></app-footer>
+        </div>
+    </div>
+}

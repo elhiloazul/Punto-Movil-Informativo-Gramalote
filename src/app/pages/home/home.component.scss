@@ -38,7 +38,7 @@
     margin: 2vh 0;
 }
 
-.btn {
+.button-container .btn {
   background: linear-gradient(to right, #f2c94c, #f2994a);
   border: none;
   border-radius: 2vh;
@@ -47,7 +47,6 @@
   font-weight: bold;
   cursor: pointer;
   color: #004d40;
-  font-family: 'Pacifico', cursive;
   animation: scale-up-center 1s ease-in-out infinite;
 }
 
