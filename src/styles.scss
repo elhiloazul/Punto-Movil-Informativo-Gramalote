@@ -155,3 +155,30 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   align-items: center;
   gap: 3vh;
 }
+
+/* =========================
+  Botones
+========================= */
+.next-btn {
+  background: linear-gradient(to right, #f2c94c, #f2994a);
+  border: none;
+  border-radius: 2vh;
+  padding: 1vh 3vh;
+  font-size: 2.5vh;
+  font-weight: bold;
+  cursor: pointer;
+  color: #004d40;
+  animation: next-btn-scale-up-center 1s ease-in-out infinite;
+}
+
+@keyframes next-btn-scale-up-center {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);  
+  }
+}
