@@ -22,7 +22,7 @@ export const ACTIVITIES: Activity[] = [
                 id: 'slide-3',
                 type: 'image',
                 imageUrl: 'images/actividades/modulo-1/slide-3.png',
-                text: 'Ubicado en Antioquia en el corregimiento Providencia, de San Roque; hace 20 años se estudió el lugar para desarrollar un proyecto minero,',
+                text: `Ubicado en Antioquia en el corregimiento Providencia, de <span class='highlight'>San Roque; hace 20 años se estudió el lugar para desarrollar un proyecto minero.</span>`,
                 audio: 'audio/actividades/modulo-1/slide-3.mp3'
             },
             {
