@@ -8,6 +8,15 @@
   overflow: hidden;
 }
 
+/* Contenedor para alinear los globos a la izquierda del personaje */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15vh; /* Espacio entre el globo superior e inferior */
+    padding-left: 5vw;
+    padding-top: 5vh;
+    z-index: 1;
+}
 /* =========================
    IMAGEN PERSONAJE
 ========================= */
@@ -22,72 +31,94 @@
     z-index: 2;
 }
 
+/* =========================
+   GLOBO SUPERIOR (IMAGEN)
+========================= */
 .thought-bubble-image {
-  position: relative;
-  display: inline-flex;
-  flex-direction: column;
-
-  background: #7fbccc;
-  border-radius: 3vh;
-  padding: 2vh 2.5vh;
-
-  width: fit-content;
-  max-width: 32vh;
-  margin-top: 10vh;
-
-
+    position: relative;
+    background: #7fbccc;
+    border-radius: 6vh; /* Bordes muy redondeados */
+    padding: 3vh;
+    width: 57vh; /* Más ancho que el de texto */
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
 }
 
-/* Cola del globo */
+.thought-bubble-image img {
+    width: 70%;  /* Esto garantiza que siempre use todo el espacio interno */
+    display: block;
+    border-radius: 3vh; /* Ajusta el radio para que no se vea tosco */
+}
+
+/* Colita globo superior: apunta hacia abajo */
 .thought-bubble-image::after {
   content: "";
   position: absolute;
 
   bottom: -2.5vh;
-  left: 27vh;
+  right: 8%;
 
   width: 4vh;
   height: 4vh;
 
   background: #7fbccc;
-  border-radius: 0 0 4vh 0;
+  border-radius: 0 0 0 4vh;
   transform: rotate(0deg);
 }
 
-/* Texto */
+/* =========================
+   GLOBO INFERIOR (TEXTO)
+========================= */
 .thought-bubble-text {
-  position: relative;
-  display: inline-flex;
-  flex-direction: column;
-
-  background: #7fbccc;
-  border-radius: 3vh;
-  padding: 2vh 2.5vh;
-
-  width: fit-content;
-  max-width: 32vh;
-  margin-top: 10vh;
-
-
+    position: relative;
+    background: #7fbccc;
+    border-radius: 5vh;
+    padding: 3vh 4vh;
+    width: 37vh;
+    align-self: flex-start; /* Alineado a la izquierda */
+    margin-left: 2vh;
 }
 
-.thought-bubble-text::after {
-  content: "";
-  position: absolute;
-
-  bottom: -2.5vh;
-  left: 27vh;
-
-  width: 4vh;
-  height: 4vh;
-
-  background: #7fbccc;
-  border-radius: 0 0 4vh 0;
-  transform: rotate(0deg);
+.thought-bubble-text p {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
 }
 
-.thought-bubble-text p{
-  margin: 0;
-  line-height: 1.3;
-  white-space: normal;
+::ng-deep .highlight {
+    color: #2D572C;
+    font-size: 2.2vh;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+}
+
+ /* Colita globo inferior: apunta hacia arriba */
+ .thought-bubble-text::after {
+    content: "";
+    position: absolute;
+    top: -1vh;
+    right: -2%;
+    width: 4vh;
+    height: 4vh;
+    background: #7fbccc;
+    border-radius: 4vh 0 0 0;
+    transform: rotate(32deg);
+} 
+
+/* =========================
+   PERSONAJE (Punto de ancla)
+========================= */
+.bg-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 56vh;
+    z-index: 2; 
 }
