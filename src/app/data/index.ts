@@ -62,7 +62,7 @@ export const ACTIVITIES: Activity[] = [
             {
                 id: 'slide-9',
                 type: 'video',
-                videoUrl: 'assets/videos/actividad1/modulo1-slide9.mp4',
+                videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
                 text: 'Por cierto... Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video',
                 audio: 'audio/actividades/modulo-1/slide-3.mp3'
             }
