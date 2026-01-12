@@ -1,0 +1,14 @@
+  <main class="main">
+    <div class="thought-bubble">
+      <p class="text-white">{{slide.text}}</p>
+    </div>
+    <img src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png" alt="Personaje" class="personaje">
+  
+    @if (!slide.audio) {
+    <div class="button-container">
+      <button class="next-btn" (click)="completed.emit()">Siguiente</button> 
+    </div>
+    }
+  
+  </main>
+

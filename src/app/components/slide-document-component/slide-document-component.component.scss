@@ -1,0 +1,97 @@
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================
+   PERSONAJE
+========================= */
+.tico-img {
+    position: absolute;
+    bottom: 4vh;
+    right: 0;
+    width: auto;
+    height: 40vh;
+    z-index: 2; 
+}
+
+.document-container {
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85vw;
+    height: 60vh;
+    background-color: #ffffff;
+    z-index: 2;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 4vh;
+    overflow: hidden;
+    border: none;
+}
+
+.document-container embed {
+     width: 110%; 
+    height: 110%;
+    
+    margin-left: -5%;
+    margin-top: -5%;
+    
+    border: none;
+    display: block;
+    background: white;
+}
+
+/* =========================
+   GLOBO INFERIOR (TEXTO)
+========================= */
+.thought-bubble-text {
+    position: absolute;
+    background: #7fbccc;
+    border-radius: 2vh;
+    padding: 1.5vh 1.5vh;
+    width: 30vh;
+    bottom: 21vh;
+    height: 9vh;
+    margin-left: 5vh;
+    right: 20vh;
+}
+
+.thought-bubble-text p {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+}
+
+::ng-deep .highlight {
+    color: #2D572C;
+    font-size: 2.2vh;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+}
+
+ /* Colita globo inferior: apunta hacia arriba */
+ .thought-bubble-text::after {
+    content: "";
+    position: absolute;
+    top: -0.5vh;
+    right: -2%;
+    width: 2.5vh;
+    height: 2.5vh;
+    background: #7fbccc;
+    border-radius: 4vh 0 0 0;
+    transform: rotate(32deg);
+} 
+
+.button-container {
+    position: absolute;
+    bottom: 13vh;
+    right: 22vh;
+}

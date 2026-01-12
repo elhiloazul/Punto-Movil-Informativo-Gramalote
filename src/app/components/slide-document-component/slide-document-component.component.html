@@ -1,0 +1,21 @@
+<div class="screen">
+
+    <div class="document-container">
+        <embed 
+        [src]="getCleanPdfUrl(slide.documentUrl)" 
+        type="application/pdf"
+        width="100%" 
+        height="100%" />
+    </div>
+
+    <div class="thought-bubble-text">
+        <p [innerHTML]="slide.text"></p>
+    </div>
+
+    <img
+    src="images/tico-lado-derecho.png"
+    alt=""
+    class="tico-img"
+    >
+
+</div>
