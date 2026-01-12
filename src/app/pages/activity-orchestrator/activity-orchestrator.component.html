@@ -1,4 +1,4 @@
-<div class="content">
+<div>
 
     @if (currentSlide) {
         @switch (currentSlide.type) {
@@ -8,7 +8,7 @@
             }
 
             @case ('image') {
-             <p>Show image component</p>
+                <app-slide-image-component [slide]="currentSlide"></app-slide-image-component>
             }
 
             @case ('video') {
@@ -20,5 +20,7 @@
             }
         }
     }
-    <app-footer></app-footer>
+    <div class="content">
+        <app-footer></app-footer>
+    </div>
 </div>

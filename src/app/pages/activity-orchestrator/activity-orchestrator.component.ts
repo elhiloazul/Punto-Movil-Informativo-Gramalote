@@ -4,12 +4,14 @@ import { ActivityService } from '../../services/activity.service';
 import { Activity } from '../../models/activity.model';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SlideTextComponentComponent } from '../../components/slide-text-component/slide-text-component.component';
+import { SlideImageComponentComponent } from '../../components/slide-image-component/slide-image-component.component';
 
 @Component({
   selector: 'app-activity-orchestrator',
   imports: [
     FooterComponent,
     SlideTextComponentComponent,
+    SlideImageComponentComponent,
   ],
   templateUrl: './activity-orchestrator.component.html',
   styleUrls: ['./activity-orchestrator.component.scss']
@@ -31,7 +33,7 @@ export class ActivityOrchestratorComponent implements OnInit {
 
   get currentSlide() {
     if (!this.activity) return undefined;
-    return this.activity.slides[this.currentSlideIndex];
+    return this.activity.slides[2];
   }
 
 }
