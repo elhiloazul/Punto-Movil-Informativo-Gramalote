@@ -15,11 +15,13 @@
                 }
 
                 @case ('video') {
-                <p>Show video component</p>
+                    <app-slide-video-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-video-component>
                 }
 
                 @case ('document') {
-                <p>Show document component</p>
+                    <app-slide-document-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
+                    </app-slide-document-component>
                 }
             }
         }

@@ -55,7 +55,7 @@ export const ACTIVITIES: Activity[] = [
             {
                 id: 'slide-8',
                 type: 'video',
-                videoUrl: 'assets/videos/actividad1/modulo1-slide8.mp4',
+                videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
                 text: 'Para conocer un poco más de esto, acompáñame a ver "presente y futuro" un video que nos muestra los aportes que el proyecto ha realizado a la comunidad',
                 audio: 'audio/actividades/modulo-1/slide-3.mp3'
             },
@@ -71,7 +71,14 @@ export const ACTIVITIES: Activity[] = [
     {
         id: 'modulo-2',
         title: 'Nuestra licencia ambienta',
-        slides: []
+        slides: [
+            {
+                id: 'slide-1',
+                type:'document',
+                documentUrl: 'documents/actividades/modulo-2/slide1.pdf',
+                audio: 'audio/actividades/modulo-1/slide-3.mp3'
+            },
+        ]
     },
     {
         id: 'modulo-3',

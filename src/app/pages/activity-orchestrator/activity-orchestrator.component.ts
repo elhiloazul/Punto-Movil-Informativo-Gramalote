@@ -8,6 +8,8 @@ import { SlideImageComponentComponent } from '../../components/slide-image-compo
 import { Slide } from '../../models/slide.model';
 import { slideAnimations } from '../../components/slide.animations';
 import { LoggerService } from '../../core/logger/logger.service';
+import { SlideVideoComponentComponent } from '../../components/slide-video-component/slide-video-component.component';
+import { SlideDocumentComponentComponent } from '../../components/slide-document-component/slide-document-component.component';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -15,6 +17,8 @@ import { LoggerService } from '../../core/logger/logger.service';
     FooterComponent,
     SlideTextComponentComponent,
     SlideImageComponentComponent,
+    SlideVideoComponentComponent,
+    SlideDocumentComponentComponent,
   ],
   animations: [ slideAnimations ],
   templateUrl: './activity-orchestrator.component.html',

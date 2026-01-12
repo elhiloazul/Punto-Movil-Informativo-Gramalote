@@ -27,4 +27,5 @@ export interface ImageSlide extends Slide {
 export interface DocumentSlide extends Slide {
     type: 'document';
     documentUrl: string;
+    text?: string;  
 }
