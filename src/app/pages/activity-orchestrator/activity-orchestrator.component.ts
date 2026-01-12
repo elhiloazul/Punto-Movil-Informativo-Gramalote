@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActivityService } from '../../services/activity.service';
-import { Activity } from '../../models/activity.model';
+import { Activity, ActivitySlide } from '../../models/activity.model';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SlideTextComponentComponent } from '../../components/slide-text-component/slide-text-component.component';
 import { SlideImageComponentComponent } from '../../components/slide-image-component/slide-image-component.component';
+import { Slide } from '../../models/slide.model';
+import { slideAnimations } from '../../components/slide.animations';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -13,6 +15,7 @@ import { SlideImageComponentComponent } from '../../components/slide-image-compo
     SlideTextComponentComponent,
     SlideImageComponentComponent,
   ],
+  animations: [ slideAnimations ],
   templateUrl: './activity-orchestrator.component.html',
   styleUrls: ['./activity-orchestrator.component.scss']
 })
@@ -31,9 +34,19 @@ export class ActivityOrchestratorComponent implements OnInit {
     this.activity = this.activityService.getById(id);
   }
 
-  get currentSlide() {
+  onSlideCompleted() {
+    console.log('Slide completed, moving to next slide');
+    this.currentSlideIndex++;
+    // TODO: verificar si hay más slides o finalizar la actividad
+  }
+
+  get currentSlide(): ActivitySlide | undefined {
     if (!this.activity) return undefined;
-    return this.activity.slides[2];
+    return this.activity.slides[this.currentSlideIndex];
+  }
+
+  prepareSlide(slide: Slide) {
+    return slide.id;
   }
 
 }

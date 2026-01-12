@@ -10,18 +10,20 @@ export const ACTIVITIES: Activity[] = [
                 id: 'slide-1',
                 type:'text',
                 text: '¡Perfecto! bienvenido a conocer un poco de la historia de Gramalote.',
-                audio: 'audio/actividades/modulo-1/slide-2.mp3'
+                audio: 'audio/actividades/modulo-1/slide-1.mp3'
             },
             {
                 id: 'slide-2',
                 type: 'text',
-                text: '¿Sabes que es una licencia ambiental?'
+                text: '¿Sabes que es una licencia ambiental?',
+                audio: 'audio/actividades/modulo-1/slide-2.mp3'
             },
             {
                 id: 'slide-3',
                 type: 'image',
                 imageUrl: 'assets/images/actividad1/modulo1-slide3.png',
-                text: 'Ubicado en Antioquia en el corregimiento Providencia, de San Roque; hace 20 años se estudió el lugar para desarrollar un proyecto minero,'
+                text: 'Ubicado en Antioquia en el corregimiento Providencia, de San Roque; hace 20 años se estudió el lugar para desarrollar un proyecto minero,',
+                audio: 'audio/actividades/modulo-1/slide-1.mp3'
             },
             {
                 id: 'slide-4',

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TextSlide } from '../../models/slide.model';
 
 @Component({
@@ -10,13 +10,18 @@ import { TextSlide } from '../../models/slide.model';
 export class SlideTextComponentComponent {
 
   @Input({ required: true }) slide!: TextSlide;
-  
+  @Output() completed = new EventEmitter<void>();
+
   ngOnInit() {
     if (this.slide.audio) {
       const audio = new Audio(this.slide.audio);
-      audio.currentTime = 0; // reinicia el audio
+      audio.currentTime = 0;
       audio.play().catch(err => {
         console.error('No se pudo reproducir el audio', err);
+      }).then(() => {
+        audio.onended = () => {
+          this.completed.emit();
+        };
       });
     }
   }
