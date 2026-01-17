@@ -1,5 +1,4 @@
-
-export type SlideType = 'text' | 'video' | 'image' | 'document';
+export type SlideType = 'text' | 'video' | 'image' | 'document' | 'custom';
 
 export interface Slide {
     id: string;
@@ -28,4 +27,9 @@ export interface DocumentSlide extends Slide {
     type: 'document';
     documentUrl: string;
     text?: string;  
+}
+
+export interface CustomSlide extends Slide {
+    type: 'custom';
+    component: any;
 }
