@@ -151,7 +151,109 @@ export const ACTIVITIES: Activity[] = [
         id: 'modulo-3',
         title: 'Conoce el MEIA',
         seccion: 'conoce-el-meia-btn',
-        slides: []
+        slides: [
+            {
+                id: 'slide-1',
+                type:'text',
+                text: 'Hola, que rico que quieres saber qué es la MEIA (Modificación de la Licencia Ambiental).',
+                audio: 'audio/actividades/modulo-3/slide-1.mp3'
+            },
+            {
+                id: 'slide-2',
+                type:'text',
+                text: '¡Te lo explico!, es una actualización del permiso ambiental que tiene Gramalote, como te contaba antes en el módulo 2, la ANLA se asegura que el proyecto siga cumpliendo el cuidado ambiental y los compromisos sociales.',
+                audio: 'audio/actividades/modulo-3/slide-2.mp3'
+            },
+            {
+                id: 'slide-3',
+                type:'text',
+                text: 'Para poder hacer la modificación se debe cumplir con:\n1. Los estudios de agua, aire, suelo, seres vivos de la zona, comunidad.\n2. Escuchar la comunidad si tienen dudas y opiniones\n3. Agregar las mejoras del proyecto.',
+                audio: 'audio/actividades/modulo-3/slide-3.mp3'
+            },
+            {
+                id: 'slide-4',
+                type:'text',
+                text: 'Te cuento que la MEIA del proyecto Gramalote hizo 3 cambios:',
+                audio: 'audio/actividades/modulo-3/slide-4.mp3'
+            },
+            {
+                id: 'slide-5',
+                type:'text',
+                text: '1. Optimizar obras mineras\n● Área de explotación. (tajo)\n● Depósitos de material estéril.',
+                audio: 'audio/actividades/modulo-3/slide-5.mp3'
+            },
+            {
+                id: 'slide-6',
+                type:'text',
+                text: '2. Reducir obras de infraestructura\n● Vías - Zonas materiales sobrantes de excavación\n● Sedimentadores.',
+                audio: 'audio/actividades/modulo-3/slide-6.mp3'
+            },
+            {
+                id: 'slide-7',
+                type:'text',
+                text: '3. Relocalizar obras complementarias\n● Portería, campamento, polvorín.\n● Trituradora, planta de beneficio, área de servicios.',
+                audio: 'audio/actividades/modulo-3/slide-7.mp3'
+            },
+            {
+                id: 'slide-8',
+                type:'text',
+                text: 'Te cuento lo que el proyecto Gramalote no cambiará:\n● Área de manejo de relaves o colas.\n● Sedimentador La Palestina y sedimentador El Torito (asociados al área de manejo de relaves o colas).\n● Realineación de la quebrada Guacas.\n● Plataforma La Perla.',
+                audio: 'audio/actividades/modulo-3/slide-8.mp3'
+            },
+            {
+                id: 'slide-9',
+                type:'text',
+                text: 'Sabes que la MEIA está conformada por momentos, ahora estamos terminando el momento 2 y daremos inicio al siguiente.',
+                audio: 'audio/actividades/modulo-3/slide-9.mp3'
+            },
+            {
+                id: 'slide-10',
+                type:'text',
+                text: 'Conozcamos el momento 2:',
+                audio: 'audio/actividades/modulo-3/slide-10.mp3'
+            },
+            {
+                id: 'slide-11',
+                type: 'image',
+                imageUrl: 'images/actividades/modulo-3/slide-11.png',
+                text: 'Identificación y evaluación del impacto ambiental, que es todo lo que puede cambiar o verse afectado a causa de las actividades del proyecto.',
+                audio: 'audio/actividades/modulo-3/slide-11.mp3'
+            },
+            {
+                id: 'slide-12',
+                type: 'image',
+                imageUrl: 'images/actividades/modulo-3/slide-12.png',
+                text: 'Del aprendizaje adquirido y los aportes de los grupos de valor del proyecto nos queda el conocimiento con los cuales se conforman propuestas para aminorar el impacto ambiental.',
+                audio: 'audio/actividades/modulo-3/slide-12.mp3'
+            },
+            {
+                id: 'slide-13',
+                type: 'image',
+                imageUrl: 'images/actividades/modulo-3/slide-13.png',
+                text: 'De allí surgen las soluciones o cuidados que se aplican para que las actividades del proyecto se hagan de forma responsable y sostenible.',
+                audio: 'audio/actividades/modulo-3/slide-13.mp3'
+            },
+            {
+                id: 'slide-14',
+                type: 'image',
+                imageUrl: 'images/actividades/modulo-3/slide-14.png',
+                text: 'Además recuerda que, un impacto ambiental es cualquier cambio sobre el medio ambiente, puede afectar o beneficiar total o parcialmente a causa de un proyecto o actividad, por eso es necesario tener una licencia. Y antes de continuar, te presento a nuestros actores involucrados.',
+                audio: 'audio/actividades/modulo-3/slide-14.mp3'
+            },
+            {
+                id: 'slide-15',
+                type: 'image',
+                imageUrl: 'images/actividades/modulo-3/slide-15.png',
+                text: '',
+                audio: ''
+            },
+            {
+                id: 'slide-16',
+                type:'text',
+                text: 'Cuéntame, ¿con qué te gustaría continuar? ',
+                audio: 'audio/actividades/modulo-3/slide-16.mp3'
+            },
+        ]
     },
     {
         id: 'modulo-4',
