@@ -73,7 +73,7 @@ export class ActivityOrchestratorComponent implements OnInit {
 
   get currentSlide(): ActivitySlide | undefined {
     if (!this.activity) return undefined;
-    return this.activity.slides[this.currentSlideIndex];
+    return this.activity.slides[4];
   }
 
   prepareSlide(slide: Slide) {
