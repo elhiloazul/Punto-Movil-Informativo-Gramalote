@@ -1,3 +1,4 @@
+import { SlideDescribeMineralsGameComponent } from "../components/slide-custom-component/games/slide-describe-minerals-game/slide-describe-minerals-game.component";
 import { SlideSarchingMineralsGameComponent } from "../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component";
 import { Activity } from "../models/activity.model";
 
@@ -164,6 +165,17 @@ export const ACTIVITIES: Activity[] = [
                 id: 'slide-4',
                 type:'custom',
                 component: SlideSarchingMineralsGameComponent
+            },
+            {
+                id: 'slide-5',
+                type:'custom',
+                component: SlideDescribeMineralsGameComponent
+            },
+            {
+                id: 'slide-6',
+                type: 'text',
+                text: "¿Te doy un dato sobre mí? !Me encantan las fotos! conservan recuerdos y nos permiten transmitir emociones a través de una imagen.",
+                audio: 'audio/actividades/modulo-5/slide-6.mp3'
             }
         ]
     }
