@@ -7,7 +7,7 @@
 
   <div class="content">
       @for (activity of activities; track activity.id) {
-        <button class="pill" [routerLink]="['/activity', activity.id]">
+        <button class="pill" [routerLink]="['/activity', activity.id]" [class]="activity.seccion" [disabled]="activity.id === 'modulo-5'">
           {{ activity.title }}
         </button>
       }
