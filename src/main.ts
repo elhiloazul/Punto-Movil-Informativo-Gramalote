@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
@@ -8,6 +8,6 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideAnimations()
+    provideAnimationsAsync() // ⬅️ Cambiado a Async
   ]
 }).catch(err => console.error(err));

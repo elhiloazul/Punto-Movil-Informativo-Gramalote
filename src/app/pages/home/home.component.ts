@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { OpenaiService } from '../../services/openai.service';
 import { FormsModule } from '@angular/forms';
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
@@ -11,6 +10,7 @@ import { VoiceService } from '../../services/voice.service';
 import { MicComponent } from '../../components/mic/mic.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoggerService } from '../../core/logger/logger.service';
 
 @Component({
   selector: 'app-home',
@@ -26,62 +26,127 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  volume: number = 1;
-  startExperienced: boolean = true;
+  protected audio?: HTMLAudioElement;
+
+  volume = 1;
+  startExperienced = true;
 
   currentStep: 'name' | 'age' | 'address' | null = null;
 
-  name: string = "";
-  age: string = "";
-  address: string = "";
+  name = '';
+  age = '';
+  address = '';
 
-  micVisible: boolean = false;
-  maxAttempts: number = 5;
-  attempts: number = 0;
-  errorSub!: Subscription;
+  micVisible = false;
+  maxAttempts = 5;
+  attempts = 0;
+
+  private errorSub?: Subscription;
+  private listeningSub?: Subscription;
 
   private messages = {
-    name: {
-      question: "¿Cuál es tu nombre?",
-      confirm: (val: string) => `Acabas de decir que te llamas ${val}.`
-    },
-    age: {
-      question: "¿Cuántos años tienes?",
-      confirm: (val: string) => `Acabas de decir que tienes ${val} años.`
-    },
-    address: {
-      question: "¿Dónde vives?",
-      confirm: (val: string) => `Acabas de decir que vives en ${val}.`
-    }
+    name: { audio: 'audio/form/nombre.mp3' },
+    age: { audio: 'audio/form/edad.mp3' },
+    address: { audio: 'audio/form/direccion.mp3' }
+  };
+
+  private voiceMap: Record<string, string> = {
+    saludo: 'audio/home/saludo-tico.mp3',
+    iniciarTutorial1: 'audio/home/tutorial-1.mp3',
+    iniciarTutorial2: 'audio/home/tutorial-2.mp3',
+    conocer_de_ti: 'audio/home/conocer-de-ti.mp3',
   };
 
   constructor(
-    private openaiService: OpenaiService,
     private tutorialService: TutorialService,
     private cd: ChangeDetectorRef,
     private voiceService: VoiceService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private logger: LoggerService
+  ) {}
+
+  /* =========================
+     INIT
+  ========================== */
 
   ngOnInit() {
-    this.voiceService.isListening$.subscribe(isListening => {
+    this.listeningSub = this.voiceService.isListening$.subscribe(isListening => {
       this.micVisible = isListening;
-      this.cd.markForCheck();
+      this.cd.detectChanges();
     });
   }
 
-  ngOnDestroy() {
-    if (this.errorSub) this.errorSub.unsubscribe();
+  /* =========================
+     AUDIO HELPERS
+  ========================== */
+
+  private playAudio(callback?: () => void, audioPath?: string) {
+    this.stopAudio();
+
+    if (!audioPath) return;
+
+    this.audio = new Audio(audioPath);
+    this.audio.currentTime = 0;
+
+    this.audio.play().catch(err => {
+      console.error('Error reproduciendo audio', err);
+    });
+
+    this.audio.onended = () => {
+      this.logger.debug('Audio terminado');
+      if (callback) callback();
+    };
   }
 
+  private stopAudio() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+      this.audio.src = '';
+      this.audio = undefined;
+    }
+  }
+
+  /* =========================
+     SECUENCIAS DE VOZ
+  ========================== */
+
+  saySequence(keys: string[], callback?: () => void): void {
+    if (!keys.length) {
+      callback?.();
+      return;
+    }
+
+    const [first, ...rest] = keys;
+    this.say(first, () => this.saySequence(rest, callback));
+  }
+
+  say(key: string, callback?: () => void): void {
+    const audioPath = this.voiceMap[key];
+
+    if (!audioPath) {
+      console.warn(`Audio no definido para la clave: ${key}`);
+      callback?.();
+      return;
+    }
+
+    this.playAudio(callback, audioPath);
+  }
+
+  /* =========================
+     CLICK INICIO
+  ========================== */
+
   clickSound() {
-    this.voiceService.speak(
-      "Hola, soy Tico, un mono Titi que está emocionado por conocerte. Estoy muy feliz de que estés aquí, y tengo mucho que contarte, pero primero, aprendamos a usar la pantalla",
-      () => {
-        this.startTutorial();
-      }
+    this.saySequence(
+      ['saludo', 'iniciarTutorial1', 'iniciarTutorial2'],
+      () => this.startTutorial()
     );
   }
+
+  /* =========================
+     TUTORIAL
+  ========================== */
 
   startTutorial() {
     const steps = this.tutorialService.stepsTutorials;
@@ -89,52 +154,51 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     const driverObj = driver({
       popoverClass: 'driverjs-theme',
-      onHighlightStarted: (element) => {
+      onHighlightStarted: () => {
         const step = steps[currentStepIndex];
-        if (element && element.classList.contains(step.element.replace('.', ''))) {
-          this.voiceService.speak(step.text, () => {
-            currentStepIndex++;
-            if (currentStepIndex < steps.length) {
-              driverObj.highlight(steps[currentStepIndex]);
-            } else {
-              driverObj.destroy();
-              this.startExperienced = false;
-              this.currentStep = "name";
-              this.cd.markForCheck();
-              this.voiceService.speak(this.messages.name.question, () => {
-                this.listenFor('name');
-              });
-            }
-          });
-        }
+
+        this.playAudio(() => {
+          currentStepIndex++;
+
+          if (currentStepIndex < steps.length) {
+            driverObj.highlight(steps[currentStepIndex]);
+          } else {
+            driverObj.destroy();
+            this.startExperienced = false;
+            this.currentStep = 'name';
+            this.cd.markForCheck();
+
+            this.saySequence(['conocer_de_ti'], () => {
+              this.playAudio(() => this.listenFor('name'), this.messages.name.audio);
+            });
+          }
+        }, step.audio);
       }
     });
 
     driverObj.highlight(steps[currentStepIndex]);
   }
 
+  /* =========================
+     LISTEN
+  ========================== */
+
   listenFor(field: 'name' | 'age' | 'address') {
-    this.micVisible = true;
-    this.cd.markForCheck();
-
     this.voiceService.startListening((text: string) => {
-      if (text && text.trim() !== "") {
-        this.micVisible = false;
-        this.cd.markForCheck();
+      if (text && text.trim() !== '') {
         this.attempts = 0;
-
         (this as any)[field] = text;
 
-        this.voiceService.speak(this.messages[field].confirm(text));
+        // 🔑 cerrar escucha al obtener texto
+        this.voiceService.stopListening();
       }
     });
 
-    if (this.errorSub) this.errorSub.unsubscribe();
+    this.errorSub?.unsubscribe();
 
     this.errorSub = this.voiceService.error$.subscribe(err => {
-      if (err === "no-speech") {
+      if (err === 'no-speech') {
         this.attempts++;
-        console.log("Intento fallido:", this.attempts);
         this.retryListen(field);
       }
     });
@@ -142,41 +206,55 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private retryListen(field: 'name' | 'age' | 'address') {
     if (this.attempts < this.maxAttempts) {
-      this.voiceService.speak("No te he escuchado, intenta de nuevo.", () => {
+      this.playAudio(() => {
         setTimeout(() => this.listenFor(field), 800);
-      });
+      }, 'audio/errors/no-escuche.mp3');
     } else {
-      this.voiceService.speak("He intentado escucharte varias veces y no pude. Voy a detenerme por ahora.");
-      this.micVisible = false;
-      this.cd.markForCheck();
+      this.playAudio(undefined, 'audio/errors/stop.mp3');
       this.voiceService.stopListening();
     }
   }
 
+  /* =========================
+     CONFIRM FLOW
+  ========================== */
+
   confirmStep() {
-    if (this.currentStep === "name") {
-      this.currentStep = "age";
-      this.voiceService.speak(this.messages.age.question, () => {
-        this.listenFor("age");
-      });
-    } else if (this.currentStep === "age") {
-      this.currentStep = "address";
-      this.voiceService.speak(this.messages.address.question, () => {
-        this.listenFor("address");
-      });
-    } else if (this.currentStep === "address") {
+    if (this.currentStep === 'name') {
+      this.currentStep = 'age';
+      this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
+
+    } else if (this.currentStep === 'age') {
+      this.currentStep = 'address';
+      this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
+
+    } else if (this.currentStep === 'address') {
       this.currentStep = null;
-      this.voiceService.speak("¡Perfecto! Gracias por compartir tu información.");
       this.router.navigate(['/menu']);
     }
+
     this.cd.markForCheck();
   }
 
   cancelStep() {
-    if (this.currentStep) {
-      this.voiceService.speak("Vamos a repetirlo, por favor dime de nuevo.");
-      this.listenFor(this.currentStep);
-    }
+    if (!this.currentStep) return;
+
+    this.saySequence(['repetir'], () => {
+      this.playAudio(
+        () => this.listenFor(this.currentStep!),
+        this.messages[this.currentStep!].audio
+      );
+    });
   }
 
+  /* =========================
+     DESTROY
+  ========================== */
+
+  ngOnDestroy() {
+    this.stopAudio();
+    this.voiceService.stopListening();
+    this.errorSub?.unsubscribe();
+    this.listeningSub?.unsubscribe();
+  }
 }
