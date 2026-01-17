@@ -8,7 +8,7 @@ export class TutorialService {
 
   constructor() { }
 
-  stepsTutorials = [
+  stepsTutorialsFooter = [
    {
       element: '.home-btn',
       audio: 'audio/home/tutorial-home.mp3',
@@ -39,6 +39,49 @@ export class TutorialService {
       popover: {
         title: 'Volumen',
         description: 'Si el volumen de mi voz esta muy bajo o muy alto, da un toque a la bocina del lado inferior derecho, donde aparecerá una barrita, con ella podrás manejar el volumen de mi voz.',
+      }
+    }
+  ];
+
+   stepsTutorialsMenu = [
+   {
+      element: '.conoce-nuestro-proyecto-btn',
+      audio: 'audio/menu/conoce-nuestro-proyecto.mp3',
+      popover: {
+        title: 'Conoce nuestro proyecto',
+        description: 'Conoce nuestro proyecto, donde te cuento un poco de la historia de GRAMALOTE, cómo funciona y qué es lo que hacemos.',
+      }
+    },
+    {
+      element: '.nuestra-licencia-ambiental-btn',
+      audio: 'audio/menu/nuestra-licencia-ambiental.mp3',
+      popover: {
+        title: 'Nuestra licencia ambiental',
+        description: 'Segundo, nuestra licencia ambiental, te explico todo sobre que es una licencia ambiental y cómo funciona la nuestra además de sus adaptaciones al proyecto, recuerda que Esto se hace para garantizar que el proyecto sea seguro, sostenible y responsable con la comunidad y el medio ambiente.',
+      }
+    },
+    {
+      element: '.conoce-el-meia-btn',
+      audio: 'audio/menu/conoce-meia.mp3',
+      popover: {
+        title: 'Conoce el MEIA',
+        description: 'Tercero, Conoce el MEIA, recuerdas que ¿te dije que nuestra licencia ambiental se adapta a lo que hacemos?, pues aquí puedes conocer cada modificación, te recomiendo que antes de entrar aquí, ya hayas conocido que es una licencia ambiental.',
+      }
+    },
+    {
+      element: '.tu-cuentas-sqr-btn',
+      audio: 'audio/menu/tu-cuentas-sqr.mp3',
+      popover: {
+        title: 'Tu cuentas SQR',
+        description: 'Cuarto, tú cuentas, aquí, te escuchamos, por lo que te contaré como te puedes comunicar con nosotros, a través de diferentes medios, para conocer todas tus dudas, quejas, reclamos o solicitudes.',
+      }
+    },
+    {
+      element: '.agendate-btn',
+      audio: 'audio/menu/agendate.mp3',
+      popover: {
+        title: 'Agendate',
+        description: 'Quinto, agéndate, desde GRAMALOTE estamos en constante movimiento y contacto con la comunidad, por lo que tenemos diferentes jornadas donde nos encantaría que nos acompañes, aquí podrás conocer nuestra programación como Jornadas informativas, reuniones comunitarias o disponibilidad de atención.',
       }
     }
   ];
