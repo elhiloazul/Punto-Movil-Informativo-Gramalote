@@ -1,21 +1,21 @@
 <footer class="footer">
-  <a [routerLink]="['/menu']" class="menu-btn">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+  <a [routerLink]="['/home']" class="menu-btn">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" class="icon home-btn"></mat-icon>
   </a>
 
   <a [routerLink]="['#']" class="menu-btn">
-    <mat-icon fontIcon="repeat"></mat-icon>
+    <mat-icon aria-hidden="false" aria-label="Repeat icon" fontIcon="repeat" class="icon repeat-btn"></mat-icon>
   </a>
 
-  <a [routerLink]="['#']" class="menu-btn">
-    <mat-icon fontIcon="casino"></mat-icon>
+  <a [routerLink]="['/activity', 'modulo-5']" class="menu-btn">
+      <mat-icon aria-hidden="false" aria-label="Gamepad icon" fontIcon="casino" class="icon gamepad-btn"></mat-icon>
   </a>
 
   <!-- Contenedor especial para el volumen -->
   <div class="volume-container">
 
     <a [routerLink]="['#']" class="menu-btn">
-      <mat-icon fontIcon="volume_up"></mat-icon>
+      <mat-icon fontIcon="volume_up" class="icon volume-up-btn"></mat-icon>
     </a>
 
     <!-- Barra de volumen encima -->

@@ -1,3 +1,5 @@
+import { SlideDescribeMineralsGameComponent } from "../components/slide-custom-component/games/slide-describe-minerals-game/slide-describe-minerals-game.component";
+import { SlideSarchingMineralsGameComponent } from "../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component";
 import { Activity } from "../models/activity.model";
 
 
@@ -135,6 +137,46 @@ export const ACTIVITIES: Activity[] = [
         id: 'modulo-4',
         title: 'Tu cuentas SQR',
         slides: []
+    },
+    {
+        id: 'modulo-5',
+        title: 'Juega y aprende',
+        slides: [
+            {
+                id: 'slide-1',
+                type:'text',
+                text: '¡Hola! ¡Bienvenido a una de mis partes favoritas! ¡Los juegos! Tengo dos juegos muy divertidos para tí, acompañame a conocerlos.' ,
+                audio: 'audio/actividades/modulo-5/slide-1.mp3'
+            },
+            {
+                id: 'slide-2',
+                type:'text',
+                text: '1. Juguemos a ser geólogos',
+                audio: 'audio/actividades/modulo-5/slide-2.mp3'
+            },
+            {
+                id: 'slide-3',
+                type:'image',
+                imageUrl: 'images/actividades/modulo-5/slide-3.png',
+                text: 'Nuesto grupo de geólogos llegó a una nueva zona, ayúdanos a encontrar que hay aquí.',
+                audio: 'audio/actividades/modulo-5/slide-3.mp3'
+            },
+            {
+                id: 'slide-4',
+                type:'custom',
+                component: SlideSarchingMineralsGameComponent
+            },
+            {
+                id: 'slide-5',
+                type:'custom',
+                component: SlideDescribeMineralsGameComponent
+            },
+            {
+                id: 'slide-6',
+                type: 'text',
+                text: "¿Te doy un dato sobre mí? !Me encantan las fotos! conservan recuerdos y nos permiten transmitir emociones a través de una imagen.",
+                audio: 'audio/actividades/modulo-5/slide-6.mp3'
+            }
+        ]
     }
-    
 ]
