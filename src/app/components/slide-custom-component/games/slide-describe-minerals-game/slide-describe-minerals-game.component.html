@@ -1,0 +1,25 @@
+<div class="screen">
+
+    <div class="game-container">
+        <div class="minerals-grid">
+            @for (mineral of minerals; track mineral.id) {
+                @if (!mineral.found) {
+                    <div class="mineral-card" (click)="onMineralSelected(mineral)">
+                        <img [src]="mineral.image" />
+                    </div>
+                }
+            }
+        </div>
+    </div>  
+
+    <div class="thought-bubble-text">
+        <p [innerHTML]="text"></p>
+    </div>
+
+    <img
+    src="https://elhiloazul.com/wp-content/uploads/2026/01/Tico-pantalla-22.png"
+    alt=""
+    class="tico-img"
+    >
+
+</div>

@@ -6,11 +6,18 @@
   >
 
   <div class="content">
-      @for (activity of activities; track activity.id) {
-        <button class="pill" [routerLink]="['/activity', activity.id]">
-          {{ activity.title }}
+        <button class="pill" [routerLink]="['/activity', 'modulo-1']">
+          Conoce nuestro proyecto
         </button>
-      }
+        <button class="pill" [routerLink]="['/activity', 'modulo-2']">
+          Nuestra licencia ambiental
+        </button>
+        <button class="pill" [routerLink]="['/activity', 'modulo-3']">
+          Conoce el MEIA  
+        </button>
+        <button class="pill" [routerLink]="['/activity', 'modulo-4']">
+          Tus cuentas SQR 
+        </button>
       <app-footer></app-footer>
   </div>
 </div>
