@@ -1,0 +1,120 @@
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* =========================
+   IMAGEN PERSONAJE
+========================= */
+.tico-img {
+    position: absolute;
+    bottom: 0vh;
+    left: 0vw;
+    height: 50vh;
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.game-container {
+  width: 80vw;
+  height: 50vh;
+  margin: auto;
+  background: #8fd3f4;
+  border-radius: 24px;
+  padding: 20px;
+  position: relative;
+}
+
+.question {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.minerals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+.mineral-card {
+  width: 20vh;
+  height: 20vh;
+  background: #e9f7fb;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  img {
+    width: 70%;
+  }
+}
+
+.feedback {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  background: white;
+
+  &.success {
+    color: #4caf50;
+  }
+
+  &.error {
+    color: #e53935;
+  }
+
+  &.big {
+    font-size: 24px;
+  }
+}
+
+.thought-bubble-text {
+    position: relative;
+    background: #7fbccc;
+    border-radius: 5vh;
+    padding: 3vh 4vh;
+    width: 27vh;
+    align-self: flex-start; /* Alineado a la izquierda */
+    margin-left: 2vh;
+    top: 12vh;
+    left: 20vh;
+}
+
+.thought-bubble-text p {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.thought-bubble-text::after {
+    content: "";
+    position: absolute;
+    top: -1vh;
+    left: -2%;
+    width: 4vh;
+    height: 4vh;
+    background: #7fbccc;
+    border-radius: 4vh 0 0 0;
+    transform: rotate(32deg);
+} 

@@ -1,6 +1,6 @@
-import { DocumentSlide, ImageSlide, Slide, TextSlide, VideoSlide } from "./slide.model";
+import { CustomSlide, DocumentSlide, ImageSlide, Slide, TextSlide, VideoSlide } from "./slide.model";
 
-export type ActivitySlide = TextSlide | VideoSlide | ImageSlide | DocumentSlide;
+export type ActivitySlide = TextSlide | VideoSlide | ImageSlide | DocumentSlide | CustomSlide ;
 
 export interface Activity {
     id: string;
