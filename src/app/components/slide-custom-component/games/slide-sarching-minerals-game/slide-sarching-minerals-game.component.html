@@ -1,0 +1,43 @@
+<div class="screen">
+
+    <div class="game-container">
+        @for (mineral of minerals; track mineral.id) {
+            @if (!mineral.found) {
+            <img
+                class="mineral"
+                [src]="mineral.image"
+                [style.left.%]="mineral.x"
+                [style.top.%]="mineral.y"
+                (click)="onMineralClick(mineral)"
+                alt=""
+            />
+            }
+        }
+
+        @if (foundMineral) {
+            <div class="found-overlay">
+            <div class="found-card">
+                <img
+                class="found-icon"
+                [src]="foundMineral.image"
+                alt=""
+                />
+                <div class="found-text">
+                ¡EXCELENTE!
+                </div>
+            </div>
+            </div>
+        }
+    </div>
+
+    <div class="thought-bubble-text">
+        <p [innerHTML]="text"></p>
+    </div>
+
+    <img
+    src="https://elhiloazul.com/wp-content/uploads/2026/01/Tico-pantalla-22.png"
+    alt=""
+    class="tico-img"
+    >
+
+</div>

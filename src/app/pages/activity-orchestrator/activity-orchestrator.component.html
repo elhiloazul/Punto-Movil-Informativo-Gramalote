@@ -23,10 +23,19 @@
                     <app-slide-document-component [slide]="currentSlide" (completed)="onSlideCompleted()" >
                     </app-slide-document-component>
                 }
+
+                @case ('custom') {
+                    <app-slide-custom-component [component]="currentSlide.component" (completed)="onSlideCompleted()" >
+                    </app-slide-custom-component>
+                }
             }
         }
         <div class="content">
             <app-footer></app-footer>
         </div>
+    </div>
+}@else {
+    <div class="loading-screen">
+        <p>En este módulo no tengo actividades por mostrar.</p>
     </div>
 }
