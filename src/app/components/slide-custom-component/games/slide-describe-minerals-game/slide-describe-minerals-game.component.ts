@@ -61,7 +61,7 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
     this.currentTarget =
       remaining[Math.floor(Math.random() * remaining.length)];
     
-      this.playAudio(this.audioMineralsToFind.find(a => a.id === this.currentTarget.id)!.audio);
+      this.playAudio(this.audioMineralsToFind.find(a => a.id === this.currentTarget.id)?.audio);
       this.text = 'dime, ¿Cuál es ' + this.currentTarget.nameWithPronoun + ' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
   }
 
@@ -75,7 +75,7 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
       }, 1000);
     } else {
       this.text = 'Ooops, este no es ' + this.currentTarget.nameWithPronoun + ', Vuelve a intentarlo.';
-      const audio = this.playAudio(this.audioErrors.find(a => a.id === this.currentTarget.id)!.audio);
+      const audio = this.playAudio(this.audioErrors.find(a => a.id === this.currentTarget.id)?.audio);
       audio.onended = () => {
         this.text = '¿Cuál es '+ this.currentTarget.nameWithPronoun +' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
       };
