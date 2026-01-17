@@ -10,6 +10,7 @@ import { slideAnimations } from '../../components/slide.animations';
 import { LoggerService } from '../../core/logger/logger.service';
 import { SlideVideoComponentComponent } from '../../components/slide-video-component/slide-video-component.component';
 import { SlideDocumentComponentComponent } from '../../components/slide-document-component/slide-document-component.component';
+import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -19,6 +20,7 @@ import { SlideDocumentComponentComponent } from '../../components/slide-document
     SlideImageComponentComponent,
     SlideVideoComponentComponent,
     SlideDocumentComponentComponent,
+    SlideCustomComponentComponent,
   ],
   animations: [ slideAnimations ],
   templateUrl: './activity-orchestrator.component.html',
