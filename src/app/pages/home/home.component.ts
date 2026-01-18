@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   startTutorial() {
-    const steps = this.tutorialService.stepsTutorials;
+    const steps = this.tutorialService.stepsTutorialsFooter;
     let currentStepIndex = 0;
 
     const driverObj = driver({

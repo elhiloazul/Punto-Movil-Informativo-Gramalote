@@ -5,5 +5,6 @@ export type ActivitySlide = TextSlide | VideoSlide | ImageSlide | DocumentSlide 
 export interface Activity {
     id: string;
     title: string;
+    seccion: string;
     slides: ActivitySlide[];
 }
