@@ -3,6 +3,9 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { ActivityService } from '../../services/activity.service';
 import { Activity } from '../../models/activity.model';
 import { RouterModule } from '@angular/router';
+import { LoggerService } from '../../core/logger/logger.service';
+import { TutorialService } from '../../services/tutorial.service';
+import { driver } from 'driver.js';
 
 @Component({
   selector: 'app-menu',
@@ -16,10 +19,96 @@ import { RouterModule } from '@angular/router';
 export class MenuComponent {
 
   activities: Activity[] = [];
+  protected audio?: HTMLAudioElement;
 
-  constructor(private activityService: ActivityService) { }
+  private voiceMap: Record<string, string> = {
+    bienvenida: 'audio/menu/bienvenida.mp3',
+  };
+
+  constructor(private activityService: ActivityService, private logger: LoggerService, private tutorialService: TutorialService) { }
   
   ngOnInit() {
     this.activities = this.activityService.getActivities();
+
+    this.saySequence(
+      ['bienvenida'],
+      () => this.startTutorial()
+    );
   }
+
+  saySequence(keys: string[], callback?: () => void): void {
+    if (!keys.length) {
+      callback?.();
+      return;
+    }
+
+    const [first, ...rest] = keys;
+    this.say(first, () => this.saySequence(rest, callback));
+  }
+
+  say(key: string, callback?: () => void): void {
+    const audioPath = this.voiceMap[key];
+
+    if (!audioPath) {
+      console.warn(`Audio no definido para la clave: ${key}`);
+      callback?.();
+      return;
+    }
+
+    this.playAudio(callback, audioPath);
+  }
+
+  private playAudio(callback?: () => void, audioPath?: string) {
+    this.stopAudio();
+
+    if (!audioPath) return;
+
+    this.audio = new Audio(audioPath);
+    this.audio.currentTime = 0;
+
+    this.audio.play().catch(err => {
+      console.error('Error reproduciendo audio', err);
+    });
+
+    this.audio.onended = () => {
+      this.logger.debug('Audio terminado');
+      if (callback) callback();
+    };
+  }
+
+  private stopAudio() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+      this.audio.src = '';
+      this.audio = undefined;
+    }
+  }
+
+  startTutorial() {
+      const steps = this.tutorialService.stepsTutorialsMenu;
+      let currentStepIndex = 0;
+  
+      const driverObj = driver({
+        popoverClass: 'driverjs-theme',
+        onHighlightStarted: () => {
+          const step = steps[currentStepIndex];
+  
+          this.playAudio(() => {
+            currentStepIndex++;
+  
+            if (currentStepIndex < steps.length) {
+              driverObj.highlight(steps[currentStepIndex]);
+            } else {
+              driverObj.destroy();  
+              /* this.saySequence(['conocer_de_ti'], () => {
+                this.playAudio(() => this.listenFor('name'), this.messages.name.audio);
+              }); */
+            }
+          }, step.audio);
+        }
+      });
+  
+      driverObj.highlight(steps[currentStepIndex]);
+    }
 }

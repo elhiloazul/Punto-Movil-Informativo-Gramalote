@@ -1,182 +1,488 @@
-import { SlideDescribeMineralsGameComponent } from "../components/slide-custom-component/games/slide-describe-minerals-game/slide-describe-minerals-game.component";
-import { SlideSarchingMineralsGameComponent } from "../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component";
-import { Activity } from "../models/activity.model";
-
+import { SlideDescribeMineralsGameComponent } from '../components/slide-custom-component/games/slide-describe-minerals-game/slide-describe-minerals-game.component';
+import { SlideSarchingMineralsGameComponent } from '../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component';
+import { Activity } from '../models/activity.model';
 
 export const ACTIVITIES: Activity[] = [
-    {
-        id: 'modulo-1',
-        title: 'Conoce nuestro proyecto',
-        slides: [
-            {
-                id: 'slide-1',
-                type:'text',
-                text: '¡Perfecto! bienvenido a conocer un poco de la historia de Gramalote.',
-                audio: 'audio/actividades/modulo-1/slide-1.mp3'
-            },
-            {
-                id: 'slide-2',
-                type: 'text',
-                text: '¿Sabes que es una licencia ambiental?',
-                audio: 'audio/actividades/modulo-1/slide-2.mp3'
-            },
-            {
-                id: 'slide-3',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-1/slide-3.png',
-                text: `Ubicado en Antioquia en el corregimiento Providencia, de <span class='highlight'>San Roque; hace 20 años se estudió el lugar para desarrollar un proyecto minero.</span>`,
-                audio: 'audio/actividades/modulo-1/slide-X.mp3'
-            },
-            {
-                id: 'slide-4',
-                type: 'text',
-                text: 'la calidad del oro e impacto ambiental en el área del territorio de San Roque y Yolombó donde se adelantaron estudios acerca de la mejor forma de construir y operar el proyecto, que diera beneficios a la región. (2022 – 2025)',
-                audio: 'audio/actividades/modulo-1/slide-X.mp3'
-            },
-            {
-                id: 'slide-5',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-1/slide-5.png',
-                text: 'dando como resultado, una mina moderna con una vida útil de 13 años,',
-                audio: 'audio/actividades/modulo-1/slide-X.mp3'
-            },
-            {
-                id: 'slide-6',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-1/slide-6.png',
-                text: 'la cual posee licencia ambiental desde el 2015, pero debes tener presente que en este momento el proyecto Gramalote, está modificando su licencia ambiental; si quieres saber por qué, ¡explora un poco más!',
-                audio: 'audio/actividades/modulo-1/slide-X.mp3'
-            },
-            {
-                id: 'slide-7',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-1/slide-7.png',
-                text: 'Mientras se realiza este proceso, se trabaja de la mano con la comunidad contribuyendo en su desarrollo en salud, seguridad, productividad, y medio ambiente. Además, se adelantan procesos de reasentamiento y formalización minera',
-                audio: 'audio/actividades/modulo-1/slide-7.mp3'
-            },
-            {
-                id: 'slide-8',
-                type: 'video',
-                videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
-                text: 'Para conocer un poco más de esto, acompáñame a ver "presente y futuro" un video que nos muestra los aportes que el proyecto ha realizado a la comunidad',
-                audio: 'audio/actividades/modulo-1/slide-8.mp3'
-            },
-            {
-                id: 'slide-9',
-                type: 'video',
-                videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
-                text: 'Por cierto... Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video',
-                audio: 'audio/actividades/modulo-1/slide-9.mp3'
-            }
-        ],
-    },
-    {
-        id: 'modulo-2',
-        title: 'Nuestra licencia ambienta',
-        slides: [
-            {
-                id: 'slide-1',
-                type:'document',
-                documentUrl: 'documents/actividades/modulo-2/slide1.pdf',
-                text: 'Es un permiso de la autoridad ambiental que nos permite hacer el proyecto minero.',
-                audio: 'audio/actividades/modulo-2/slide-X.mp3'
-            },
-            {
-                id: 'slide-2',
-                type: 'text',
-                text: 'Para lograrlo se debe demostrar que se estudiaron todos los posibles impactos ambientales y sociales.',
-                audio: 'audio/actividades/modulo-2/slide-2.mp3'
-            },
-            {
-                id: 'slide-3',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-2/8-aspectos.png',
-                text: 'formulando así, las correspondientes acciones de compromiso ambiental, las cuales se denominan PM (plan de manejo ambiental)',
-                audio: 'audio/actividades/modulo-2/slide-X.mp3'
-            },
-            {
-                id: 'slide-4',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-2/8-aspectos.png',
-                text: 'logrando disminuir estos efectos en la comunidad y el medio ambiente. Toda la documentación (estudios ambientales) respaldada con evidencias,se presenta antela ANLA',
-                audio: 'audio/actividades/modulo-2/slide-X.mp3'
-            },
-            {
-                id: 'slide-5',
-                type: 'image',
-                imageUrl: 'images/actividades/modulo-2/8-aspectos.png',
-                text: 'El estudio ambiental es un documento técnico que debe cumplir con 8 aspectos (observa la imagen).',
-                audio: 'audio/actividades/modulo-2/slide-5.mp3'
-            },
-            {
-                id: 'slide-6',
-                type: 'text',
-                text: 'Quiero contarte que Gramalote tiene licencia desde el 2015, y ha sido modificada conforme avanza el proyecto.',
-                audio: 'audio/actividades/modulo-2/slide-6.mp3'
-            },
-            {
-                id: 'slide-7',
-                type: 'text',
-                text: 'respetando los compromisos ambientales y sociales, trabajando de forma transparente y cumpliendo con todas las normas.',
-                audio: 'audio/actividades/modulo-2/slide-6.mp3'
-            },
-            {
-                id: 'slide-8',
-                type: 'text',
-                text: 'Estamos modificando la licencia por qué se debe ajustar la ubicación de ciertas infraestructuras, para garantizar que el proyecto es seguro, sostenible, responsable  con la comunidad y el medio ambiente.',
-                audio: 'audio/actividades/modulo-2/slide-8.mp3'
-            }
-        ]
-    },
-    {
-        id: 'modulo-3',
-        title: 'Conoce el MEIA',
-        slides: []
-    },
-    {
-        id: 'modulo-4',
-        title: 'Tu cuentas SQR',
-        slides: []
-    },
-    {
-        id: 'modulo-5',
-        title: 'Juega y aprende',
-        slides: [
-            {
-                id: 'slide-1',
-                type:'text',
-                text: '¡Hola! ¡Bienvenido a una de mis partes favoritas! ¡Los juegos! Tengo dos juegos muy divertidos para tí, acompañame a conocerlos.' ,
-                audio: 'audio/actividades/modulo-5/slide-1.mp3'
-            },
-            {
-                id: 'slide-2',
-                type:'text',
-                text: '1. Juguemos a ser geólogos',
-                audio: 'audio/actividades/modulo-5/slide-2.mp3'
-            },
-            {
-                id: 'slide-3',
-                type:'image',
-                imageUrl: 'images/actividades/modulo-5/slide-3.png',
-                text: 'Nuesto grupo de geólogos llegó a una nueva zona, ayúdanos a encontrar que hay aquí.',
-                audio: 'audio/actividades/modulo-5/slide-3.mp3'
-            },
-            {
-                id: 'slide-4',
-                type:'custom',
-                component: SlideSarchingMineralsGameComponent
-            },
-            {
-                id: 'slide-5',
-                type:'custom',
-                component: SlideDescribeMineralsGameComponent
-            },
-            {
-                id: 'slide-6',
-                type: 'text',
-                text: "¿Te doy un dato sobre mí? !Me encantan las fotos! conservan recuerdos y nos permiten transmitir emociones a través de una imagen.",
-                audio: 'audio/actividades/modulo-5/slide-6.mp3'
-            }
-        ]
-    }
-]
+  {
+    id: 'modulo-1',
+    title: 'Conoce nuestro proyecto',
+    seccion: 'conoce-nuestro-proyecto-btn',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: '¡Perfecto!, bienvenido a  conocer un poco de la historia de Gramalote.',
+        audio: 'audio/actividades/modulo-1/slide-1.mp3',
+      },
+      {
+        id: 'slide-2',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-1/slide-2.png',
+        text: 'Ubicado en Antioquia en el corregimiento Providencia, en San Roque; desde hace 20 años se viene analizando la zona para desarrollar un proyecto minero.',
+        audio: 'audio/actividades/modulo-1/slide-2.mp3',
+      },
+      {
+        id: 'slide-3',
+        type: 'text',
+        text: 'La calidad del oro y la seguridad del medio ambiente en el área del territorio de San Roque y Yolombó donde se adelantaron estudios acerca de la mejor forma de construir y operar el proyecto, que diera beneficios a la región. (2022 – 2025).',
+        audio: 'audio/actividades/modulo-1/slide-3.mp3',
+      },
+      {
+        id: 'slide-4',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-1/slide-4.png',
+        text: 'Dando como resultado, una mina moderna con una vida útil de 13 años.',
+        audio: 'audio/actividades/modulo-1/slide-4.mp3',
+      },
+      {
+        id: 'slide-5',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-1/slide-5.png',
+        text: 'La cual posee licencia ambiental desde el 2015, ¡y te cuento! que en este momento el proyecto Gramalote, la está modificando; si quieres saber por qué, ¡explora un poco más!.',
+        audio: 'audio/actividades/modulo-1/slide-5.mp3',
+      },
+      {
+        id: 'slide-6',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-1/slide-6.png',
+        text: 'Mientras se realiza este proceso, se trabaja de la mano con la comunidad contribuyendo en su desarrollo en salud, seguridad, productividad, y medio ambiente. Además, se adelantan procesos de reasentamiento y formalización minera.',
+        audio: 'audio/actividades/modulo-1/slide-6.mp3',
+      },
+      {
+        id: 'slide-7',
+        type: 'video',
+        videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
+        text: 'Para conocer un poco más de esto, acompáñame a ver “presente y futuro” un video que nos muestra los aportes que el proyecto ha realizado a la comunidad',
+        audio: 'audio/actividades/modulo-1/slide-7.mp3',
+      },
+      {
+        id: 'slide-8',
+        type: 'video',
+        videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
+        text: 'Por cierto… ¿Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video ',
+        audio: 'audio/actividades/modulo-1/slide-8.mp3',
+      },
+      {
+        id: 'slide-9',
+        type: 'text',
+        text: 'cuéntame, ¿con qué te gustaría continuar?',
+        audio: 'audio/actividades/modulo-1/slide-9.mp3',
+      },
+    ],
+  },
+  {
+    id: 'modulo-2',
+    title: 'Nuestra licencia ambienta',
+    seccion: 'nuestra-licencia-ambiental-btn',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: '¿Sabes que es una licencia ambiental? ',
+        audio: 'audio/actividades/modulo-2/slide-1.mp3',
+      },
+      {
+        id: 'slide-2',
+        type: 'document',
+        documentUrl: 'documents/actividades/modulo-2/slide2.pdf',
+        text: 'Es un permiso de la autoridad ambiental que nos permite hacer el proyecto minero.',
+        audio: 'audio/actividades/modulo-2/slide-2.mp3',
+      },
+      {
+        id: 'slide-3',
+        type: 'text',
+        text: 'Para lograrlo se debe demostrar que se estudiaron todos los posibles impactos ambientales y sociales',
+        audio: 'audio/actividades/modulo-2/slide-3.mp3',
+      },
+      {
+        id: 'slide-4',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-2/slide-4.png',
+        text: 'Formulando así, las correspondientes acciones de compromiso ambiental, las cuales se denominan PMA (plan de manejo ambiental)',
+        audio: 'audio/actividades/modulo-2/slide-4.mp3',
+      },
+      {
+        id: 'slide-5',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-2/slide-5.png',
+        text: 'Logrando disminuir estos efectos en la comunidad y el medio ambiente',
+        audio: 'audio/actividades/modulo-2/slide-5.mp3',
+      },
+      {
+        id: 'slide-6',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-2/slide-6.png',
+        text: 'Toda la documentación (estudios ambientales) respaldada con evidencias, se presenta ante la ANLA - Autoridad Nacional de Licencias Ambientales, las Corporaciones Autónomas Regionales y las de Desarrollo Sostenible, de los municipios, distritos y áreas metropolitanas',
+        audio: 'audio/actividades/modulo-2/slide-6.mp3',
+      },
+      {
+        id: 'slide-7',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-2/slide-7.png',
+        text: 'El estudio ambiental es un documento técnico que debe cumplir con 8 aspectos (observa la imagen)',
+        audio: 'audio/actividades/modulo-2/slide-7.mp3',
+      },
+      {
+        id: 'slide-8',
+        type: 'text',
+        text: 'Quiero contarte que Gramalote tiene licencia desde el 2015, y ha sido modificada conforme avanza el proyecto',
+        audio: 'audio/actividades/modulo-2/slide-8.mp3',
+      },
+      {
+        id: 'slide-9',
+        type: 'text',
+        text: 'Respetando los compromisos ambientales y sociales, trabajando de forma transparente y cumpliendo con todas las normas',
+        audio: 'audio/actividades/modulo-2/slide-9.mp3',
+      },
+      {
+        id: 'slide-10',
+        type: 'text',
+        text: 'Estamos modificando la licencia por qué se debe ajustar la ubicación de ciertas infraestructuras, para garantizar que el proyecto es seguro, sostenible, responsable con la comunidad y el medio ambiente.',
+        audio: 'audio/actividades/modulo-2/slide-10.mp3',
+      },
+      {
+        id: 'slide-11',
+        type: 'text',
+        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
+        audio: 'audio/actividades/modulo-2/slide-11.mp3',
+      },
+    ],
+  },
+  {
+    id: 'modulo-3',
+    title: 'Conoce el MEIA',
+    seccion: 'conoce-el-meia-btn',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: 'Hola, que rico que quieres saber qué es la MEIA (Modificación de la Licencia Ambiental).',
+        audio: 'audio/actividades/modulo-3/slide-1.mp3',
+      },
+      {
+        id: 'slide-2',
+        type: 'text',
+        text: '¡Te lo explico!, es una actualización del permiso ambiental que tiene Gramalote, como te contaba antes en el módulo 2, la ANLA se asegura que el proyecto siga cumpliendo el cuidado ambiental y los compromisos sociales.',
+        audio: 'audio/actividades/modulo-3/slide-2.mp3',
+      },
+      {
+        id: 'slide-3',
+        type: 'text',
+        text: 'Para poder hacer la modificación se debe cumplir con:\n1. Los estudios de agua, aire, suelo, seres vivos de la zona, comunidad.\n2. Escuchar la comunidad si tienen dudas y opiniones\n3. Agregar las mejoras del proyecto.',
+        audio: 'audio/actividades/modulo-3/slide-3.mp3',
+      },
+      {
+        id: 'slide-4',
+        type: 'text',
+        text: 'Te cuento que la MEIA del proyecto Gramalote hizo 3 cambios:',
+        audio: 'audio/actividades/modulo-3/slide-4.mp3',
+      },
+      {
+        id: 'slide-5',
+        type: 'text',
+        text: '1. Optimizar obras mineras\n● Área de explotación. (tajo)\n● Depósitos de material estéril.',
+        audio: 'audio/actividades/modulo-3/slide-5.mp3',
+      },
+      {
+        id: 'slide-6',
+        type: 'text',
+        text: '2. Reducir obras de infraestructura\n● Vías - Zonas materiales sobrantes de excavación\n● Sedimentadores.',
+        audio: 'audio/actividades/modulo-3/slide-6.mp3',
+      },
+      {
+        id: 'slide-7',
+        type: 'text',
+        text: '3. Relocalizar obras complementarias\n● Portería, campamento, polvorín.\n● Trituradora, planta de beneficio, área de servicios.',
+        audio: 'audio/actividades/modulo-3/slide-7.mp3',
+      },
+      {
+        id: 'slide-8',
+        type: 'text',
+        text: 'Te cuento lo que el proyecto Gramalote no cambiará:\n● Área de manejo de relaves o colas.\n● Sedimentador La Palestina y sedimentador El Torito (asociados al área de manejo de relaves o colas).\n● Realineación de la quebrada Guacas.\n● Plataforma La Perla.',
+        audio: 'audio/actividades/modulo-3/slide-8.mp3',
+      },
+      {
+        id: 'slide-9',
+        type: 'text',
+        text: 'Sabes que la MEIA está conformada por momentos, ahora estamos terminando el momento 2 y daremos inicio al siguiente.',
+        audio: 'audio/actividades/modulo-3/slide-9.mp3',
+      },
+      {
+        id: 'slide-10',
+        type: 'text',
+        text: 'Conozcamos el momento 2:',
+        audio: 'audio/actividades/modulo-3/slide-10.mp3',
+      },
+      {
+        id: 'slide-11',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-11.png',
+        text: 'Identificación y evaluación del impacto ambiental, que es todo lo que puede cambiar o verse afectado a causa de las actividades del proyecto.',
+        audio: 'audio/actividades/modulo-3/slide-11.mp3',
+      },
+      {
+        id: 'slide-12',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-12.png',
+        text: 'Del aprendizaje adquirido y los aportes de los grupos de valor del proyecto nos queda el conocimiento con los cuales se conforman propuestas para aminorar el impacto ambiental.',
+        audio: 'audio/actividades/modulo-3/slide-12.mp3',
+      },
+      {
+        id: 'slide-13',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-13.png',
+        text: 'De allí surgen las soluciones o cuidados que se aplican para que las actividades del proyecto se hagan de forma responsable y sostenible.',
+        audio: 'audio/actividades/modulo-3/slide-13.mp3',
+      },
+      {
+        id: 'slide-14',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-14.png',
+        text: 'Además recuerda que, un impacto ambiental es cualquier cambio sobre el medio ambiente, puede afectar o beneficiar total o parcialmente a causa de un proyecto o actividad, por eso es necesario tener una licencia. Y antes de continuar, te presento a nuestros actores involucrados.',
+        audio: 'audio/actividades/modulo-3/slide-14.mp3',
+      },
+      {
+        id: 'slide-15',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-15.png',
+        text: '',
+        audio: '',
+      },
+      {
+        id: 'slide-16',
+        type: 'text',
+        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
+        audio: 'audio/actividades/modulo-3/slide-16.mp3',
+      },
+    ],
+  },
+  {
+    id: 'modulo-4',
+    title: 'Tu cuentas SQR',
+    seccion: 'tu-cuentas-sqr-btn',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: 'Hola,  quieres comunicarte con el proyecto Gramalote ¡ven a conocer el proceso SQR!',
+        audio: 'audio/actividades/modulo-4/slide-1.mp3',
+      },
+      {
+        id: 'slide-2',
+        type: 'text',
+        text: 'Cuando quieras hacer una solicitud, expresar una queja o realizar un reclamo sobre el proyecto de Gramalote',
+        audio: 'audio/actividades/modulo-4/slide-2.mp3',
+      },
+      {
+        id: 'slide-3',
+        type: 'text',
+        text: 'Puedes usar este recurso, esta será escuchada o recibida, asegurando una respuesta o solución.',
+        audio: 'audio/actividades/modulo-4/slide-3.mp3',
+      },
+      {
+        id: 'slide-4',
+        type: 'text',
+        text: 'Si requieres información, documentos, reunión, apoyo, ingresar a los predios del proyecto o usar un espacio realizas una "SOLICITUD"',
+        audio: 'audio/actividades/modulo-4/slide-4.mp3',
+      },
+
+      {
+        id: 'slide-5',
+        type: 'text',
+        text: 'Cuando tengas una inconformidad debes emplear el recurso de la "QUEJA"',
+        audio: 'audio/actividades/modulo-4/slide-5.mp3',
+      },
+      {
+        id: 'slide-6',
+        type: 'text',
+        text: 'En el caso de daño, pérdida o petición de una solución, debes emplear el "RECLAMO"',
+        audio: 'audio/actividades/modulo-4/slide-6.mp3',
+      },
+      {
+        id: 'slide-7',
+        type: 'text',
+        text: '¡Conozcamos el proceso del SQR!',
+        audio: 'audio/actividades/modulo-4/slide-7.mp3',
+      },
+      {
+        id: 'slide-8',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-4/slide-8.png',
+        text: '1. La persona entrega su solicitud, queja o reclamo.',
+        audio: 'audio/actividades/modulo-4/slide-8.mp3',
+      },
+      {
+        id: 'slide-9',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-4/slide-9.png',
+        text: '2. El equipo de Gramalote la revisa y la radica, entregando un número de registro.',
+        audio: 'audio/actividades/modulo-4/slide-9.mp3',
+      },
+      {
+        id: 'slide-10',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-4/slide-10.png',
+        text: '3. La SQR se clasifica y se envía al área que debe responder.',
+        audio: 'audio/actividades/modulo-4/slide-10.mp3',
+      },
+      {
+        id: 'slide-11',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-4/slide-11.png',
+        text: '4. Se hace seguimiento interno hasta obtener una respuesta.',
+        audio: 'audio/actividades/modulo-4/slide-11.mp3',
+      },
+      {
+        id: 'slide-12',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-4/slide-12.png',
+        text: '5. Se entrega la respuesta al solicitante, cerrando el proceso. Indicar que recibir respuesta no significa estar de acuerdo.',
+        audio: 'audio/actividades/modulo-4/slide-12.mp3',
+      },
+      {
+        id: 'slide-13',
+        type: 'text',
+        text: 'Recuerda que el proyecto Gramalote siempre te brindará el mejor acompañamiento posible, es por esto, que te brinda diferentes maneras para que comuniques tus SQR.',
+        audio: 'audio/actividades/modulo-4/slide-13.mp3',
+      },
+      {
+        id: 'slide-14',
+        type: 'text',
+        text: 'Como primeras opciones, puedes hacerlo tú mismo, entra a la página web de Gramalote, Gramalote.com, ve al apartado de “Contáctanos”.',
+        audio: 'audio/actividades/modulo-4/slide-14.mp3',
+      },
+      {
+        id: 'slide-15',
+        type: 'text',
+        text: 'Donde solo debes llenar el formulario y enviarlo; aquí mismo puedes descargar el formulario y mandarlo a nuestro correo “comunidadprovidencia\ngramalote.com” o también puedes llamar a nuestra línea telefónica, que aparecerá en pantalla: ',
+        audio: 'audio/actividades/modulo-4/slide-15.mp3',
+      },
+      {
+        id: 'slide-16',
+        type: 'text',
+        text: 'Correo electrónico: comunidad.providencia\n@gramalote.com \n Línea telefónica: 321-4576000 \n Página web: https://gramalote.com/contacto-nueva/',
+        audio: 'audio/actividades/modulo-4/slide-16.mp3',
+      },
+      {
+        id: 'slide-17',
+        type: 'text',
+        text: 'También puedes presentarlas de forma presencial, a través de los profesionales autorizados en campo, es decir.',
+        audio: 'audio/actividades/modulo-4/slide-17.mp3',
+      },
+      {
+        id: 'slide-18',
+        type: 'text',
+        text: 'Líderes de territorio, quienes te ayudarán a redactar la SQR, de la misma forma, puedes acudir a los siguientes puntos de atención a la comunidad.',
+        audio: 'audio/actividades/modulo-4/slide-18.mp3',
+      },
+      {
+        id: 'slide-19',
+        type: 'text',
+        text: 'Cra 13 # 15-125 Corregimiento de San José del N',
+        audio: 'audio/actividades/modulo-4/slide-19.mp3',
+      },
+      {
+        id: 'slide-20',
+        type: 'text',
+        text: 'Cll 04 # 9-171, primer piso Corregimiento de Providencia',
+        audio: 'audio/actividades/modulo-4/slide-20.mp3',
+      },
+      {
+        id: 'slide-21',
+        type: 'text',
+        text: 'Calle 19 # 18-58 San Roque, cabecera municipal',
+        audio: 'audio/actividades/modulo-4/slide-21.mp3',
+      },
+      {
+        id: 'slide-22',
+        type: 'text',
+        text: 'Recuerda que habrá datos importantes que te pedirán en cualquiera de las opciones para el SQR:',
+        audio: 'audio/actividades/modulo-4/slide-22.mp3',
+      },
+      {
+        id: 'slide-23',
+        type: 'text',
+        text: '● Nombre completo \n● Documento de identidad\n● Teléfono \n● Correo (si lo tiene) \n● Explicar brevemente su solicitud, queja o reclamo \n● Las organizaciones deben entregar el documento en membrete, nombre del representante y NIT.',
+        audio: 'audio/actividades/modulo-4/slide-23.mp3',
+      },
+      {
+        id: 'slide-24',
+        type: 'text',
+        text: 'Y te responderán, según sea el caso, por ejemplo',
+        audio: 'audio/actividades/modulo-4/slide-24.mp3',
+      },
+      {
+        id: 'slide-25',
+        type: 'text',
+        text: 'Ahora, te invito a conocer la importancia del acuerdo Escazú, presta atención al siguiente video que nos explicará.',
+        audio: 'audio/actividades/modulo-4/slide-25.mp3',
+      },
+      {
+        id: 'slide-26',
+        type: 'text',
+        text: 'Para cumplir con lo que allí explican el proyecto Gramalote tiene varias herramientas pedagógicas a tu disposición, pregunta por ellas al personal de Gramalote.',
+        audio: 'audio/actividades/modulo-4/slide-26.mp3',
+      },
+      {
+        id: 'slide-27',
+        type: 'text',
+        text: '● Cartilla de Escazú \n● Glosario comunitario \n● Carteleras informativas \n●  Programas radiales \n● Presentación power point',
+        audio: 'audio/actividades/modulo-4/slide-27.mp3',
+      },
+      {
+        id: 'slide-28',
+        type: 'text',
+        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
+        audio: 'audio/actividades/modulo-4/slide-28.mp3',
+      },
+    ],
+  },
+  {
+    id: 'modulo-5',
+    title: 'Agendate',
+    seccion: 'agendate-btn',
+    slides: [],
+  },
+  {
+    id: 'modulo-6',
+    title: 'Juegos',
+    seccion: 'juega-y-aprende-btn',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: '¡Hola! ¡Bienvenido a una de mis partes favoritas! ¡Los juegos! Tengo dos juegos muy divertidos para tí, acompañame a conocerlos.',
+        audio: 'audio/actividades/modulo-5/slide-1.mp3',
+      },
+      {
+        id: 'slide-2',
+        type: 'text',
+        text: '1. Juguemos a ser geólogos',
+        audio: 'audio/actividades/modulo-5/slide-2.mp3',
+      },
+      {
+        id: 'slide-3',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-5/slide-3.png',
+        text: 'Nuesto grupo de geólogos llegó a una nueva zona, ayúdanos a encontrar que hay aquí.',
+        audio: 'audio/actividades/modulo-5/slide-3.mp3',
+      },
+      {
+        id: 'slide-4',
+        type: 'custom',
+        component: SlideSarchingMineralsGameComponent,
+      },
+      {
+        id: 'slide-5',
+        type: 'custom',
+        component: SlideDescribeMineralsGameComponent,
+      },
+      {
+        id: 'slide-6',
+        type: 'text',
+        text: '¿Te doy un dato sobre mí? !Me encantan las fotos! conservan recuerdos y nos permiten transmitir emociones a través de una imagen.',
+        audio: 'audio/actividades/modulo-5/slide-6.mp3',
+      },
+    ],
+  },
+];
