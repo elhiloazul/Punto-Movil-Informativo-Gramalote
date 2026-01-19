@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
 import { UserProgress } from '../../models/user-progress.model';
 import { UserProgressService } from '../../services/user-progress.service';
+import { InactivityService } from '../../services/inactivity.service';
 
 @Component({
   selector: 'app-home',
@@ -59,6 +60,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     conocer_de_ti: 'audio/home/conocer-de-ti.mp3',
   };
 
+  menuConfigFromHome = {
+    home: { enabled: false, route: '/home' },
+    repeat: { enabled: false, route: '/menu' },
+    gamepad: { enabled: false, route: '/activity/modulo-6' },
+    volume: { enabled: true }
+  }
+
   constructor(
     private tutorialService: TutorialService,
     private cd: ChangeDetectorRef,
@@ -66,6 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private logger: LoggerService,
     private userProgressService: UserProgressService,
+    private inactivityService: InactivityService,
   ) {}
 
   /* =========================
@@ -238,6 +247,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else if (this.currentStep === 'address') {
       this.currentStep = null;
       this.userProgressService.markIntroSeen();
+      // Revisar una mejor solución para iniciar a contar el tiempo
+      // de inactividad ya que al iniciar el servicio, solo inicia
+      // si la intro ya fue vista.
+      this.inactivityService.start();
       this.router.navigate(['/menu']);
     }
 
