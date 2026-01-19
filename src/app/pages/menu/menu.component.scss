@@ -40,7 +40,7 @@
 ========================= */
 .pill {
   width: 30vh;
-  max-width: 340px;
+  max-width: 30vh;
   padding: 2vh 1vh;
 
   border-radius: 60px;
@@ -64,4 +64,9 @@
 
 .pill:active {
   transform: scale(0.97);
+}
+
+.blocked {
+  opacity: 0.5;
+  pointer-events: none;
 }

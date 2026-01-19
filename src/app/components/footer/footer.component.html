@@ -1,26 +1,56 @@
 <footer class="footer">
-  <a [routerLink]="['/home']" class="menu-btn">
+  <a   
+    class="menu-btn"
+    [class.disabled]="!config.home?.enabled"
+    (click)="showResetModal()"
+  >
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" class="icon home-btn"></mat-icon>
   </a>
 
-  <a [routerLink]="['#']" class="menu-btn">
+  <a 
+    class="menu-btn"
+    [class.disabled]="!config.repeat?.enabled"
+    (click)="navigateIfEnabled(config.repeat?.enabled, config.repeat?.route)"  
+  >
     <mat-icon aria-hidden="false" aria-label="Repeat icon" fontIcon="repeat" class="icon repeat-btn"></mat-icon>
   </a>
 
-  <a [routerLink]="['/activity', 'modulo-6']" class="menu-btn">
+  <a
+    class="menu-btn"
+    [class.disabled]="!config.gamepad?.enabled"
+    (click)="navigateIfEnabled(config.gamepad?.enabled, config.gamepad?.route)"
+  >
       <mat-icon aria-hidden="false" aria-label="Gamepad icon" fontIcon="casino" class="icon gamepad-btn"></mat-icon>
   </a>
 
   <!-- Contenedor especial para el volumen -->
-  <div class="volume-container">
+  <div class="volume-container"
+       [class.disabled]="!config.volume?.enabled">
 
-    <a [routerLink]="['#']" class="menu-btn">
+    <a class="menu-btn"
+       (click)="config.volume?.enabled && toggleVolumeControl()">
       <mat-icon fontIcon="volume_up" class="icon volume-up-btn"></mat-icon>
     </a>
 
-    <!-- Barra de volumen encima -->
-    <div *ngIf="showVolumeControl" class="volume-control">
-      <input type="range" min="0" max="1" step="0.1" [(ngModel)]="volume" (input)="updateVolume()" orient="vertical" />
-    </div>
+    @if (showVolumeControl && config.volume?.enabled) {
+      <div class="volume-control">
+        <input type="range" min="0" max="1" step="0.1"
+               [(ngModel)]="volume" />
+      </div>
+    }
   </div>
 </footer>
+
+@if (resetModalVisible) {
+  <div class="overlay">
+    <div class="dialog">
+      <h3>¿Estás seguro de abandonar tu aventura?</h3>
+      <p></p>
+
+      <div class="actions">
+        <button class="continue" (click)="continue()" >Continuar</button>
+        <button class="reset" (click)="restart()" >Volver al inicio</button>
+      </div>
+    </div>
+  </div>
+}

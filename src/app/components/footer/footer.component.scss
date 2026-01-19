@@ -45,3 +45,40 @@
 .menu-btn:active {
   transform: scale(0.9);
 }
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.dialog {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  font-size: 2vh;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 2vh;
+}
+
+button.reset {
+  background: #d32f2f;
+  color: white;
+  font-size: 2vh;
+}
+
+button.continue {
+  font-size: 2vh;
+}

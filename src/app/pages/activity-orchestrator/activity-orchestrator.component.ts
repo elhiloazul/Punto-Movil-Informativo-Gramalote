@@ -11,6 +11,7 @@ import { LoggerService } from '../../core/logger/logger.service';
 import { SlideVideoComponentComponent } from '../../components/slide-video-component/slide-video-component.component';
 import { SlideDocumentComponentComponent } from '../../components/slide-document-component/slide-document-component.component';
 import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
+import { UserProgressService } from '../../services/user-progress.service';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -36,7 +37,8 @@ export class ActivityOrchestratorComponent implements OnInit {
     private route: ActivatedRoute,
     private activityService: ActivityService,
     private logger: LoggerService,
-    private router: Router
+    private router: Router,
+    private userProgressService: UserProgressService,
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +68,7 @@ export class ActivityOrchestratorComponent implements OnInit {
 
   private finishActivity() {
     this.logger.debug('Activity finished, redirecting to menu');
-
+    this.userProgressService.markActivityCompleted(this.activity!.id);
     this.router.navigate(['/menu']);
   }
 
