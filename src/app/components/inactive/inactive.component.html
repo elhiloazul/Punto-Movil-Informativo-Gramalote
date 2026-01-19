@@ -1,0 +1,13 @@
+@if (visible) {
+  <div class="overlay">
+    <div class="dialog">
+      <h3>¿Sigues ahí?</h3>
+      <p>La actividad se reiniciará si no continúas.</p>
+
+      <div class="actions">
+        <button class="continue" (click)="continue()">Continuar</button>
+        <button class="reset" (click)="restart()">Volver a empezar</button>
+      </div>
+    </div>
+  </div>
+}
