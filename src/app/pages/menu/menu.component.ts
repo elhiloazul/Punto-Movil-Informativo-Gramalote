@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
 import { TutorialService } from '../../services/tutorial.service';
 import { driver } from 'driver.js';
+import { UserProgressService } from '../../services/user-progress.service';
 
 @Component({
   selector: 'app-menu',
@@ -25,15 +26,24 @@ export class MenuComponent {
     bienvenida: 'audio/menu/bienvenida.mp3',
   };
 
-  constructor(private activityService: ActivityService, private logger: LoggerService, private tutorialService: TutorialService) { }
+  constructor(
+    private activityService: ActivityService, 
+    private logger: LoggerService, 
+    private tutorialService: TutorialService,
+    private userProgressService: UserProgressService,
+  ) { }
   
   ngOnInit() {
     this.activities = this.activityService.getActivities();
 
-    this.saySequence(
-      ['bienvenida'],
-      () => this.startTutorial()
-    );
+    if (!this.userProgressService.isMenuSeen()) {
+      this.saySequence(
+        ['bienvenida'],
+        () => this.startTutorial()
+      );
+    } else {
+      this.playAudio(undefined, 'audio/actividades/modulo-2/slide-11.mp3');
+    }
   }
 
   saySequence(keys: string[], callback?: () => void): void {
@@ -86,29 +96,37 @@ export class MenuComponent {
   }
 
   startTutorial() {
-      const steps = this.tutorialService.stepsTutorialsMenu;
-      let currentStepIndex = 0;
-  
-      const driverObj = driver({
-        popoverClass: 'driverjs-theme',
-        onHighlightStarted: () => {
-          const step = steps[currentStepIndex];
-  
-          this.playAudio(() => {
-            currentStepIndex++;
-  
-            if (currentStepIndex < steps.length) {
-              driverObj.highlight(steps[currentStepIndex]);
-            } else {
-              driverObj.destroy();  
-              /* this.saySequence(['conocer_de_ti'], () => {
-                this.playAudio(() => this.listenFor('name'), this.messages.name.audio);
-              }); */
-            }
-          }, step.audio);
-        }
-      });
-  
-      driverObj.highlight(steps[currentStepIndex]);
-    }
+    const steps = this.tutorialService.stepsTutorialsMenu;
+    let currentStepIndex = 0;
+
+    const driverObj = driver({
+      popoverClass: 'driverjs-theme',
+      onHighlightStarted: () => {
+        const step = steps[currentStepIndex];
+
+        this.playAudio(() => {
+          currentStepIndex++;
+
+          if (currentStepIndex < steps.length) {
+            driverObj.highlight(steps[currentStepIndex]);
+          } else {
+            driverObj.destroy();
+            this.userProgressService.markMenuSeen();
+          }
+        }, step.audio);
+      }, 
+    });
+
+    driverObj.highlight(steps[currentStepIndex]);
+
+  }
+
+  activityIsCompleted(activityId: string): boolean {
+    return this.userProgressService.isActivityCompleted(activityId);
+  }
+
+  ngOnDestroy() { 
+    this.stopAudio();
+  }
+
 }
