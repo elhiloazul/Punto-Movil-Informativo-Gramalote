@@ -11,6 +11,8 @@ import { MicComponent } from '../../components/mic/mic.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
+import { UserProgress } from '../../models/user-progress.model';
+import { UserProgressService } from '../../services/user-progress.service';
 
 @Component({
   selector: 'app-home',
@@ -62,7 +64,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private voiceService: VoiceService,
     private router: Router,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private userProgressService: UserProgressService,
   ) {}
 
   /* =========================
@@ -70,6 +73,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   ngOnInit() {
+    if(this.userProgressService.isIntroSeen() ){
+      this.router.navigate(['/menu']);
+    }
+    
     this.listeningSub = this.voiceService.isListening$.subscribe(isListening => {
       this.micVisible = isListening;
       this.cd.detectChanges();
@@ -230,6 +237,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     } else if (this.currentStep === 'address') {
       this.currentStep = null;
+      this.userProgressService.markIntroSeen();
       this.router.navigate(['/menu']);
     }
 
