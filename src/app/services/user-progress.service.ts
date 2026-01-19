@@ -52,4 +52,15 @@ export class UserProgressService {
         this.save(progress);
     }
 
+    isIntroSeen(): boolean{
+        const progress = this.get();
+        return progress.introSeen;
+    }
+
+    markIntroSeen(): void {
+        const progress = this.get();
+        progress.introSeen = true;
+        this.save(progress);
+    }
+
 }
