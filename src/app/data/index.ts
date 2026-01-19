@@ -6,7 +6,6 @@ export const ACTIVITIES: Activity[] = [
   {
     id: 'modulo-1',
     title: 'Conoce nuestro proyecto',
-    seccion: 'conoce-nuestro-proyecto-btn',
     slides: [
       {
         id: 'slide-1',
@@ -61,19 +60,12 @@ export const ACTIVITIES: Activity[] = [
         videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
         text: 'Por cierto… ¿Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video ',
         audio: 'audio/actividades/modulo-1/slide-8.mp3',
-      },
-      {
-        id: 'slide-9',
-        type: 'text',
-        text: 'cuéntame, ¿con qué te gustaría continuar?',
-        audio: 'audio/actividades/modulo-1/slide-9.mp3',
-      },
+      }
     ],
   },
   {
     id: 'modulo-2',
     title: 'Nuestra licencia ambienta',
-    seccion: 'nuestra-licencia-ambiental-btn',
     slides: [
       {
         id: 'slide-1',
@@ -139,19 +131,12 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Estamos modificando la licencia por qué se debe ajustar la ubicación de ciertas infraestructuras, para garantizar que el proyecto es seguro, sostenible, responsable con la comunidad y el medio ambiente.',
         audio: 'audio/actividades/modulo-2/slide-10.mp3',
-      },
-      {
-        id: 'slide-11',
-        type: 'text',
-        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
-        audio: 'audio/actividades/modulo-2/slide-11.mp3',
-      },
+      }
     ],
   },
   {
     id: 'modulo-3',
     title: 'Conoce el MEIA',
-    seccion: 'conoce-el-meia-btn',
     slides: [
       {
         id: 'slide-1',
@@ -247,19 +232,12 @@ export const ACTIVITIES: Activity[] = [
         imageUrl: 'images/actividades/modulo-3/slide-15.png',
         text: '',
         audio: '',
-      },
-      {
-        id: 'slide-16',
-        type: 'text',
-        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
-        audio: 'audio/actividades/modulo-3/slide-16.mp3',
-      },
+      }
     ],
   },
   {
     id: 'modulo-4',
     title: 'Tu cuentas SQR',
-    seccion: 'tu-cuentas-sqr-btn',
     slides: [
       {
         id: 'slide-1',
@@ -428,25 +406,17 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: '● Cartilla de Escazú \n● Glosario comunitario \n● Carteleras informativas \n●  Programas radiales \n● Presentación power point',
         audio: 'audio/actividades/modulo-4/slide-27.mp3',
-      },
-      {
-        id: 'slide-28',
-        type: 'text',
-        text: 'Cuéntame, ¿con qué te gustaría continuar? ',
-        audio: 'audio/actividades/modulo-4/slide-28.mp3',
-      },
+      }
     ],
   },
   {
     id: 'modulo-5',
     title: 'Agendate',
-    seccion: 'agendate-btn',
     slides: [],
   },
   {
     id: 'modulo-6',
     title: 'Juegos',
-    seccion: 'juega-y-aprende-btn',
     slides: [
       {
         id: 'slide-1',

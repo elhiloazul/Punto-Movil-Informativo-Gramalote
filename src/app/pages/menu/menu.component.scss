@@ -65,3 +65,8 @@
 .pill:active {
   transform: scale(0.97);
 }
+
+.blocked {
+  opacity: 0.5;
+  pointer-events: none;
+}

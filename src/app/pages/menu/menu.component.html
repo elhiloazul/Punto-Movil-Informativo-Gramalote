@@ -6,19 +6,35 @@
   >
 
   <div class="content">
-        <button class="pill conoce-nuestro-proyecto-btn" [routerLink]="['/activity', 'modulo-1']">
+        <button
+          [class.blocked]="activityIsCompleted('modulo-1')"
+          class="pill conoce-nuestro-proyecto-btn"
+          [routerLink]="['/activity', 'modulo-1']"
+        >
           Conoce nuestro proyecto
         </button>
-        <button class="pill nuestra-licencia-ambiental-btn" [routerLink]="['/activity', 'modulo-2']">
+        <button 
+          [class.blocked]="activityIsCompleted('modulo-2')"
+          class="pill nuestra-licencia-ambiental-btn" 
+          [routerLink]="['/activity', 'modulo-2']">
           Nuestra licencia ambiental
         </button>
-        <button class="pill conoce-el-meia-btn" [routerLink]="['/activity', 'modulo-3']">
+        <button 
+          [class.blocked]="activityIsCompleted('modulo-3')"
+          class="pill conoce-el-meia-btn" 
+          [routerLink]="['/activity', 'modulo-3']">
           Conoce el MEIA  
         </button>
-        <button class="pill tu-cuentas-sqr-btn" [routerLink]="['/activity', 'modulo-4']">
+        <button 
+          [class.blocked]="activityIsCompleted('modulo-4')"
+          class="pill tu-cuentas-sqr-btn" 
+          [routerLink]="['/activity', 'modulo-4']">
           Tus cuentas SQR 
         </button>
-        <button class="pill agendate-btn" [routerLink]="['/activity', 'modulo-5']">
+        <button 
+          [class.blocked]="activityIsCompleted('modulo-5')"
+          class="pill agendate-btn" 
+          [routerLink]="['/activity', 'modulo-5']">
           Agéndate
         </button>
       <app-footer></app-footer>
