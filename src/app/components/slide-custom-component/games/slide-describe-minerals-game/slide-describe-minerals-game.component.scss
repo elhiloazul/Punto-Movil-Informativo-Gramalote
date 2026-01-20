@@ -27,6 +27,7 @@
   border-radius: 24px;
   padding: 20px;
   position: relative;
+  overflow: hidden;
 }
 
 .question {
@@ -44,8 +45,8 @@
 }
 
 .mineral-card {
-  width: 18vh;
-  height: 20vh;
+  width: 14vh;
+  height: 23vh;
   background: #e9f7fb;
   border-radius: 20px;
   display: flex;
@@ -59,7 +60,7 @@
   }
 
   img {
-    width: 70%;
+    width: 100%;
   }
 }
 
