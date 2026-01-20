@@ -57,8 +57,8 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-8',
         type: 'video',
-        videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
-        text: 'Por cierto… ¿Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video ',
+        videoUrl: 'https://www.youtube.com/watch?v=TdkK9xpTJTw',
+        text: 'Por cierto… ¿Sabes cómo funciona la minería? Ven y averigüémoslo juntos con este video.',
         audio: 'audio/actividades/modulo-1/slide-8.mp3',
       }
     ],
@@ -70,13 +70,13 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-1',
         type: 'text',
-        text: '¿Sabes que es una licencia ambiental? ',
+        text: '¿Sabes qué es una licencia ambiental?',
         audio: 'audio/actividades/modulo-2/slide-1.mp3',
       },
       {
         id: 'slide-2',
         type: 'document',
-        documentUrl: 'documents/actividades/modulo-2/slide2.pdf',
+        documentUrl: 'documents/actividades/modulo-2/slide-2.pdf',
         text: 'Es un permiso de la autoridad ambiental que nos permite hacer el proyecto minero.',
         audio: 'audio/actividades/modulo-2/slide-2.mp3',
       },
@@ -97,7 +97,7 @@ export const ACTIVITIES: Activity[] = [
         id: 'slide-5',
         type: 'image',
         imageUrl: 'images/actividades/modulo-2/slide-5.png',
-        text: 'Logrando disminuir estos efectos en la comunidad y el medio ambiente',
+        text: 'logrando disminuir estos efectos en la comunidad y el medio ambiente.',
         audio: 'audio/actividades/modulo-2/slide-5.mp3',
       },
       {
@@ -117,13 +117,13 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-8',
         type: 'text',
-        text: 'Quiero contarte que Gramalote tiene licencia desde el 2015, y ha sido modificada conforme avanza el proyecto',
+        text: 'Quiero contarte que Gramalote tiene licencia desde el 2015, y ha sido modificada conforme avanza el proyecto,',
         audio: 'audio/actividades/modulo-2/slide-8.mp3',
       },
       {
         id: 'slide-9',
         type: 'text',
-        text: 'Respetando los compromisos ambientales y sociales, trabajando de forma transparente y cumpliendo con todas las normas',
+        text: 'respetando los compromisos ambientales y sociales, trabajando de forma transparente y cumpliendo con todas las normas.',
         audio: 'audio/actividades/modulo-2/slide-9.mp3',
       },
       {
@@ -141,7 +141,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-1',
         type: 'text',
-        text: 'Hola, que rico que quieres saber qué es la MEIA (Modificación de la Licencia Ambiental).',
+        text: 'Hola, ¡que rico que quieres saber qué es la MEIA (Modificación de la Licencia Ambiental)!',
         audio: 'audio/actividades/modulo-3/slide-1.mp3',
       },
       {
@@ -153,7 +153,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-3',
         type: 'text',
-        text: 'Para poder hacer la modificación se debe cumplir con:\n1. Los estudios de agua, aire, suelo, seres vivos de la zona, comunidad.\n2. Escuchar la comunidad si tienen dudas y opiniones\n3. Agregar las mejoras del proyecto.',
+        text: 'Para poder hacer la modificación se debe cumplir con:\n1. Los estudios de agua, aire, suelo, seres vivos de la zona, comunidad.\n2. Escuchar la comunidad si tienen dudas y opiniones.\n3. Agregar las mejoras del proyecto.',
         audio: 'audio/actividades/modulo-3/slide-3.mp3',
       },
       {
@@ -164,25 +164,29 @@ export const ACTIVITIES: Activity[] = [
       },
       {
         id: 'slide-5',
-        type: 'text',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-5.png',
         text: '1. Optimizar obras mineras\n● Área de explotación. (tajo)\n● Depósitos de material estéril.',
         audio: 'audio/actividades/modulo-3/slide-5.mp3',
       },
       {
         id: 'slide-6',
-        type: 'text',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-6.png',
         text: '2. Reducir obras de infraestructura\n● Vías - Zonas materiales sobrantes de excavación\n● Sedimentadores.',
         audio: 'audio/actividades/modulo-3/slide-6.mp3',
       },
       {
         id: 'slide-7',
-        type: 'text',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-7.png',
         text: '3. Relocalizar obras complementarias\n● Portería, campamento, polvorín.\n● Trituradora, planta de beneficio, área de servicios.',
         audio: 'audio/actividades/modulo-3/slide-7.mp3',
       },
       {
         id: 'slide-8',
-        type: 'text',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-3/slide-8.png',
         text: 'Te cuento lo que el proyecto Gramalote no cambiará:\n● Área de manejo de relaves o colas.\n● Sedimentador La Palestina y sedimentador El Torito (asociados al área de manejo de relaves o colas).\n● Realineación de la quebrada Guacas.\n● Plataforma La Perla.',
         audio: 'audio/actividades/modulo-3/slide-8.mp3',
       },
@@ -226,13 +230,6 @@ export const ACTIVITIES: Activity[] = [
         text: 'Además recuerda que, un impacto ambiental es cualquier cambio sobre el medio ambiente, puede afectar o beneficiar total o parcialmente a causa de un proyecto o actividad, por eso es necesario tener una licencia. Y antes de continuar, te presento a nuestros actores involucrados.',
         audio: 'audio/actividades/modulo-3/slide-14.mp3',
       },
-      {
-        id: 'slide-15',
-        type: 'image',
-        imageUrl: 'images/actividades/modulo-3/slide-15.png',
-        text: '',
-        audio: '',
-      }
     ],
   },
   {
@@ -391,7 +388,8 @@ export const ACTIVITIES: Activity[] = [
       },
       {
         id: 'slide-25',
-        type: 'text',
+        type: 'video',
+        videoUrl: 'https://www.youtube.com/watch?v=zLvjxWudSro',
         text: 'Ahora, te invito a conocer la importancia del acuerdo Escazú, presta atención al siguiente video que nos explicará.',
         audio: 'audio/actividades/modulo-4/slide-25.mp3',
       },
@@ -450,7 +448,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-6',
         type: 'text',
-        text: '¿Te doy un dato sobre mí? !Me encantan las fotos! conservan recuerdos y nos permiten transmitir emociones a través de una imagen.',
+        text: '¿Te doy un dato sobre mí?. ¡Me encantan las fotos!, conservan recuerdos y nos permiten transmitir emociones a través de una imagen, compartirlo me parece algo muy especial, ¿me ayudarías? Vamos a capturar los momentos más especiales de lo que hacen en Gramalote.',
         audio: 'audio/actividades/modulo-5/slide-6.mp3',
       },
     ],
