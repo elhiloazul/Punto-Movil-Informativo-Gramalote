@@ -44,7 +44,7 @@ export const ACTIVITIES: Activity[] = [
         id: 'slide-6',
         type: 'image',
         imageUrl: 'images/actividades/modulo-1/slide-6.png',
-        text: 'Mientras se realiza este proceso, se trabaja de la mano con la comunidad contribuyendo en su desarrollo en salud, seguridad, productividad, y medio ambiente. Además, se adelantan procesos de reasentamiento y formalización minera.',
+        text: 'Mientras se realiza este proceso, se trabaja de la mano con la comunidad contribuyendo en su desarrollo en salud, seguridad, productividad, y medio ambiente. Además, se adelantan procesos de reasentamiento y formalización minera, todo esto con la supervisión de las Corporaciones Autónomas Regionales y las de Desarrollo Sostenible, de los municipios, distritos y áreas metropolitanas.',
         audio: 'audio/actividades/modulo-1/slide-6.mp3',
       },
       {
@@ -104,7 +104,7 @@ export const ACTIVITIES: Activity[] = [
         id: 'slide-6',
         type: 'image',
         imageUrl: 'images/actividades/modulo-2/slide-6.png',
-        text: 'Toda la documentación (estudios ambientales) respaldada con evidencias, se presenta ante la ANLA - Autoridad Nacional de Licencias Ambientales, las Corporaciones Autónomas Regionales y las de Desarrollo Sostenible, de los municipios, distritos y áreas metropolitanas',
+        text: 'Toda la documentación (estudios ambientales) respaldada con evidencias, se presenta ante la ANLA - Autoridad Nacional de Licencias Ambientales',
         audio: 'audio/actividades/modulo-2/slide-6.mp3',
       },
       {
@@ -141,7 +141,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-1',
         type: 'text',
-        text: 'Hola, ¡que rico que quieres saber qué es la MEIA (Modificación de la Licencia Ambiental)!',
+        text: 'Hola, ¡que rico que quieres saber qué es la MEIA (Modificación de Estudio de Impacto Ambiental)!',
         audio: 'audio/actividades/modulo-3/slide-1.mp3',
       },
       {
