@@ -14,6 +14,7 @@ export class SlideDocumentComponentComponent {
 
   protected audio?: HTMLAudioElement;
   private readonly PDF_PARAMS = '#toolbar=0&navpanes=0&scrollbar=0&view=FitH&statusbar=0&messages=0';
+  pdfUrl!: SafeResourceUrl;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -21,9 +22,15 @@ export class SlideDocumentComponentComponent {
   ) {}
 
   ngOnInit() {
+
+    if (this.slide.documentUrl) {
+      this.pdfUrl = this.getCleanPdfUrl(this.slide.documentUrl);
+    }
+
     if (this.slide.audio) {
       this.playAudio();
     }
+    
   }
   
   private playAudio() {
@@ -44,6 +51,16 @@ export class SlideDocumentComponentComponent {
       this.audio.currentTime = 0;
       this.audio.src = '';
       this.audio = undefined;
+    }
+  }
+
+  toggleAudio() {
+    if (!this.audio) return;
+
+    if (this.audio.paused) {
+      this.audio.play();
+    } else {
+      this.audio.pause();
     }
   }
 
