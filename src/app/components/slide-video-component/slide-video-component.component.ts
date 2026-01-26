@@ -55,8 +55,14 @@ export class SlideVideoComponentComponent {
     }
   }
 
-  ngOnDestroy() {
-    this.stopAudio();
+  toggleAudio() {
+    if (!this.audio) return;
+
+    if (this.audio.paused) {
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
   }
 
   private loadYouTubeApi(): Promise<void> {
@@ -99,6 +105,10 @@ export class SlideVideoComponentComponent {
     if (event.data === window.YT.PlayerState.ENDED) {
       this.completed.emit();
     }
+  }
+
+  ngOnDestroy() {
+    this.stopAudio();
   }
 
 }
