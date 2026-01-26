@@ -41,6 +41,17 @@ export class SlideImageComponentComponent {
     }
   }
 
+
+  toggleAudio() {
+    if (!this.audio) return;
+
+    if (this.audio.paused) {
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+  }
+
   ngOnDestroy() {
     this.stopAudio();
   }
