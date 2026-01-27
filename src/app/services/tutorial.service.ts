@@ -14,7 +14,7 @@ export class TutorialService {
       audio: 'audio/home/tutorial-home.mp3',
       popover: {
         title: 'Inicio',
-        description: 'Si en cualquier momento debes irte, te esperaremos de regreso pronto, pero no olvides volver a la pantalla de inicio para dejarme conocer a más personas.',
+        description: 'Si en algún momento debes irte, ¡lo entiendo!, pero no olvides volver al inicio antes de hacerlo, así yo poder conocer a más personas, lo puedes hacer dando un toque al símbolo de la casa.',
       }
     },
     {
@@ -22,7 +22,7 @@ export class TutorialService {
       audio: 'audio/home/tutorial-repeat.mp3',
       popover: {
         title: 'Repetir',
-        description: 'Si algo no te quedó claro, siempre podrás repetir la información desde aquí.',
+        description: 'Si algo quizás no te queda claro en cualquier momento, puedes repetir la información dando un toque al símbolo de las flechas.',
       }
     },
     {
@@ -30,7 +30,7 @@ export class TutorialService {
       audio: 'audio/home/tutorial-game.mp3',
       popover: {
         title: 'Juegos',
-        description: 'Si por el momento quieres saltar a la diversion para despertar tu curiosidad, dando un toque en esta casilla', 
+        description: 'Te cuento que también tengo unos juegos muy divertidos y para todas las edades, por lo que si quieres relajarte un rato y jugar conmigo, lo puedes hacer dando un toque en la casilla de los dados en cualquier momento.', 
       }
     },
     {
@@ -38,7 +38,7 @@ export class TutorialService {
       audio: 'audio/home/tutorial-volume.mp3',
       popover: {
         title: 'Volumen',
-        description: 'Si el volumen de mi voz esta muy bajo o muy alto, da un toque a la bocina del lado inferior derecho, donde aparecerá una barrita, con ella podrás manejar el volumen de mi voz.',
+        description: 'Primero que todo, si el volumen de mi voz es muy bajo o muy alto, da un toque al símbolo de la bocina, de allí saldrá una pequeña barra, con la cual podrás controlar el volumen de mi voz.',
       }
     }
   ];
