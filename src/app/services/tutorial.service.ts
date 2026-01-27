@@ -13,7 +13,6 @@ export class TutorialService {
       element: '.home-btn',
       audio: 'audio/home/tutorial-home.mp3',
       popover: {
-        title: 'Inicio',
         description: 'Si en algún momento debes irte, ¡lo entiendo!, pero no olvides volver al inicio antes de hacerlo, así yo poder conocer a más personas, lo puedes hacer dando un toque al símbolo de la casa.',
       }
     },
@@ -21,7 +20,6 @@ export class TutorialService {
       element: '.repeat-btn',
       audio: 'audio/home/tutorial-repeat.mp3',
       popover: {
-        title: 'Repetir',
         description: 'Si algo quizás no te queda claro en cualquier momento, puedes repetir la información dando un toque al símbolo de las flechas.',
       }
     },
@@ -29,7 +27,6 @@ export class TutorialService {
       element: '.gamepad-btn',
       audio: 'audio/home/tutorial-game.mp3',
       popover: {
-        title: 'Juegos',
         description: 'Te cuento que también tengo unos juegos muy divertidos y para todas las edades, por lo que si quieres relajarte un rato y jugar conmigo, lo puedes hacer dando un toque en la casilla de los dados en cualquier momento.', 
       }
     },
@@ -37,7 +34,6 @@ export class TutorialService {
       element: '.volume-up-btn',
       audio: 'audio/home/tutorial-volume.mp3',
       popover: {
-        title: 'Volumen',
         description: 'Primero que todo, si el volumen de mi voz es muy bajo o muy alto, da un toque al símbolo de la bocina, de allí saldrá una pequeña barra, con la cual podrás controlar el volumen de mi voz.',
       }
     }
