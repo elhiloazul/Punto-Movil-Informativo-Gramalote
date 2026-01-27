@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   micVisible = false;
   maxAttempts = 5;
   attempts = 0;
+  text = '';
 
   private errorSub?: Subscription;
   private listeningSub?: Subscription;
@@ -82,6 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   ngOnInit() {
+    this.text = 'Ven a conocerme dando un toque al botón de iniciar experiencia.';
     if(this.userProgressService.isIntroSeen() ){
       this.router.navigate(['/menu']);
     }
@@ -154,6 +156,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   clickSound() {
+    this.text = '¡Hola! Mi nombre es Tico, un mono tití que está muy feliz de conocerte. Antes de empezar, aprendamos a usar la pantalla. En la parte inferior encontrarás diferentes símbolos, los cuales harán de esta una experiencia más fácil.';
     this.saySequence(
       ['saludo', 'iniciarTutorial1', 'iniciarTutorial2'],
       () => this.startTutorial()
@@ -182,6 +185,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             driverObj.destroy();
             this.startExperienced = false;
             this.currentStep = 'name';
+            this.text = '¿Cuál es tu nombre? Dilo en voz alta, por favor.';
             this.cd.markForCheck();
 
             this.saySequence(['conocer_de_ti'], () => {
@@ -238,10 +242,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   confirmStep() {
     if (this.currentStep === 'name') {
       this.currentStep = 'age';
+      this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
       this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
 
     } else if (this.currentStep === 'age') {
       this.currentStep = 'address';
+      this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
       this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
 
     } else if (this.currentStep === 'address') {
