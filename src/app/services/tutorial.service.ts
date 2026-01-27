@@ -48,7 +48,6 @@ export class TutorialService {
       element: '.conoce-nuestro-proyecto-btn',
       audio: 'audio/menu/conoce-nuestro-proyecto.mp3',
       popover: {
-        title: 'Conoce nuestro proyecto',
         description: 'Conoce nuestro proyecto, donde te cuento un poco de la historia de GRAMALOTE, cómo funciona y qué es lo que hacemos.',
       }
     },
@@ -56,7 +55,6 @@ export class TutorialService {
       element: '.nuestra-licencia-ambiental-btn',
       audio: 'audio/menu/nuestra-licencia-ambiental.mp3',
       popover: {
-        title: 'Nuestra licencia ambiental',
         description: 'Segundo: Nuestra licencia ambiental. Te explico todo sobre que es una licencia ambiental y cómo funciona la nuestra, además de sus adaptaciones al proyecto. Recuerda que esto se hace para garantizar que el proyecto sea seguro, sostenible y responsable con la comunidad y el medio ambiente.',
       }
     },
@@ -64,7 +62,6 @@ export class TutorialService {
       element: '.conoce-el-meia-btn',
       audio: 'audio/menu/conoce-meia.mp3',
       popover: {
-        title: 'Conoce el MEIA',
         description: 'Tercero: Conoce la MEIA. ¿Recuerdas que te dije que nuestra licencia ambiental se adapta a lo que hacemos?, pues aquí puedes conocer cada modificación, te recomiendo que antes de entrar aquí, ya hayas conocido que es una licencia ambiental.',
       }
     },
@@ -72,7 +69,6 @@ export class TutorialService {
       element: '.tu-cuentas-sqr-btn',
       audio: 'audio/menu/tu-cuentas-sqr.mp3',
       popover: {
-        title: 'Tu cuentas SQR',
         description: 'Cuarto: tú cuentas. Aquí, te escuchamos, por lo que te contaré como te puedes comunicar con nosotros, a través de diferentes medios, para conocer todas tus dudas, quejas, reclamos o solicitudes.',
       }
     },
@@ -80,7 +76,6 @@ export class TutorialService {
       element: '.agendate-btn',
       audio: 'audio/menu/agendate.mp3',
       popover: {
-        title: 'Agendate',
         description: 'Quinto: Agéndate. Desde GRAMALOTE estamos en constante movimiento y contacto con la comunidad, por lo que tenemos diferentes jornadas donde nos encantaría que nos acompañes, aquí podrás conocer nuestra programación como Jornadas informativas, reuniones comunitarias o disponibilidad de atención.',
       }
     }
