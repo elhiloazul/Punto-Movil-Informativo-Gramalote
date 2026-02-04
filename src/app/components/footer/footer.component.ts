@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterConfig } from './models/footer.model';
 import { InactivityService } from '../../services/inactivity.service';
 import { VoiceService } from '../../services/voice.service';
+import { SlideNavigationService } from '../../services/slide-navigation.service';
 
 @Component({
   selector: 'app-footer',
@@ -30,7 +31,8 @@ export class FooterComponent {
   constructor(
     private router: Router,
     private inactivity: InactivityService,
-    private voiceService: VoiceService
+    private voiceService: VoiceService,
+    private slideNavigationService: SlideNavigationService
   ) {}
 
   ngOnInit() {
@@ -72,8 +74,18 @@ export class FooterComponent {
   }
 
   navigateIfEnabled(enabled?: boolean, route?: string) {
-    if (!enabled || !route) return;
-    this.router.navigate([route]);
+    if (!enabled) return;
+    
+    // Si es el botón de repeat y estamos en una actividad, ir al slide anterior
+    if (route === '/menu') {
+      this.slideNavigationService.goToPreviousSlide();
+      return;
+    }
+    
+    // Para otros botones, navegar normalmente
+    if (route) {
+      this.router.navigate([route]);
+    }
   }
 
   continue() {
