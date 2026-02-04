@@ -31,7 +31,12 @@
             }
         }
         <div class="content">
-            <app-footer></app-footer>
+            <app-footer [config]="{
+                home: { enabled: true, route: '/home' },
+                repeat: { enabled: true, route: '/menu' },
+                gamepad: { enabled: true, route: '/activity/modulo-6' },
+                volume: { enabled: true }
+            }"></app-footer>
         </div>
     </div>
 }@else {

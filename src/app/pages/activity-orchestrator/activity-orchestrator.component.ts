@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService } from '../../services/activity.service';
 import { Activity, ActivitySlide } from '../../models/activity.model';
@@ -12,6 +12,7 @@ import { SlideVideoComponentComponent } from '../../components/slide-video-compo
 import { SlideDocumentComponentComponent } from '../../components/slide-document-component/slide-document-component.component';
 import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
 import { UserProgressService } from '../../services/user-progress.service';
+import { SlideNavigationService } from '../../services/slide-navigation.service';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -27,7 +28,7 @@ import { UserProgressService } from '../../services/user-progress.service';
   templateUrl: './activity-orchestrator.component.html',
   styleUrls: ['./activity-orchestrator.component.scss']
 })
-export class ActivityOrchestratorComponent implements OnInit {
+export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   
   private readonly TRANSITION_DELAY_MS = 800;
   activity: Activity | undefined;
@@ -39,6 +40,7 @@ export class ActivityOrchestratorComponent implements OnInit {
     private logger: LoggerService,
     private router: Router,
     private userProgressService: UserProgressService,
+    private slideNavigationService: SlideNavigationService
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,14 @@ export class ActivityOrchestratorComponent implements OnInit {
     this.logger.debug("Starting activity ", id)
 
     this.activity = this.activityService.getById(id);
+    
+    // Configurar el servicio de navegación
+    this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+    this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+  }
+
+  ngOnDestroy(): void {
+    this.slideNavigationService.reset();
   }
 
   onSlideCompleted() {
@@ -60,9 +70,18 @@ export class ActivityOrchestratorComponent implements OnInit {
 
   private goToNextSlide() {
     this.currentSlideIndex++;
+    this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
 
     if (this.currentSlideIndex >= this.activity!.slides.length) {
       this.finishActivity();
+    }
+  }
+
+  private goToPreviousSlide() {
+    if (this.currentSlideIndex > 0) {
+      this.currentSlideIndex--;
+      this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+      this.logger.debug("Going to previous slide", this.currentSlideIndex);
     }
   }
 
