@@ -13,6 +13,7 @@ export class SlideDocumentComponentComponent {
   @Output() completed = new EventEmitter<void>();
 
   protected audio?: HTMLAudioElement;
+  protected isAudioPaused = false;
   private readonly PDF_PARAMS = '#toolbar=0&navpanes=0&scrollbar=0&view=FitH&statusbar=0&messages=0';
   pdfUrl!: SafeResourceUrl;
 
@@ -59,8 +60,10 @@ export class SlideDocumentComponentComponent {
 
     if (this.audio.paused) {
       this.audio.play();
+      this.isAudioPaused = false;
     } else {
       this.audio.pause();
+      this.isAudioPaused = true;
     }
   }
 
