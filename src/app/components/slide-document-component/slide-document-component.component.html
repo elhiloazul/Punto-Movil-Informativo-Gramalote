@@ -12,6 +12,18 @@
         <p [innerHTML]="slide.text"></p>
     </div>
 
+    @if (audio) {
+        <button 
+            class="audio-control-btn" 
+            (click)="toggleAudio()">
+            @if (!isAudioPaused) {
+                <span>⏸️</span>
+            } @else {
+                <span>▶️</span>
+            }
+        </button>
+    }
+
     <img
     src="images/tico-lado-derecho.png"
     alt=""
