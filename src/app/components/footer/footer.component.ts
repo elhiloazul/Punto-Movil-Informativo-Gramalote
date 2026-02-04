@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterConfig } from './models/footer.model';
 import { InactivityService } from '../../services/inactivity.service';
+import { VoiceService } from '../../services/voice.service';
 
 @Component({
   selector: 'app-footer',
@@ -29,17 +30,43 @@ export class FooterComponent {
   constructor(
     private router: Router,
     private inactivity: InactivityService,
+    private voiceService: VoiceService
   ) {}
 
   ngOnInit() {
+    // Inicializar con volumen guardado, con respaldo al sistema global
+    const savedVolume = localStorage.getItem('appVolume');
+    const globalVolume = (window as any).getGlobalVolume?.() || 1;
+    this.volume = savedVolume ? parseFloat(savedVolume) : globalVolume;
+    console.log('🎵 Footer inicializado con volumen:', this.volume);
   }
 
   toggleVolumeControl() {
     this.showVolumeControl = !this.showVolumeControl;
+    if (this.showVolumeControl && this.voiceService) {
+      // Aplicar volumen actual inmediatamente al mostrar el control
+      setTimeout(() => this.updateVolume(), 50);
+    }
   }
 
+  private hideVolumeTimeout: any;
+
   updateVolume() {
-    setTimeout(() => {
+    // Usar la función global para controlar el volumen
+    if ((window as any).setGlobalVolume) {
+      (window as any).setGlobalVolume(this.volume);
+    }
+    
+    // Usar el VoiceService como respaldo
+    if (this.voiceService) {
+      this.voiceService.setVolume(this.volume);
+    }
+
+    // Reiniciar el timeout para ocultar el control
+    if (this.hideVolumeTimeout) {
+      clearTimeout(this.hideVolumeTimeout);
+    }
+    this.hideVolumeTimeout = setTimeout(() => {
       this.showVolumeControl = false;
     }, 3000);
   }

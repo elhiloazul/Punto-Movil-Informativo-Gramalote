@@ -16,11 +16,16 @@ export class VoiceService {
   private errorSubject = new Subject<string>();
   error$ = this.errorSubject.asObservable();
 
+  // Control de volumen global
+  private currentVolume = 1;
+  private audioElements: HTMLAudioElement[] = [];
+
   constructor(
     private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.initRecognition();
+    this.interceptAudioCreation();
   }
 
   initRecognition() {
@@ -177,5 +182,52 @@ export class VoiceService {
       console.error('Error de permisos de micrófono:', error);
       return false;
     }
+  }
+
+  // Métodos para control de volumen
+  registerAudio(audio: HTMLAudioElement) {
+    // Evitar duplicados
+    if (!this.audioElements.includes(audio)) {
+      this.audioElements.push(audio);
+    }
+    audio.volume = this.currentVolume;
+  }
+
+  unregisterAudio(audio: HTMLAudioElement) {
+    const index = this.audioElements.indexOf(audio);
+    if (index > -1) {
+      this.audioElements.splice(index, 1);
+    }
+  }
+
+  setVolume(volume: number) {
+    this.currentVolume = volume;
+    // Limpiar audios que ya no existen
+    this.audioElements = this.audioElements.filter(audio => {
+      try {
+        audio.volume = volume;
+        return true;
+      } catch (e) {
+        return false; // Remover audios inválidos
+      }
+    });
+  }
+
+  getCurrentVolume(): number {
+    return this.currentVolume;
+  }
+
+  // Interceptar la creación de elementos Audio globalmente
+  private interceptAudioCreation() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    
+    const originalAudio = (window as any).Audio;
+    const voiceService = this;
+    
+    (window as any).Audio = function(src?: string) {
+      const audio = new originalAudio(src);
+      voiceService.registerAudio(audio);
+      return audio;
+    };
   }
 }
