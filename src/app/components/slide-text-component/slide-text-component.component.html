@@ -1,4 +1,4 @@
-  <main class="main">
+  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
     <div class="thought-bubble">
       <p class="text-white slide-text">{{slide.text}}</p>
     </div>
