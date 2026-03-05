@@ -1,4 +1,4 @@
-<div class="screen">
+  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
     <div class="content-container">
         <div class="thought-bubble-image">
             <img [src]="slide.imageUrl" alt="">
@@ -15,4 +15,4 @@
         class="tico-img"
         (click)="toggleAudio()"    
     >
-</div>
+</main>

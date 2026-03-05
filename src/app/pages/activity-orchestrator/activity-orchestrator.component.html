@@ -25,7 +25,7 @@
                 }
 
                 @case ('custom') {
-                    <app-slide-custom-component [component]="currentSlide.component" (completed)="onSlideCompleted()" >
+                    <app-slide-custom-component [slide]="currentSlide" [component]="currentSlide.component" (completed)="onSlideCompleted()" >
                     </app-slide-custom-component>
                 }
             }

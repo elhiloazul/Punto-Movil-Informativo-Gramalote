@@ -1,4 +1,4 @@
-<div class="screen">
+  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
 
     <div class="video-container">
          <div id="youtube-player"></div>
@@ -15,4 +15,4 @@
         (click)="toggleAudio()"
     >
 
-</div>
+</main>

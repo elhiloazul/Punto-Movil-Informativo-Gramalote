@@ -241,26 +241,41 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   confirmStep() {
     if (this.currentStep === 'name') {
-      this.currentStep = 'age';
-      this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
-      this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
+      this.speakValue(this.name, () => {
+        this.currentStep = 'age';
+        this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
+        this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
+        this.cd.markForCheck();
+      });
 
     } else if (this.currentStep === 'age') {
-      this.currentStep = 'address';
-      this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
-      this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
+      this.speakValue(this.age, () => {
+        this.currentStep = 'address';
+        this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
+        this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
+        this.cd.markForCheck();
+      });
 
     } else if (this.currentStep === 'address') {
-      this.currentStep = null;
-      this.userProgressService.markIntroSeen();
-      // Revisar una mejor solución para iniciar a contar el tiempo
-      // de inactividad ya que al iniciar el servicio, solo inicia
-      // si la intro ya fue vista.
-      this.inactivityService.start();
-      this.router.navigate(['/menu']);
+      this.speakValue(this.address, () => {
+        this.currentStep = null;
+        this.userProgressService.markIntroSeen();
+        this.inactivityService.start();
+        this.router.navigate(['/menu']);
+      });
     }
+  }
 
-    this.cd.markForCheck();
+  private speakValue(value: string, callback: () => void) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(value);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.8;
+      utterance.onend = callback;
+      speechSynthesis.speak(utterance);
+    } else {
+      callback();
+    }
   }
 
   cancelStep() {

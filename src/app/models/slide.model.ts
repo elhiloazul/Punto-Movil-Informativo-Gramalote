@@ -4,6 +4,7 @@ export interface Slide {
     id: string;
     type: SlideType;
     audio?: string;
+    backgroundImage?: string;
 }
 
 export interface TextSlide extends Slide {
