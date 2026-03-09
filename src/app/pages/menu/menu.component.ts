@@ -42,7 +42,7 @@ export class MenuComponent {
         () => this.startTutorial()
       );
     } else {
-      this.playAudio(undefined, 'audio/actividades/modulo-2/slide-11.mp3');
+      this.playAudio(undefined, 'audio/actividades/modulo-2/slide-13.mp3');
     }
   }
 
