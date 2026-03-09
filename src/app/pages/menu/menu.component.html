@@ -1,37 +1,23 @@
-<div class="screen">
-  <img
-    src="https://elhiloazul.com/wp-content/uploads/2026/01/Tico-pantalla-22.png"
-    alt=""
-    class="bg-img"
-  >
+<main class="main" [style.background-image]="'url(images/fondos/2.gif)'"
+  [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
+  <img src="images/tico/Tico-Derecha.gif" alt="" class="bg-img">
 
   <div class="content">
-        <button
-          class="pill conoce-nuestro-proyecto-btn"
-          [routerLink]="['/activity', 'modulo-1']"
-        >
-          Conoce nuestro proyecto
-        </button>
-        <button 
-          class="pill nuestra-licencia-ambiental-btn" 
-          [routerLink]="['/activity', 'modulo-2']">
-          Nuestra licencia ambiental
-        </button>
-        <button 
-          class="pill conoce-el-meia-btn" 
-          [routerLink]="['/activity', 'modulo-3']">
-          La MEIA  
-        </button>
-        <button 
-          class="pill tu-cuentas-sqr-btn" 
-          [routerLink]="['/activity', 'modulo-4']">
-          Tú cuentas 
-        </button>
-        <button 
-          class="pill agendate-btn" 
-          [routerLink]="['/activity', 'modulo-5']">
-          Agéndate
-        </button>
-      <app-footer></app-footer>
+    <button class="pill conoce-nuestro-proyecto-btn" [routerLink]="['/activity', 'modulo-1']">
+      Conoce nuestro proyecto
+    </button>
+    <button class="pill nuestra-licencia-ambiental-btn" [routerLink]="['/activity', 'modulo-2']">
+      Nuestra licencia ambiental
+    </button>
+    <button class="pill conoce-el-meia-btn" [routerLink]="['/activity', 'modulo-3']">
+      La MEIA
+    </button>
+    <button class="pill tu-cuentas-sqr-btn" [routerLink]="['/activity', 'modulo-4']">
+      Tú cuentas
+    </button>
+    <button class="pill agendate-btn" [routerLink]="['/activity', 'modulo-5']">
+      Agéndate
+    </button>
+    <app-footer></app-footer>
   </div>
-</div>
+</main>

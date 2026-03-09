@@ -1,4 +1,4 @@
-<div class="screen">
+  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
 
     <div class="video-container">
          <div id="youtube-player"></div>
@@ -9,10 +9,9 @@
     </div>
 
     <img
-        src="https://elhiloazul.com/wp-content/uploads/2026/01/Tico-pantalla-22.png"
+        src="images/tico/Tico-Derecha.gif"
         alt=""
         class="tico-img"
         (click)="toggleAudio()"
     >
-
-</div>
+</main>

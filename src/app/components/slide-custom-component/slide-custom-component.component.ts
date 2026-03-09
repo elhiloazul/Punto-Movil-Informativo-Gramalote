@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { InteractiveSlide } from './interactive-slide';
+import { CustomSlide } from '../../models/slide.model';
 
 @Component({
   selector: 'app-slide-custom-component',
@@ -8,6 +9,7 @@ import { InteractiveSlide } from './interactive-slide';
   styleUrl: './slide-custom-component.component.scss'
 })
 export class SlideCustomComponentComponent {
+  @Input({ required: true }) slide!: CustomSlide;
   @Input() component!: Type<InteractiveSlide>;
   @Output() completed = new EventEmitter<void>(); 
 
@@ -16,9 +18,13 @@ export class SlideCustomComponentComponent {
 
   private instance?: InteractiveSlide;
 
+  get backgroundStyle() {
+    return this.slide?.backgroundImage ? `url(${this.slide.backgroundImage})` : null;
+  }
+
   ngAfterViewInit() {
-    const ref = this.host.createComponent(this.component);
-    this.instance = ref.instance;
+    const ref = this.host.createComponent(this.slide.component);
+    this.instance = ref.instance as InteractiveSlide;
 
     this.instance.completed.subscribe(() => {
       this.completed.emit();
