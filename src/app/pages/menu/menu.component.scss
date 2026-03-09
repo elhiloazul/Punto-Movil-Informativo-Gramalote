@@ -32,7 +32,6 @@
   flex-direction: column;
   align-items: center;
   gap: 3vh;
-  padding-top: 15vh;
 }
 
 /* =========================
@@ -69,4 +68,11 @@
 .blocked {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

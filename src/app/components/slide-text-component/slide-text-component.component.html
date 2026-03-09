@@ -1,9 +1,9 @@
-  <main class="main">
+  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
     <div class="thought-bubble">
       <p class="text-white slide-text">{{slide.text}}</p>
     </div>
     <img 
-      src="https://elhiloazul.com/wp-content/uploads/2025/09/mono-scaled.png"
+      src="images/tico/Tico-Centro.gif"
       alt="Personaje"
       class="personaje"
       (click)="toggleAudio()"

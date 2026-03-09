@@ -61,6 +61,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     conocer_de_ti: 'audio/home/conocer-de-ti.mp3',
   };
 
+  private textMap: Record<string, string> = {
+    iniciarTutorial1: 'Antes de empezar, aprendamos a usar la pantalla.',
+    iniciarTutorial2: 'En la parte inferior encontrarás diferentes símbolos, los cuales harán de esta una experiencia más fácil.',
+  };
+
   menuConfigFromHome = {
     home: { enabled: false, route: '/home' },
     repeat: { enabled: false, route: '/menu' },
@@ -136,6 +141,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     const [first, ...rest] = keys;
+    
+    if (this.textMap[first]) {
+      this.text = this.textMap[first];
+      this.cd.markForCheck();
+    }
+    
     this.say(first, () => this.saySequence(rest, callback));
   }
 
@@ -156,11 +167,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   clickSound() {
-    this.text = '¡Hola! Mi nombre es Tico, un mono tití que está muy feliz de conocerte. Antes de empezar, aprendamos a usar la pantalla. En la parte inferior encontrarás diferentes símbolos, los cuales harán de esta una experiencia más fácil.';
-    this.saySequence(
-      ['saludo', 'iniciarTutorial1', 'iniciarTutorial2'],
-      () => this.startTutorial()
-    );
+    this.startExperienced = false;
+    this.text = '¡Hola! Mi nombre es Tico, un mono tití que está muy feliz de conocerte.';
+    this.say('saludo', () => {
+      this.startExperienced = false;
+      this.currentStep = 'name';
+      this.text = '¿Cuál es tu nombre? Dilo en voz alta, por favor.';
+      this.cd.markForCheck();
+      
+      this.saySequence(['conocer_de_ti'], () => {
+        this.playAudio(() => this.listenFor('name'), this.messages.name.audio);
+      });
+    });
   }
 
   /* =========================
@@ -168,35 +186,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   startTutorial() {
-    const steps = this.tutorialService.stepsTutorialsFooter;
-    let currentStepIndex = 0;
+    this.saySequence(['iniciarTutorial1', 'iniciarTutorial2'], () => {
+      const steps = this.tutorialService.stepsTutorialsFooter;
+      let currentStepIndex = 0;
 
-    const driverObj = driver({
-      popoverClass: 'driverjs-theme',
-      onHighlightStarted: () => {
-        const step = steps[currentStepIndex];
+      const driverObj = driver({
+        popoverClass: 'driverjs-theme',
+        onHighlightStarted: () => {
+          const step = steps[currentStepIndex];
 
-        this.playAudio(() => {
-          currentStepIndex++;
+          this.playAudio(() => {
+            currentStepIndex++;
 
-          if (currentStepIndex < steps.length) {
-            driverObj.highlight(steps[currentStepIndex]);
-          } else {
-            driverObj.destroy();
-            this.startExperienced = false;
-            this.currentStep = 'name';
-            this.text = '¿Cuál es tu nombre? Dilo en voz alta, por favor.';
-            this.cd.markForCheck();
+            if (currentStepIndex < steps.length) {
+              driverObj.highlight(steps[currentStepIndex]);
+            } else {
+              driverObj.destroy();
+              this.finishTutorial();
+            }
+          }, step.audio);
+        }
+      });
 
-            this.saySequence(['conocer_de_ti'], () => {
-              this.playAudio(() => this.listenFor('name'), this.messages.name.audio);
-            });
-          }
-        }, step.audio);
-      }
+      driverObj.highlight(steps[currentStepIndex]);
     });
-
-    driverObj.highlight(steps[currentStepIndex]);
   }
 
   /* =========================
@@ -241,26 +254,50 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   confirmStep() {
     if (this.currentStep === 'name') {
-      this.currentStep = 'age';
-      this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
-      this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
+      this.speakValue(this.name, () => {
+        this.currentStep = 'age';
+        this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
+        this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
+        this.cd.markForCheck();
+      });
 
     } else if (this.currentStep === 'age') {
-      this.currentStep = 'address';
-      this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
-      this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
+      this.speakValue(this.age, () => {
+        this.currentStep = 'address';
+        this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
+        this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
+        this.cd.markForCheck();
+      });
 
     } else if (this.currentStep === 'address') {
-      this.currentStep = null;
-      this.userProgressService.markIntroSeen();
-      // Revisar una mejor solución para iniciar a contar el tiempo
-      // de inactividad ya que al iniciar el servicio, solo inicia
-      // si la intro ya fue vista.
-      this.inactivityService.start();
-      this.router.navigate(['/menu']);
+      this.speakValue(this.address, () => {
+        this.currentStep = null;
+        this.startTutorial();
+      });
     }
+  }
 
-    this.cd.markForCheck();
+  finishTutorial() {
+    this.userProgressService.markIntroSeen();
+    this.inactivityService.start();
+    this.router.navigate(['/menu']);
+  }
+
+  skipTutorial() {
+    this.currentStep = null;
+    this.finishTutorial();
+  }
+
+  private speakValue(value: string, callback: () => void) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(value);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.8;
+      utterance.onend = callback;
+      speechSynthesis.speak(utterance);
+    } else {
+      callback();
+    }
   }
 
   cancelStep() {
