@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'ChildHood';
-  src: url('/fonts/Child-Hood.otf') format('opentype');
+  font-family: "ChildHood";
+  src: url("/fonts/Child-Hood.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -27,16 +27,16 @@
   height: 100%; // 👈 asegura mismo tamaño
 }
 
-
 body {
-  background: url('assets/images/PANTALLA.svg') no-repeat center center fixed;
-  font-family: 'ChildHood' !important;
+  background: url("assets/images/PANTALLA.svg") no-repeat center center fixed;
+  font-family: "ChildHood" !important;
   background-size: cover;
 }
 
-
-html, body { height: 100%; }
-
+html,
+body {
+  height: 100%;
+}
 
 .driver-popover.driverjs-theme {
   background-color: #fde047;
@@ -83,19 +83,23 @@ html, body { height: 100%; }
   color: #000;
 }
 
-.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-left.driver-popover-arrow {
   border-left-color: #fde047;
 }
 
-.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-right.driver-popover-arrow {
   border-right-color: #fde047;
 }
 
-.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-top.driver-popover-arrow {
   border-top-color: #fde047;
 }
 
-.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-bottom.driver-popover-arrow {
   border-bottom-color: #fde047;
 }
 
@@ -105,23 +109,21 @@ html, body { height: 100%; }
 
 .driver-popover,
 .driver-popover * {
-  font-family: 'ChildHood', sans-serif !important;
+  font-family: "ChildHood", sans-serif !important;
   font-weight: 100 !important;
   font-size: 25px !important;
 }
 
 .thought-bubble {
-  position: relative;
+  position: absolute;
+  bottom: 52vh;
   display: inline-flex;
   flex-direction: column;
-
-  background: #5FB9CE;
+  background: #5fb9ce;
   border-radius: 3vh;
   padding: 2vh 2.5vh;
-
   width: fit-content;
   max-width: 32vh;
-  margin-top: 10vh;
   min-width: 28vh;
 }
 
@@ -136,7 +138,7 @@ html, body { height: 100%; }
   width: 4vh;
   height: 4vh;
 
-  background: #5FB9CE;
+  background: #5fb9ce;
   border-radius: 0 0 4vh 0;
   transform: rotate(0deg);
 }
@@ -161,7 +163,6 @@ html, body { height: 100%; }
   color: #2f6f73;
   font-weight: 700;
 }
-
 
 /* =========================
    CONTENIDO CENTRAL
@@ -198,11 +199,12 @@ html, body { height: 100%; }
     transform: scale(1.2);
   }
   100% {
-    transform: scale(1);  
+    transform: scale(1);
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -215,7 +217,7 @@ div,
 button,
 input,
 textarea {
-  font-family: 'ChildHood', sans-serif;
+  font-family: "ChildHood", sans-serif;
   font-weight: 100 !important;
 }
 
@@ -227,7 +229,7 @@ textarea {
 .mat-typography p,
 .mat-typography span,
 .mat-typography div {
-  font-family: 'ChildHood', sans-serif;
+  font-family: "ChildHood", sans-serif;
   font-weight: 100 !important;
 }
 
@@ -238,6 +240,6 @@ textarea {
 .thought-bubble,
 .thought-bubble p,
 .thought-bubble span {
-  font-family: 'ChildHood', cursive !important;
+  font-family: "ChildHood", cursive !important;
   font-weight: 100 !important;
 }
