@@ -365,7 +365,7 @@ export const ACTIVITIES: Activity[] = [
         id: 'slide-12',
         type: 'image',
         imageUrl: 'images/actividades/modulo-4/slide-12.png',
-        text: '5. Se entrega la respuesta al solicitante, cerrando el proceso. Indicar que recibir respuesta no significa estar de acuerdo.',
+        text: '5. Te entregamos la respuesta, cerrando el proceso.',
         audio: 'audio/actividades/modulo-4/slide-12.mp3',
       },
       {
@@ -373,6 +373,7 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Recuerda que el proyecto Gramalote siempre te brindará el mejor acompañamiento posible, es por esto, que te brinda diferentes maneras para que comuniques tus SQR.',
         audio: 'audio/actividades/modulo-4/slide-13.mp3',
+        backgroundImage: 'images/fondos/10.gif',
       },
       {
         id: 'slide-14',
@@ -383,7 +384,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-15',
         type: 'text',
-        text: 'Donde solo debes llenar el formulario y enviarlo; aquí mismo puedes descargar el formulario y mandarlo a nuestro correo “comunidadprovidencia\ngramalote.com” o también puedes llamar a nuestra línea telefónica, que aparecerá en pantalla: ',
+        text: 'Donde solo debes llenar el formulario y enviarlo; aquí mismo puedes descargar el formulario y mandarlo a nuestro correo “comunidad.providencia@\ngramalote.com” o también puedes llamar a nuestra línea telefónica, que aparecerá en pantalla: ',
         audio: 'audio/actividades/modulo-4/slide-15.mp3',
       },
       {
@@ -395,8 +396,9 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-17',
         type: 'text',
-        text: 'También puedes presentarlas de forma presencial, a través de los profesionales autorizados en campo, es decir.',
+        text: 'Igualmente puedes hacerlo de manera presencial, a través de los profesionales autorizados en campo, es decir,',
         audio: 'audio/actividades/modulo-4/slide-17.mp3',
+        backgroundImage: 'images/fondos/7.gif',
       },
       {
         id: 'slide-18',

@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImageSlide } from '../../models/slide.model';
 import { LoggerService } from '../../core/logger/logger.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-slide-image-component',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './slide-image-component.component.html',
   styleUrl: './slide-image-component.component.scss'
 })

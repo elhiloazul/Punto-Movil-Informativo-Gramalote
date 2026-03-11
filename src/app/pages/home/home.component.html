@@ -1,57 +1,53 @@
-<div class="container">
+<div class="container" (click)="startExperienced && clickSound()">
 
   @if (!micVisible) {
 
-    <main class="main">
-       <div class="thought-bubble">
-      <p class="text-white slide-text">{{ text }}</p>
+  @if (currentStep === 'name') {
+  <div class="name-container">
+    <label class="custom-label">Tu nombre: {{ name }}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
+
+  @if (currentStep === 'age') {
+  <div class="name-container">
+    <label class="custom-label">Tu edad: {{ age }}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
+
+  @if (currentStep === 'address') {
+  <div class="name-container">
+    <label class="custom-label">Tu vereda o barrio: {{ address }}</label>
+    <div class="buttons">
+      <button class="btn-name confirm" (click)="confirmStep()">✅</button>
+      <button class="btn-name cancel" (click)="cancelStep()">❌</button>
+    </div>
+  </div>
+  }
+
+  <main class="main">
+    <div class="thought-bubble" >
+      <p class="text-white slide-text" [ngClass]="{
+        'text-small': text.length > 100,
+        'text-medium': text.length > 50 && text.length <= 100,
+        'text-large': text.length <= 50
+      }">{{ text }}</p>
     </div>
     <img src="images/tico/Tico-Centro.gif" alt="Personaje" class="personaje">
-    </main>
+  </main>
 
-    @if (startExperienced) {
-      <div class="button-container">
-        <button class="btn" (click)="clickSound()">
-          Iniciar experiencia
-        </button>
-      </div>
-    }
-
-    @if (currentStep === 'name') {
-      <div class="name-container">
-        <label class="custom-label">Tu nombre: {{ name }}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
-
-    @if (currentStep === 'age') {
-      <div class="name-container">
-        <label class="custom-label">Tu edad: {{ age }}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
-
-    @if (currentStep === 'address') {
-      <div class="name-container">
-        <label class="custom-label">Tu vereda o barrio: {{ address }}</label>
-        <div class="buttons">
-          <button class="btn-name confirm" (click)="confirmStep()">✅</button>
-          <button class="btn-name cancel" (click)="cancelStep()">❌</button>
-        </div>
-      </div>
-    }
-
-    <app-footer [config]="menuConfigFromHome"></app-footer>
+  <app-footer [config]="menuConfigFromHome"></app-footer>
   }
 
   @if (micVisible) {
-    <app-mic></app-mic>
+  <app-mic></app-mic>
   }
 
 </div>

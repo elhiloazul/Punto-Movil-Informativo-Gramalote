@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { VideoSlide } from '../../models/slide.model';
 import { LoggerService } from '../../core/logger/logger.service';
 import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 declare global {
   interface Window {
@@ -12,7 +13,7 @@ declare global {
 
 @Component({
   selector: 'app-slide-video-component',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './slide-video-component.component.html',
   styleUrl: './slide-video-component.component.scss'
 })
@@ -22,6 +23,7 @@ export class SlideVideoComponentComponent {
 
   private player!: any;
   protected audio?: HTMLAudioElement;
+  protected showTicoImage = true;
   constructor(private logger: LoggerService) { }
   
   ngOnInit() {
@@ -102,6 +104,9 @@ export class SlideVideoComponentComponent {
   }
 
   private onPlayerStateChange(event: any) {
+    if (event.data === window.YT.PlayerState.PLAYING) {
+      this.showTicoImage = false;
+    }
     if (event.data === window.YT.PlayerState.ENDED) {
       this.completed.emit();
     }

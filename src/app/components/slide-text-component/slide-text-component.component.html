@@ -1,19 +1,18 @@
-  <main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null" [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
-    <div class="thought-bubble">
-      <p class="text-white slide-text">{{slide.text}}</p>
-    </div>
-    <img 
-      src="images/tico/Tico-Centro.gif"
-      alt="Personaje"
-      class="personaje"
-      (click)="toggleAudio()"
-      >
-  
-    @if (!slide.audio) {
-    <div class="button-container">
-      <button class="next-btn" (click)="completed.emit()">Siguiente</button> 
-    </div>
-    }
-  
-  </main>
+<main class="main" [style.background-image]="slide.backgroundImage ? 'url(' + slide.backgroundImage + ')' : null"
+  [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
+  <div class="thought-bubble">
+    <p class="text-white slide-text" [ngClass]="{
+        'text-small': text.length > 200,
+        'text-medium': text.length > 70 && text.length <= 200,
+        'text-large': text.length <= 70
+      }">{{ text }}</p>
+  </div>
+  <img src="images/tico/Tico-Centro.gif" alt="Personaje" class="personaje" (click)="toggleAudio()">
 
+  @if (!slide.audio) {
+  <div class="button-container">
+    <button class="next-btn" (click)="completed.emit()">Siguiente</button>
+  </div>
+  }
+
+</main>

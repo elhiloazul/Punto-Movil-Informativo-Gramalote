@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TextSlide } from '../../models/slide.model';
 import { LoggerService } from '../../core/logger/logger.service';
 
 @Component({
   selector: 'app-slide-text-component',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './slide-text-component.component.html',
   styleUrl: './slide-text-component.component.scss'
 })
@@ -14,6 +15,10 @@ export class SlideTextComponentComponent {
   @Output() completed = new EventEmitter<void>();
 
   protected audio?: HTMLAudioElement;
+
+  get text(): string {
+    return this.slide.text || '';
+  }
 
   constructor(private logger: LoggerService) { }
 
