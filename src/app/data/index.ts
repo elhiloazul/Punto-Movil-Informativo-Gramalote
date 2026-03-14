@@ -12,14 +12,14 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: '¡Perfecto!, bienvenido a conocer un poco de la historia de Gramalote.',
         audio: 'audio/actividades/modulo-1/slide-1.mp3',
-        backgroundImage: 'images/fondos/3.gif',
+        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
       },
       {
         id: 'slide-2',
         type: 'text',
         text: 'En el 2006, Gramalote llegó al municipio de San Roque como un proyecto de minería de oro a cielo abierto con la intención de desarrollar una operación sostenible y compatible con el desarrollo local.',
         audio: 'audio/actividades/modulo-1/slide-2.mp3',
-        backgroundImage: 'images/fondos/3.gif',
+        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
       },
       {
         id: 'slide-3',
@@ -405,6 +405,7 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Líderes de territorio, quienes te ayudarán a redactar la SQR, de la misma forma, puedes acudir a los siguientes puntos de atención a la comunidad.',
         audio: 'audio/actividades/modulo-4/slide-18.mp3',
+        backgroundImage: 'images/fondos/7.gif',
       },
       {
         id: 'slide-19',
