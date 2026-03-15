@@ -10,33 +10,32 @@
 
 /* Contenedor para alinear los globos a la izquierda del personaje */
 .content-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8vh; /* Espacio entre el globo superior e inferior */
-    padding-left: 5vw;
-    padding-top: 5vh;
-    z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8vh; /* Espacio entre el globo superior e inferior */
+  padding-left: 5vw;
+  padding-top: 5vh;
+  z-index: 1;
 }
-
 
 /* =========================
    GLOBO SUPERIOR (IMAGEN)
 ========================= */
 .thought-bubble-image {
-    position: relative;
-    background: #7fbccc;
-    border-radius: 6vh; /* Bordes muy redondeados */
-    padding: 3vh;
-    width: 57vh; /* Más ancho que el de texto */
-    max-width: 80%;
-    display: flex;
-    justify-content: center;
+  position: relative;
+  background: #7fbccc;
+  border-radius: 6vh; /* Bordes muy redondeados */
+  padding: 3vh;
+  width: 57vh; /* Más ancho que el de texto */
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
 }
 
 .thought-bubble-image img {
-    width: 85%;  /* Esto garantiza que siempre use todo el espacio interno */
-    display: block;
-    border-radius: 3vh; /* Ajusta el radio para que no se vea tosco */
+  width: 85%; /* Esto garantiza que siempre use todo el espacio interno */
+  display: block;
+  border-radius: 3vh; /* Ajusta el radio para que no se vea tosco */
 }
 
 /* Colita globo superior: apunta hacia abajo */
@@ -59,54 +58,83 @@
    GLOBO INFERIOR (TEXTO)
 ========================= */
 .thought-bubble-text {
-    position: relative;
-    background: #7fbccc;
-    border-radius: 5vh;
-    padding: 3vh 4vh;
-    width: 26vh;
-    align-self: flex-start; /* Alineado a la izquierda */
-    margin-left: 2vh;
+  position: relative;
+  background: #7fbccc;
+  border-radius: 5vh;
+  padding: 3vh 4vh;
+  width: 25vh;
+  align-self: flex-start;
+  margin-left: 0vh;
+  margin-top: 6vh;
 }
 
 .thought-bubble-text p {
-    color: white;
-    font-size: 2.2vh;
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-    line-height: 1.2;
+  color: white;
+  font-size: 2.2vh;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
 }
 
 ::ng-deep .highlight {
-    color: #2D572C;
-    font-size: 2.2vh;
-    font-weight: bold;
-    text-align: center;
-    margin: 0;
-    line-height: 1.2;
+  color: #2d572c;
+  font-size: 2.2vh;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
 }
 
- /* Colita globo inferior: apunta hacia arriba */
- .thought-bubble-text::after {
-    content: "";
-    position: absolute;
-    top: -1vh;
-    right: -2%;
-    width: 4vh;
-    height: 4vh;
-    background: #7fbccc;
-    border-radius: 4vh 0 0 0;
-    transform: rotate(32deg);
-} 
+/* Colita globo inferior: apunta hacia arriba */
+.thought-bubble-text::after {
+  content: "";
+  position: absolute;
+  top: -1vh;
+  right: -2%;
+  width: 4vh;
+  height: 4vh;
+  background: #7fbccc;
+  border-radius: 4vh 0 0 0;
+  transform: rotate(32deg);
+}
 
 /* =========================
    PERSONAJE
 ========================= */
 .tico-img {
-    position: absolute;
-    right: 0;
-    width: auto;
-    height: 44vh;
-    z-index: 2; 
-    bottom: 15vh;
+  position: absolute;
+  right: 0;
+  width: auto;
+  height: 44vh;
+  z-index: 2;
+  bottom: 19vh;
+}
+
+.audio-control-btn {
+  position: absolute;
+  bottom: 11vh;
+  left: 50vh;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+}
+
+.audio-control-btn:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.audio-control-btn span {
+  font-size: 2vh;
+  color: white;
 }

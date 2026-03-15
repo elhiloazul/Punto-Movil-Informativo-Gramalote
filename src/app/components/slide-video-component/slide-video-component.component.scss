@@ -10,9 +10,8 @@
 ========================= */
 .tico-img {
     position: absolute;
-    bottom: 0vh;
-    left: 0vw;
-    height: 50vh;
+    bottom: 6vh;
+    height: 40vh;
     width: auto;
     z-index: 2;
 }
@@ -36,10 +35,9 @@
     border-radius: 5vh;
     padding: 3vh 4vh;
     width: 27vh;
-    align-self: flex-start; /* Alineado a la izquierda */
-    margin-left: 2vh;
+    align-self: flex-start; 
     top: 12vh;
-    left: 20vh;
+    left: 19vh;
 }
 
 .thought-bubble-text p {
@@ -58,9 +56,10 @@
     left: -2%;
     width: 4vh;
     height: 4vh;
-    background: #7fbccc;
+    background: #5FB9CE;
     border-radius: 4vh 0 0 0;
     transform: rotate(32deg);
+    z-index: -1;
 } 
 
 .video-container iframe {

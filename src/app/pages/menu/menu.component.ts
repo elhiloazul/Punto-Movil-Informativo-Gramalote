@@ -10,15 +10,11 @@ import { UserProgressService } from '../../services/user-progress.service';
 
 @Component({
   selector: 'app-menu',
-  imports: [
-    FooterComponent,
-    RouterModule
-  ],
+  imports: [FooterComponent, RouterModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-
   activities: Activity[] = [];
   protected audio?: HTMLAudioElement;
 
@@ -27,20 +23,17 @@ export class MenuComponent {
   };
 
   constructor(
-    private activityService: ActivityService, 
-    private logger: LoggerService, 
+    private activityService: ActivityService,
+    private logger: LoggerService,
     private tutorialService: TutorialService,
     private userProgressService: UserProgressService,
-  ) { }
-  
+  ) {}
+
   ngOnInit() {
     this.activities = this.activityService.getActivities();
 
     if (!this.userProgressService.isMenuSeen()) {
-      this.saySequence(
-        ['bienvenida'],
-        () => this.startTutorial()
-      );
+      this.saySequence(['bienvenida'], () => this.startTutorial());
     } else {
       this.playAudio(undefined, 'audio/actividades/modulo-2/slide-13.mp3');
     }
@@ -76,7 +69,7 @@ export class MenuComponent {
     this.audio = new Audio(audioPath);
     this.audio.currentTime = 0;
 
-    this.audio.play().catch(err => {
+    this.audio.play().catch((err) => {
       console.error('Error reproduciendo audio', err);
     });
 
@@ -101,6 +94,7 @@ export class MenuComponent {
 
     const driverObj = driver({
       popoverClass: 'driverjs-theme',
+      allowClose: false,
       onHighlightStarted: () => {
         const step = steps[currentStepIndex];
 
@@ -114,19 +108,17 @@ export class MenuComponent {
             this.userProgressService.markMenuSeen();
           }
         }, step.audio);
-      }, 
+      },
     });
 
     driverObj.highlight(steps[currentStepIndex]);
-
   }
 
   activityIsCompleted(activityId: string): boolean {
     return this.userProgressService.isActivityCompleted(activityId);
   }
 
-  ngOnDestroy() { 
+  ngOnDestroy() {
     this.stopAudio();
   }
-
 }
