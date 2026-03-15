@@ -10,9 +10,9 @@
 ========================= */
 .tico-img {
     position: absolute;
-    bottom: 0vh;
     left: 0vw;
-    height: 50vh;
+    bottom: 6vh;
+    height: 40vh;
     width: auto;
     object-fit: contain;
     pointer-events: none;
@@ -21,9 +21,10 @@
 
 .game-container {
   width: 80vw;
-  height: 50vh;
+  height: 40vh;
   margin: auto;
-  background: #8fd3f4;
+      margin-top: 5vh;
+  background: #7fbccc;
   border-radius: 24px;
   padding: 20px;
   position: relative;
@@ -46,7 +47,7 @@
 
 .mineral-card {
   width: 14vh;
-  height: 23vh;
+  height: 19vh;
   background: #e9f7fb;
   border-radius: 20px;
   display: flex;
@@ -94,9 +95,8 @@
     padding: 3vh 4vh;
     width: 27vh;
     align-self: flex-start; /* Alineado a la izquierda */
-    margin-left: 2vh;
     top: 12vh;
-    left: 20vh;
+    left: 19vh;
 }
 
 .thought-bubble-text p {

@@ -1,46 +1,44 @@
 /* Contenedor principal */
 .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 /* Logo */
 .header {
-    margin-top: 3vh;
+  margin-top: 3vh;
 }
 
 .logo {
-    height: 10vh;
-    max-height: 6vh;
+  height: 10vh;
+  max-height: 6vh;
 }
 
 /* Personaje */
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10vh;
 }
-
 
 .personaje {
-    position: absolute;
-    bottom: 5vh;
-    height: 50vh;
-    width: 30vh;
+  position: absolute;
+  bottom: 9vh;
+  height: 45vh;
+  width: 29vh;
 }
-
 
 /* Botón */
 .button-container {
-    position: absolute;
-    bottom: 15vh;
+  position: absolute;
+  bottom: 15vh;
 }
 
 .button-container .btn {
@@ -63,7 +61,7 @@
     transform: scale(1.2);
   }
   100% {
-    transform: scale(1);  
+    transform: scale(1);
   }
 }
 
@@ -73,7 +71,7 @@
 }
 
 .custom-label {
-  background: linear-gradient(to right, #66B165, #66B165);
+  background: linear-gradient(to right, #66b165, #66b165);
   border-radius: 2vh;
   padding: 1vh 3vh;
   font-size: 2.5vh;
@@ -83,14 +81,13 @@
   text-align: center;
 }
 
-
 .name-container {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    bottom: 72vh;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  bottom: 72vh;
 }
 
 .name-label {
@@ -129,4 +126,3 @@
 .btn:hover {
   transform: scale(1.2);
 }
-

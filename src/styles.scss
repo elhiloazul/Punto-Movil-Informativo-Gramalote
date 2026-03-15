@@ -1,10 +1,4 @@
-@font-face {
-  font-family: "ChildHood";
-  src: url("/fonts/Child-Hood.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand:wght@400&display=swap');
 
 :host {
   display: block;
@@ -29,7 +23,8 @@
 
 body {
   background: url("assets/images/PANTALLA.svg") no-repeat center center fixed;
-  font-family: "ChildHood" !important;
+  font-family: "Just Another Hand", cursive !important;
+  font-weight: 400 !important;
   background-size: cover;
 }
 
@@ -109,9 +104,9 @@ body {
 
 .driver-popover,
 .driver-popover * {
-  font-family: "ChildHood", sans-serif !important;
-  font-weight: 100 !important;
-  font-size: 25px !important;
+  font-family: "Just Another Hand", cursive !important;
+  font-weight: 400 !important;
+  font-size: 2vh !important;
 }
 
 .thought-bubble {
@@ -156,7 +151,7 @@ body {
 .text-white {
   font-size: 2.2vh;
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* Tamaños dinámicos de texto */
@@ -165,7 +160,7 @@ body {
 }
 
 .thought-bubble .text-medium {
-  font-size: 3.0vh !important;
+  font-size: 3vh !important;
 }
 
 .thought-bubble .text-small {
@@ -176,7 +171,7 @@ body {
 .text-dark {
   font-size: 2.2vh;
   color: #2f6f73;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* =========================
@@ -200,7 +195,7 @@ body {
   border-radius: 2vh;
   padding: 1vh 3vh;
   font-size: 2.5vh;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   color: #004d40;
   animation: next-btn-scale-up-center 1s ease-in-out infinite;
@@ -232,8 +227,8 @@ div,
 button,
 input,
 textarea {
-  font-family: "ChildHood", sans-serif;
-  font-weight: 100 !important;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400 !important;
 }
 
 /* =========================
@@ -244,8 +239,8 @@ textarea {
 .mat-typography p,
 .mat-typography span,
 .mat-typography div {
-  font-family: "ChildHood", sans-serif;
-  font-weight: 100 !important;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400 !important;
 }
 
 /* =========================
@@ -255,6 +250,6 @@ textarea {
 .thought-bubble,
 .thought-bubble p,
 .thought-bubble span {
-  font-family: "ChildHood", cursive !important;
-  font-weight: 100 !important;
+  font-family: "Just Another Hand", cursive !important;
+  font-weight: 400 !important;
 }

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class SlideImageComponentComponent {
   @Input({ required: true }) slide!: ImageSlide;
   @Output() completed = new EventEmitter<void>(); 
+  isAudioPaused = false;
   
   constructor(private logger: LoggerService) { }
   protected audio?: HTMLAudioElement;
@@ -48,8 +49,10 @@ export class SlideImageComponentComponent {
 
     if (this.audio.paused) {
       this.audio.play();
+      this.isAudioPaused = false;
     } else {
       this.audio.pause();
+      this.isAudioPaused = true;
     }
   }
 
