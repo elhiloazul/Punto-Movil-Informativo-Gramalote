@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    @if (audio) {
+    @if (audio && slide.isButtonPause !== false) {
         <button 
             class="audio-control-btn" 
             (click)="toggleAudio()">

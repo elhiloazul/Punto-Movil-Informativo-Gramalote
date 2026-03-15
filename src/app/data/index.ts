@@ -1,5 +1,6 @@
 import { SlideDescribeMineralsGameComponent } from '../components/slide-custom-component/games/slide-describe-minerals-game/slide-describe-minerals-game.component';
 import { SlideSarchingMineralsGameComponent } from '../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component';
+import { SlidePhotoCaptureGameComponent } from '../components/slide-custom-component/games/slide-photo-capture-game/slide-photo-capture-game.component';
 import { Activity } from '../models/activity.model';
 
 export const ACTIVITIES: Activity[] = [
@@ -12,14 +13,16 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: '¡Perfecto!, bienvenido a conocer un poco de la historia de Gramalote.',
         audio: 'audio/actividades/modulo-1/slide-1.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
       },
       {
         id: 'slide-2',
         type: 'text',
         text: 'En el 2006, Gramalote llegó al municipio de San Roque como un proyecto de minería de oro a cielo abierto con la intención de desarrollar una operación sostenible y compatible con el desarrollo local.',
         audio: 'audio/actividades/modulo-1/slide-2.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
       },
       {
         id: 'slide-3',
@@ -33,21 +36,24 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Un paso clave en nuestra historia fue la obtención de la Licencia Ambiental otorgada por la Autoridad Nacional de Licencias Ambientales (ANLA) el 25 de noviembre de 2015, la cual habilitó formalmente la actividad minera bajo estrictos parámetros ambientales y de planificación. ',
         audio: 'audio/actividades/modulo-1/slide-4.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/1.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/1.gif',
       },
       {
         id: 'slide-6',
         type: 'text',
         text: 'Desde sus inicios, el proyecto ha buscado articular sus acciones con los objetivos de desarrollo sostenible, promoviendo programas sociales y ambientales que generan valor con una convivencia sana y sostenible con comunidades locales, la protección ambiental y la generación de oportunidades socioeconómicas.',
         audio: 'audio/actividades/modulo-1/slide-6.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/3.gif',
       },
       {
         id: 'slide-9',
         type: 'text',
         text: 'Uno de las aportes más visibles del proyecto en el territorio ha sido el apoyo a la formalización de la minería artesanal y tradicional en San Roque, junto a las autoridades locales, el sector público y organizaciones comunitarias facilitando que grandes cantidades de mineros artesanales legalicen su actividad organizándose en unidades productivas y adoptando prácticas sostenibles.',
         audio: 'audio/actividades/modulo-1/slide-9.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
 
       {
@@ -55,7 +61,8 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Hoy trabajamos junto a las comunidades contribuyendo a su desarrollo en educación, salud, productividad, cultura y deporte y avanzamos en los procesos de reasentamiento y formalización minera.',
         audio: 'audio/actividades/modulo-1/slide-10.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/10.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/10.gif',
       },
 
       {
@@ -92,7 +99,8 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Es el permiso que otorga la Autoridad Ambiental a un proyecto para que pueda operar, siempre y cuando cumpla con normas ambientales. La licencia dice qué puede hacer el proyecto y cómo debe cuidar el ambiente y a las comunidades; es decir, como prevenir, mitigar y compensar los posibles impactos.',
         audio: 'audio/actividades/modulo-2/slide-2.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-3',
@@ -107,21 +115,24 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'demostrando que se estudiaron todos los posibles impactos ambientales y sociales,',
         audio: 'audio/actividades/modulo-2/slide-4.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-5',
         type: 'text',
         text: 'formulando así, las correspondientes acciones de compromiso, denominados Planes de Manejo Ambiental - PMA',
         audio: 'audio/actividades/modulo-2/slide-5.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-6',
         type: 'text',
         text: 'logrando disminuir estos efectos en la comunidad y el medio ambiente.',
         audio: 'audio/actividades/modulo-2/slide-6.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-7',
@@ -191,98 +202,112 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Para poder hacer la modificación se debe cumplir con:\n1. Los estudios de agua, aire, suelo, seres vivos de la zona, comunidad.\n2. Escuchar la comunidad si tienen dudas y opiniones.\n3. Agregar las mejoras del proyecto.',
         audio: 'audio/actividades/modulo-3/slide-3.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-4',
         type: 'text',
         text: 'Te cuento que la MEIA del proyecto Gramalote hizo 3 cambios:',
         audio: 'audio/actividades/modulo-3/slide-4.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-5',
         type: 'text',
         text: '1. Optimizar obras mineras\n● Área de explotación. (tajo)\n● Depósitos de material estéril.',
         audio: 'audio/actividades/modulo-3/slide-5.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-6',
         type: 'text',
         text: '2. Reducir obras de infraestructura\n● Vías - Zonas materiales sobrantes de excavación\n● Sedimentadores.',
         audio: 'audio/actividades/modulo-3/slide-6.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-7',
         type: 'text',
         text: '3. Relocalizar obras complementarias\n● Portería, campamento, polvorín.\n● Trituradora, planta de beneficio, área de servicios.',
         audio: 'audio/actividades/modulo-3/slide-7.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/12.gif',
       },
       {
         id: 'slide-8',
         type: 'text',
         text: 'Te cuento lo que el proyecto Gramalote no cambiará:\n● Área de manejo de relaves o colas.\n● Sedimentador La Palestina y sedimentador El Torito (asociados al área de manejo de relaves o colas).\n● Realineación de la quebrada Guacas.\n● Plataforma La Perla.',
         audio: 'audio/actividades/modulo-3/slide-8.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-9',
         type: 'text',
         text: '¿Sabías que el plan de información y participación con la comunidad para la modificación, se realiza en tres momentos? ',
         audio: 'audio/actividades/modulo-3/slide-9.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-10',
         type: 'text',
         text: 'Conozcamos el momento 1:',
         audio: 'audio/actividades/modulo-3/slide-10.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-11',
         type: 'text',
         text: 'Socialización del proyecto: aquí te contamos las características técnicas del proyecto y las obras a modificar.',
         audio: 'audio/actividades/modulo-3/slide-11.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-12',
         type: 'text',
         text: 'Conozcamos el momento 2: Identificación participativa de impactos y medidas de manejo ambiental ',
         audio: 'audio/actividades/modulo-3/slide-12.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-13',
         type: 'text',
         text: 'En este espacio te entregamos información detallada del proyecto, para la identificación colectiva de los impactos y proponer las medidas para su manejo.',
         audio: 'audio/actividades/modulo-3/slide-13.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-14',
         type: 'text',
         text: 'Del aprendizaje adquirido y los aportes de los grupos de valor, nos quedan los conocimientos con los cuales se conforman propuestas para disminuir, mitigar o compensar los impactos sociales y ambientales.',
         audio: 'audio/actividades/modulo-3/slide-14.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-15',
         type: 'text',
         text: 'De allí surgen las soluciones o cuidados que se aplican para que las actividades del proyecto se hagan de forma responsable y sostenible.',
         audio: 'audio/actividades/modulo-3/slide-15.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-16',
         type: 'text',
         text: 'Además recuerda que, un impacto un impacto es cualquier cambio que se produce en el ambiente o en la sociedad como consecuencia de una actividad humana.',
         audio: 'audio/actividades/modulo-3/slide-16.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
     ],
   },
@@ -373,7 +398,8 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Recuerda que el proyecto Gramalote siempre te brindará el mejor acompañamiento posible, es por esto, que te brinda diferentes maneras para que comuniques tus SQR.',
         audio: 'audio/actividades/modulo-4/slide-13.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/10.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/10.gif',
       },
       {
         id: 'slide-14',
@@ -398,14 +424,16 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: 'Igualmente puedes hacerlo de manera presencial, a través de los profesionales autorizados en campo, es decir,',
         audio: 'audio/actividades/modulo-4/slide-17.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-18',
         type: 'text',
         text: 'Líderes de territorio, quienes te ayudarán a redactar la SQR, de la misma forma, puedes acudir a los siguientes puntos de atención a la comunidad.',
         audio: 'audio/actividades/modulo-4/slide-18.mp3',
-        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
+        backgroundImage:
+          'https://elhiloazul.com/wp-content/uploads/2026/03/7.gif',
       },
       {
         id: 'slide-19',
@@ -507,6 +535,19 @@ export const ACTIVITIES: Activity[] = [
         type: 'text',
         text: '¿Te doy un dato sobre mí?. ¡Me encantan las fotos!, conservan recuerdos y nos permiten transmitir emociones a través de una imagen, compartirlo me parece algo muy especial, ¿me ayudarías? Vamos a capturar los momentos más especiales de lo que hacen en Gramalote.',
         audio: 'audio/actividades/modulo-5/slide-6.mp3',
+      },
+      {
+        id: 'slide-7',
+        type: 'image',
+        imageUrl: 'images/actividades/modulo-5/photo-capture/slide-2.png',
+        text: 'Cada que quieras tomar una foto, solo presiona esta cámara ',
+        audio: 'audio/actividades/modulo-5/photo-capture/slide-1.mp3',
+        isButtonPause: false,
+      },
+      {
+        id: 'slide-9',
+        type: 'custom',
+        component: SlidePhotoCaptureGameComponent,
       },
     ],
   },

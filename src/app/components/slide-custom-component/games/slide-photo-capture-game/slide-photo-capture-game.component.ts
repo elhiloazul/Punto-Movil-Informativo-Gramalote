@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Output, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { InteractiveSlide } from '../../interactive-slide';
 import { LoggerService } from '../../../../core/logger/logger.service';
 import { Photo } from './models/Photo';
@@ -8,13 +16,17 @@ import { CommonModule } from '@angular/common';
   selector: 'app-slide-photo-capture-game',
   imports: [CommonModule],
   templateUrl: './slide-photo-capture-game.component.html',
-  styleUrl: './slide-photo-capture-game.component.scss'
+  styleUrl: './slide-photo-capture-game.component.scss',
 })
-export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit, OnDestroy {
+export class SlidePhotoCaptureGameComponent
+  implements InteractiveSlide, OnInit, OnDestroy
+{
   @Output() completed = new EventEmitter<void>();
-  @ViewChild('videoElement', { static: false }) videoElement?: ElementRef<HTMLVideoElement>;
-  @ViewChild('canvasElement', { static: false }) canvasElement?: ElementRef<HTMLCanvasElement>;
-  
+  @ViewChild('videoElement', { static: false })
+  videoElement?: ElementRef<HTMLVideoElement>;
+  @ViewChild('canvasElement', { static: false })
+  canvasElement?: ElementRef<HTMLCanvasElement>;
+
   text: string = '';
   capturedPhotos: Photo[] = [];
   showAlbum: boolean = false;
@@ -22,20 +34,21 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
   showCameraInstruction: boolean = false;
   gamePhase: 'intro' | 'instruction' | 'playing' | 'album' = 'intro';
   cameraStream?: MediaStream;
-  photosToCapture: number = 5;
+  photosToCapture: number = 6;
   currentPhotoCount: number = 0;
   cameraError: string = '';
+  private currentAudio?: HTMLAudioElement;
 
-  constructor(private logger: LoggerService) { }
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
     // Reiniciar el contador de fotos cada vez que se inicia el componente
     this.resetPhotoGame();
-    this.initializeGame();
   }
 
   ngOnDestroy() {
     this.stopCamera();
+    this.stopAudio();
   }
 
   resetPhotoGame() {
@@ -47,42 +60,24 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
     this.showCameraInstruction = false;
     this.gamePhase = 'intro';
     this.cameraError = '';
-    
+
     // Limpiar localStorage para empezar fresco
     localStorage.removeItem('gramalote-captured-photos');
-    
-    console.log('Juego de fotos reiniciado');
-  }
 
-  initializeGame() {
-    this.gamePhase = 'intro';
-    this.text = '¿Te doy un dato sobre mí? ¡Me encantan las fotos! Conservan recuerdos y nos permiten transmitir emociones a través de una imagen, compartirlo me parece algo muy especial, ¿me ayudarías? Vamos a capturar los momentos más especiales de lo que hacemos en Gramalote.';
-    this.playAudio('audio/actividades/modulo-5/photo-capture/intro.mp3');
-    
-    setTimeout(() => {
-      this.showCameraInstructionPhase();
-    }, 5000);
-  }
-
-  showCameraInstructionPhase() {
-    this.gamePhase = 'instruction';
-    this.text = 'Cada que quieras tomar una foto, solo presiona esta cámara.';
-    this.showCameraButton = true;
-    this.showCameraInstruction = true;
-    this.playAudio('audio/actividades/modulo-5/photo-capture/camera-instruction.mp3');
-    
-    setTimeout(() => {
-      this.startPhotoSession();
-    }, 3000);
+    this.startPhotoSession();
   }
 
   async startPhotoSession() {
+    // Reproducir segundo audio con segundo texto
+    this.text =
+      'después de que tomes las mejores 6 fotos, ¡Haremos juntos un álbum!';
     this.gamePhase = 'playing';
-    this.showCameraInstruction = false;
-    this.text = `Después de que tomes las mejores ${this.photosToCapture} fotos, ¡Haremos juntos un álbum de fotos!`;
-    this.playAudio('audio/actividades/modulo-5/photo-capture/album-instruction.mp3');
-    
+    this.showCameraButton = true;
+
     await this.startCamera();
+    await this.playAudio(
+      'audio/actividades/modulo-5/photo-capture/slide-2.mp3',
+    );
   }
 
   async startCamera() {
@@ -92,37 +87,42 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
         throw new Error('getUserMedia no está soportado en este navegador');
       }
 
-      this.cameraStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
+      this.cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: {
           width: { ideal: 1280 },
           height: { ideal: 720 },
-          facingMode: 'environment' // Usar cámara trasera si está disponible
+          facingMode: 'environment', // Usar cámara trasera si está disponible
         },
-        audio: false 
+        audio: false,
       });
-      
+
       if (this.videoElement?.nativeElement) {
         this.videoElement.nativeElement.srcObject = this.cameraStream;
         await this.videoElement.nativeElement.play();
       }
-      
+
       this.cameraError = '';
     } catch (error) {
       console.error('Error accessing camera:', error);
-      this.cameraError = 'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara.';
-      this.text = 'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara y recarga la página.';
+      this.cameraError =
+        'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara.';
+      this.text =
+        'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara y recarga la página.';
     }
   }
 
   stopCamera() {
     if (this.cameraStream) {
-      this.cameraStream.getTracks().forEach(track => track.stop());
+      this.cameraStream.getTracks().forEach((track) => track.stop());
       this.cameraStream = undefined;
     }
   }
 
   onCameraClick() {
-    if (this.gamePhase !== 'playing' || this.currentPhotoCount >= this.photosToCapture) {
+    if (
+      this.gamePhase !== 'playing' ||
+      this.currentPhotoCount >= this.photosToCapture
+    ) {
       return;
     }
 
@@ -130,14 +130,17 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
   }
 
   capturePhoto() {
-    if (!this.videoElement?.nativeElement || !this.canvasElement?.nativeElement) {
+    if (
+      !this.videoElement?.nativeElement ||
+      !this.canvasElement?.nativeElement
+    ) {
       console.error('Video o canvas element no disponible');
       return;
     }
 
     const video = this.videoElement.nativeElement;
     const canvas = this.canvasElement.nativeElement;
-    
+
     // Verificar que el video esté listo
     if (video.readyState !== video.HAVE_ENOUGH_DATA) {
       console.error('Video no está listo para captura');
@@ -167,15 +170,15 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
         name: `Foto ${this.currentPhotoCount + 1}`,
         imageData: imageData,
         timestamp: Date.now(),
-        captured: true
+        captured: true,
       };
 
       this.capturedPhotos.push(photo);
       this.currentPhotoCount++;
-      
+
       // Guardar en localStorage
       this.saveCapturedPhotos();
-      
+
       // Mostrar efecto de captura
       this.showCaptureEffect();
 
@@ -199,7 +202,7 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
     const flashEffect = document.createElement('div');
     flashEffect.className = 'camera-flash';
     document.body.appendChild(flashEffect);
-    
+
     setTimeout(() => {
       if (document.body.contains(flashEffect)) {
         document.body.removeChild(flashEffect);
@@ -212,36 +215,28 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
     this.showAlbum = true;
     this.showCameraButton = false;
     this.stopCamera();
-    this.text = '¡Excelente! Hemos creado un hermoso álbum con tus fotos capturadas. ¿Qué quieres hacer?';
-    this.playAudio('audio/actividades/modulo-5/photo-capture/album-complete.mp3');
-    
+    this.text =
+      '¡Excelente! Hemos creado un hermoso álbum con tus fotos capturadas. ¿Qué quieres hacer?';
+
     // No emitir completed automáticamente, esperar acción del usuario
   }
 
   saveCapturedPhotos() {
     try {
-      localStorage.setItem('gramalote-captured-photos', JSON.stringify(this.capturedPhotos));
+      localStorage.setItem(
+        'gramalote-captured-photos',
+        JSON.stringify(this.capturedPhotos),
+      );
     } catch (error) {
       console.error('Error saving photos to localStorage:', error);
     }
   }
 
-  clearCapturedPhotos() {
+  continueToNextSlide() {
+    this.completed.emit();
     this.capturedPhotos = [];
     this.currentPhotoCount = 0;
     localStorage.removeItem('gramalote-captured-photos');
-    
-    // Después de limpiar, permitir continuar al siguiente slide
-    this.text = 'Fotos eliminadas. ¡Gracias por jugar!';
-    setTimeout(() => {
-      this.completed.emit();
-    }, 1500);
-  }
-
-  continueToNextSlide() {
-    this.text = '¡Gracias por jugar!';
-    // Las fotos se mantienen en localStorage hasta el próximo reinicio
-    this.completed.emit();
   }
 
   formatDate(timestamp: number): string {
@@ -251,7 +246,7 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
       month: '2-digit',
       year: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   }
 
@@ -261,14 +256,36 @@ export class SlidePhotoCaptureGameComponent implements InteractiveSlide, OnInit,
       return crypto.randomUUID();
     }
     // Generar ID alternativo
-    return 'photo-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    return (
+      'photo-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9)
+    );
   }
 
-  private playAudio(audioUrl: string) {
-    const audio = new Audio(audioUrl);
-    audio.currentTime = 0;
-    audio.play().catch(error => {
-      console.log('Audio play failed:', error);
+  private async playAudio(audioPath: string): Promise<void> {
+    return new Promise((resolve) => {
+      this.stopAudio();
+      console.log('Intentando reproducir:', audioPath);
+      this.currentAudio = new Audio(audioPath);
+      this.currentAudio.onended = () => {
+        console.log('Audio terminado:', audioPath);
+        resolve();
+      };
+      this.currentAudio.onerror = (error) => {
+        console.error('Error reproduciendo audio:', audioPath, error);
+        resolve();
+      };
+      this.currentAudio.play().catch((error) => {
+        console.error('Error al iniciar audio:', audioPath, error);
+        resolve();
+      });
     });
+  }
+
+  private stopAudio(): void {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+      this.currentAudio = undefined;
+    }
   }
 }
