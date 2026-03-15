@@ -22,6 +22,8 @@ export interface ImageSlide extends Slide {
     type: 'image';
     imageUrl: string;
     text?: string
+    isButtonPause?: boolean; // Nueva propiedad para indicar si el botón de pausa debe mostrarse en esta actividad
+
 }
 
 export interface DocumentSlide extends Slide {

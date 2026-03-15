@@ -35,13 +35,6 @@
         </button>
     }
 
-    <!-- Camera Instruction Pointer -->
-    @if (showCameraInstruction) {
-        <div class="camera-pointer">
-            <div class="pointer-arrow">👆</div>
-        </div>
-    }
-
     <!-- Photo Album -->
     @if (showAlbum) {
         <div class="album-container">
@@ -65,9 +58,6 @@
                 <div class="album-actions">
                     <button class="continue-btn" (click)="continueToNextSlide()">
                         Continuar
-                    </button>
-                    <button class="clear-photos-btn" (click)="clearCapturedPhotos()">
-                        Limpiar Fotos
                     </button>
                 </div>
             </div>
