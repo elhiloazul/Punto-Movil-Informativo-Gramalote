@@ -14,5 +14,17 @@
         </div>
     </div>
 
+    @if (audio && slide.isButtonPause !== false) {
+        <button 
+            class="audio-control-btn" 
+            (click)="toggleAudio()">
+            @if (!isAudioPaused) {
+                <span>⏸️</span>
+            } @else {
+                <span>▶️</span>
+            }
+        </button>
+    }
+
     <img src="images/tico/Tico-Izquierda.gif" alt="Personaje" class="tico-img" (click)="toggleAudio()">
 </main>

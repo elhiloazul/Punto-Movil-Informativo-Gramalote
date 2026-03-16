@@ -192,6 +192,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       const driverObj = driver({
         popoverClass: 'driverjs-theme',
+        allowClose: false,
         onHighlightStarted: () => {
           const step = steps[currentStepIndex];
 
