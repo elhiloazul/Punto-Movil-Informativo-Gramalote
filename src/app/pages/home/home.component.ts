@@ -295,7 +295,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private speakValue(value: string, callback: () => void) {
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(value);
+      const utterance = new SpeechSynthesisUtterance("Acabas de decir: " + value);
       utterance.lang = 'es-ES';
       utterance.rate = 0.8;
       utterance.onend = callback;
