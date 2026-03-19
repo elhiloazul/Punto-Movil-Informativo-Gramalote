@@ -501,6 +501,11 @@ export const ACTIVITIES: Activity[] = [
     id: 'modulo-6',
     title: 'Juegos',
     slides: [
+            {
+        id: 'slide-9',
+        type: 'custom',
+        component: SlidePhotoCaptureGameComponent,
+      },
       {
         id: 'slide-1',
         type: 'text',

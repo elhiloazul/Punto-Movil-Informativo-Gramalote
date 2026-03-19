@@ -50,7 +50,7 @@
   height: 4vh;
 
   background: #7fbccc;
-  border-radius: 0 0 0 4vh;
+  border-radius: 0vh 16vh 0vh 16vh;
   transform: rotate(0deg);
 }
 
@@ -95,7 +95,7 @@
   width: 4vh;
   height: 4vh;
   background: #7fbccc;
-  border-radius: 4vh 0 0 0;
+  border-radius: 16vh 0vh 16vh 0vh;
   transform: rotate(32deg);
 }
 
@@ -108,7 +108,7 @@
   width: auto;
   height: 44vh;
   z-index: 2;
-  bottom: 19vh;
+  bottom: 16vh;
 }
 
 .audio-control-btn {
