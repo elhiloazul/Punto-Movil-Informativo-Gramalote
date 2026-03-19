@@ -410,13 +410,13 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-15',
         type: 'text',
-        text: 'Donde solo debes llenar el formulario y enviarlo; aquí mismo puedes descargar el formulario y mandarlo a nuestro correo “comunidad.providencia@\ngramalote.com” o también puedes llamar a nuestra línea telefónica, que aparecerá en pantalla: ',
+        text: 'Donde solo debes llenar el formulario y enviarlo; aquí mismo puedes descargar el formulario y mandarlo a nuestro correo \n“comunidad.providencia@gramalote.com” o también puedes llamar a nuestra línea telefónica, que aparecerá en pantalla: ',
         audio: 'audio/actividades/modulo-4/slide-15.mp3',
       },
       {
         id: 'slide-16',
         type: 'text',
-        text: 'Correo electrónico: comunidad.providencia\n@gramalote.com \n Línea telefónica: 321-4576000 \n Página web: https://gramalote.com/contacto-nueva/',
+        text: 'Correo electrónico: comunidad.providencia@gramalote.com \n Línea telefónica: 3214576000 Página web: \n https://gramalote.com/contacto-nueva/',
         audio: 'audio/actividades/modulo-4/slide-16.mp3',
       },
       {
@@ -438,13 +438,13 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-19',
         type: 'text',
-        text: 'Cra 13 # 15-125 Corregimiento de San José del N',
+        text: 'Cra 13 # 15-125 Corregimiento San José del Nus',
         audio: 'audio/actividades/modulo-4/slide-19.mp3',
       },
       {
         id: 'slide-20',
         type: 'text',
-        text: 'Cll 04 # 9-171, primer piso Corregimiento de Providencia',
+        text: 'Cll 04 # 9-171, primer piso Corregimiento Providencia',
         audio: 'audio/actividades/modulo-4/slide-20.mp3',
       },
       {
