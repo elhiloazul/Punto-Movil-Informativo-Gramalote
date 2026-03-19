@@ -7,7 +7,8 @@
         'text-large': text.length <= 70
       }">{{ text }}</p>
   </div>
-  <img src="images/tico/Tico-Centro.gif" alt="Personaje" class="personaje" (click)="toggleAudio()">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/03/Tico-Centro.gif" alt="Personaje" class="personaje" *ngIf="!noAudio" (click)="toggleAudio()">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/03/Tico-Centro-Sin-Audio.gif" alt="Personaje" class="personaje" *ngIf="noAudio" (click)="toggleAudio()">
 
   @if (!slide.audio) {
   <div class="button-container">

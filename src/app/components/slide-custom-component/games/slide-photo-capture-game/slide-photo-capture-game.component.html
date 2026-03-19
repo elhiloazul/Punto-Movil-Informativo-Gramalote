@@ -1,79 +1,66 @@
 <div class="screen">
 
-    <!-- Camera View -->
+    <!-- Video Player -->
     @if (gamePhase === 'playing') {
-        <div class="camera-container">
-            @if (cameraError) {
-                <div class="camera-error">
-                    <div class="error-icon">📷</div>
-                    <p>{{cameraError}}</p>
-                </div>
-            } @else {
-                <video 
-                    #videoElement
-                    class="camera-video"
-                    autoplay
-                    muted
-                    playsinline>
-                </video>
-                <div class="camera-overlay">
-                    <div class="photo-counter">
-                        Fotos: {{currentPhotoCount}}/{{photosToCapture}}
-                    </div>
-                </div>
-            }
+    <div class="camera-container">
+        @if (cameraError) {
+        <div class="camera-error">
+            <div class="error-icon">🎥</div>
+            <p>{{cameraError}}</p>
         </div>
-        
-        <!-- Canvas oculto para capturar fotos -->
-        <canvas #canvasElement class="hidden-canvas"></canvas>
+        } @else {
+        <video #videoElement class="camera-video" controls muted playsinline>
+        </video>
+        <div class="camera-overlay">
+            <div class="photo-counter">
+                Fotos: {{currentPhotoCount}}/{{photosToCapture}}
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Canvas oculto para capturar pantallazos -->
+    <canvas #canvasElement class="hidden-canvas"></canvas>
     }
 
     <!-- Camera Button -->
     @if (showCameraButton) {
-        <button class="camera-button" (click)="onCameraClick()" [disabled]="currentPhotoCount >= photosToCapture">
-            <div class="camera-icon">📷</div>
-        </button>
+    <button class="camera-button" (click)="onCameraClick()" [disabled]="currentPhotoCount >= photosToCapture">
+        <div class="camera-icon">📷</div>
+    </button>
     }
 
     <!-- Photo Album -->
     @if (showAlbum) {
-        <div class="album-container">
-            <div class="album-cover">
-                <h2>Álbum de Fotos</h2>
-                <div class="photos-grid">
-                    @for (photo of capturedPhotos; track photo.id) {
-                        <div class="album-photo">
-                            <div class="photo-frame">
-                                <img 
-                                    class="captured-image"
-                                    [src]="photo.imageData"
-                                    [alt]="photo.name"
-                                />
-                                <div class="photo-label">{{photo.name}}</div>
-                                <div class="photo-date">{{formatDate(photo.timestamp)}}</div>
-                            </div>
-                        </div>
-                    }
+    <div class="album-container" [ngClass]="{ 'fade-out-animation': isFadingOut }">
+        <div class="album-cover">
+            <h2>Álbum de Fotos</h2>
+            <div class="photos-grid">
+                @for (photo of capturedPhotos; track photo.id) {
+                <div class="album-photo">
+                    <div class="photo-frame">
+                        <img class="captured-image" [src]="photo.imageData" [alt]="photo.name" />
+                        <div class="photo-label">{{photo.name}}</div>
+                        <div class="photo-date">{{formatDate(photo.timestamp)}}</div>
+                    </div>
                 </div>
-                <div class="album-actions">
-                    <button class="continue-btn" (click)="continueToNextSlide()">
-                        Continuar
-                    </button>
-                </div>
+                }
+            </div>
+            <div class="album-actions">
+                <button class="continue-btn" (click)="continueToNextSlide()">
+                    Continuar
+                </button>
             </div>
         </div>
+    </div>
     }
 
     <!-- Thought Bubble -->
-    <div class="thought-bubble-text">
+    <div class="thought-bubble-text" [ngClass]="{ 'fade-out-animation': isFadingOut }">
         <p [innerHTML]="text"></p>
     </div>
 
     <!-- Tico Character -->
-    <img
-        src="images/tico/Tico-Derecha.gif"
-        alt=""
-        class="tico-img"
-    >
+    <img [ngClass]="{ 'fade-out-animation': isFadingOut }" src="images/tico/Tico-Derecha.gif" alt="" class="tico-img">
 
 </div>
