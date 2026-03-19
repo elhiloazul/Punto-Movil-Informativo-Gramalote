@@ -40,7 +40,8 @@
         'text-large': text.length <= 50
       }">{{ text }}</p>
     </div>
-    <img src="images/tico/Tico-Centro.gif" alt="Personaje" class="personaje">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/03/Tico-Centro.gif" alt="Personaje" class="personaje" *ngIf="!noAudio">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/03/Tico-Centro-Sin-Audio.gif" alt="Personaje" class="personaje" *ngIf="noAudio">
   </main>
 
   <app-footer [config]="menuConfigFromHome"></app-footer>
