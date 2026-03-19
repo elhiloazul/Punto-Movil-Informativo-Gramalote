@@ -2,6 +2,7 @@ import { SlideDescribeMineralsGameComponent } from '../components/slide-custom-c
 import { SlideSarchingMineralsGameComponent } from '../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component';
 import { SlidePhotoCaptureGameComponent } from '../components/slide-custom-component/games/slide-photo-capture-game/slide-photo-capture-game.component';
 import { Activity } from '../models/activity.model';
+import { SlideContactFormComponent } from '../components/slide-custom-component/slide-contact-form/slide-contact-form.component';
 
 export const ACTIVITIES: Activity[] = [
   {
@@ -495,17 +496,18 @@ export const ACTIVITIES: Activity[] = [
   {
     id: 'modulo-5',
     title: 'Agendate',
-    slides: [],
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'custom',
+        component: SlideContactFormComponent,
+      }
+    ],
   },
   {
     id: 'modulo-6',
     title: 'Juegos',
     slides: [
-            {
-        id: 'slide-9',
-        type: 'custom',
-        component: SlidePhotoCaptureGameComponent,
-      },
       {
         id: 'slide-1',
         type: 'text',
