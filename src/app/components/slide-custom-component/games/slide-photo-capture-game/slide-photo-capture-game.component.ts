@@ -6,11 +6,19 @@ import {
   ElementRef,
   OnInit,
   OnDestroy,
+  AfterViewInit,
 } from '@angular/core';
 import { InteractiveSlide } from '../../interactive-slide';
 import { LoggerService } from '../../../../core/logger/logger.service';
 import { Photo } from './models/Photo';
 import { CommonModule } from '@angular/common';
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
 
 @Component({
   selector: 'app-slide-photo-capture-game',
@@ -19,7 +27,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './slide-photo-capture-game.component.scss',
 })
 export class SlidePhotoCaptureGameComponent
-  implements InteractiveSlide, OnInit, OnDestroy
+  implements InteractiveSlide, OnInit, OnDestroy, AfterViewInit
 {
   @Output() completed = new EventEmitter<void>();
   @ViewChild('videoElement', { static: false })
@@ -27,17 +35,20 @@ export class SlidePhotoCaptureGameComponent
   @ViewChild('canvasElement', { static: false })
   canvasElement?: ElementRef<HTMLCanvasElement>;
 
+  private videoUrl = 'images/video-prueba.mp4'; 
+
   text: string = '';
   capturedPhotos: Photo[] = [];
   showAlbum: boolean = false;
   showCameraButton: boolean = false;
   showCameraInstruction: boolean = false;
   gamePhase: 'intro' | 'instruction' | 'playing' | 'album' = 'intro';
-  cameraStream?: MediaStream;
   photosToCapture: number = 6;
   currentPhotoCount: number = 0;
   cameraError: string = '';
   private currentAudio?: HTMLAudioElement;
+  isVideoReady: boolean = false;
+  isFadingOut: boolean = false;
 
   constructor(private logger: LoggerService) {}
 
@@ -46,8 +57,48 @@ export class SlidePhotoCaptureGameComponent
     this.resetPhotoGame();
   }
 
+  async ngAfterViewInit() {
+    // Esperar un tick para asegurar que el template esté completamente renderizado
+    // El videoElement se cargará desde startPhotoSession
+  }
+
+  private async startVideoPlayback() {
+    try {
+      if (this.videoUrl?.includes('youtube.com') || this.videoUrl?.includes('youtu.be')) {
+        this.cameraError = 'Los videos de YouTube no soportan captura de pantallazos. Use videos locales en formato MP4.';
+        return;
+      }
+      
+      // Cargar video local
+      if (this.videoElement?.nativeElement) {
+        const video = this.videoElement.nativeElement;
+        video.src = this.videoUrl || '';
+        
+        this.logger.debug('Intentando cargar video:', this.videoUrl);
+        
+        // Esperar a que el video esté listo
+        video.onloadedmetadata = () => {
+          this.logger.debug('Video cargado exitosamente');
+          this.isVideoReady = true;
+          // Intentar reproducir
+          video.play().catch(err => {
+            this.logger.error('Error al reproducir video:', err);
+            this.cameraError = `No se pudo reproducir el video: ${err.message}`;
+          });
+        };
+        
+        video.onerror = (error) => {
+          this.logger.error('Error cargando video:', error);
+          this.cameraError = `Error al cargar el video. Verifica que el archivo exista en: public/images/video-prueba.mp4`;
+        };
+      }
+    } catch (error) {
+      this.logger.error('Error en startVideoPlayback:', error);
+      this.cameraError = `Error inesperado: ${error}`;
+    }
+  }
+
   ngOnDestroy() {
-    this.stopCamera();
     this.stopAudio();
   }
 
@@ -70,52 +121,32 @@ export class SlidePhotoCaptureGameComponent
   async startPhotoSession() {
     // Reproducir segundo audio con segundo texto
     this.text =
-      'después de que tomes las mejores 6 fotos, ¡Haremos juntos un álbum!';
+      'después de que tomes los mejores 6 fotos, ¡Haremos juntos un álbum!';
     this.gamePhase = 'playing';
     this.showCameraButton = true;
 
-    await this.startCamera();
+    // Reproducir audio primero
     await this.playAudio(
       'audio/actividades/modulo-5/photo-capture/slide-2.mp3',
     );
+
+    // Después de que el audio termine, cargar y reproducir el video
+    setTimeout(async () => {
+      await this.startVideoPlayback();
+    }, 100);
   }
 
-  async startCamera() {
-    try {
-      // Verificar si getUserMedia está disponible
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error('getUserMedia no está soportado en este navegador');
-      }
-
-      this.cameraStream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-          facingMode: 'environment', // Usar cámara trasera si está disponible
-        },
-        audio: false,
-      });
-
-      if (this.videoElement?.nativeElement) {
-        this.videoElement.nativeElement.srcObject = this.cameraStream;
-        await this.videoElement.nativeElement.play();
-      }
-
-      this.cameraError = '';
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-      this.cameraError =
-        'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara.';
-      this.text =
-        'No se pudo acceder a la cámara. Por favor, permite el acceso a la cámara y recarga la página.';
-    }
+  // Métodos de video cargados dinámicamente (no usados actualmente)
+  private loadYouTubeApi(): Promise<void> {
+    return Promise.resolve();
   }
 
-  stopCamera() {
-    if (this.cameraStream) {
-      this.cameraStream.getTracks().forEach((track) => track.stop());
-      this.cameraStream = undefined;
-    }
+  private createPlayer() {
+    // Video element está en el HTML template
+  }
+
+  private extractVideoId(url: string): string {
+    return '';
   }
 
   onCameraClick() {
@@ -141,9 +172,10 @@ export class SlidePhotoCaptureGameComponent
     const video = this.videoElement.nativeElement;
     const canvas = this.canvasElement.nativeElement;
 
-    // Verificar que el video esté listo
-    if (video.readyState !== video.HAVE_ENOUGH_DATA) {
-      console.error('Video no está listo para captura');
+    // Verificar que el video esté reproduciéndose
+    if (video.paused || video.ended) {
+      console.error('Video no está reproduciéndose');
+      this.text = 'Por favor, asegúrate de que el video esté reproduciéndose.';
       return;
     }
 
@@ -192,8 +224,8 @@ export class SlidePhotoCaptureGameComponent
         }, 1500);
       }
     } catch (error) {
-      console.error('Error capturando foto:', error);
-      this.text = 'Error al capturar la foto. Inténtalo de nuevo.';
+      console.error('Error capturando pantalla:', error);
+      this.text = 'Error al capturar la pantalla. Inténtalo de nuevo.';
     }
   }
 
@@ -214,7 +246,6 @@ export class SlidePhotoCaptureGameComponent
     this.gamePhase = 'album';
     this.showAlbum = true;
     this.showCameraButton = false;
-    this.stopCamera();
     this.text =
       '¡Excelente! Hemos creado un hermoso álbum con tus fotos capturadas. ¿Qué quieres hacer?';
 
@@ -233,10 +264,16 @@ export class SlidePhotoCaptureGameComponent
   }
 
   continueToNextSlide() {
-    this.completed.emit();
-    this.capturedPhotos = [];
-    this.currentPhotoCount = 0;
-    localStorage.removeItem('gramalote-captured-photos');
+    // Activar la animación de desvanecimiento
+    this.isFadingOut = true;
+    
+    // Esperar a que la animación de fade out termine (600ms)
+    setTimeout(() => {
+      this.completed.emit();
+      this.capturedPhotos = [];
+      this.currentPhotoCount = 0;
+      localStorage.removeItem('gramalote-captured-photos');
+    }, 600);
   }
 
   formatDate(timestamp: number): string {
