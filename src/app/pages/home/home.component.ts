@@ -30,6 +30,7 @@ import { InactivityService } from '../../services/inactivity.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   protected audio?: HTMLAudioElement;
+  protected noAudio = true;
 
   volume = 1;
   startExperienced = true;
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ========================== */
 
   ngOnInit() {
-    this.text = 'Ven a conocerme dando un toque al botón de iniciar experiencia.';
+    this.text = 'Ven a conocerme dando un toque en la pantalla';
     if(this.userProgressService.isIntroSeen() ){
       this.router.navigate(['/menu']);
     }
@@ -108,6 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     if (!audioPath) return;
 
+    this.noAudio = false;
     this.audio = new Audio(audioPath);
     this.audio.currentTime = 0;
 
@@ -116,6 +118,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.audio.onended = () => {
+      this.noAudio = true;
       this.logger.debug('Audio terminado');
       if (callback) callback();
     };
@@ -127,6 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.audio.currentTime = 0;
       this.audio.src = '';
       this.audio = undefined;
+      this.noAudio = true;
     }
   }
 
