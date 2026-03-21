@@ -497,11 +497,7 @@ export const ACTIVITIES: Activity[] = [
     id: 'modulo-5',
     title: 'Agendate',
     slides: [
-      {
-        id: 'slide-1',
-        type: 'custom',
-        component: SlideContactFormComponent,
-      }
+
     ],
   },
   {

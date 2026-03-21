@@ -13,6 +13,7 @@ import { SlideDocumentComponentComponent } from '../../components/slide-document
 import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
 import { UserProgressService } from '../../services/user-progress.service';
 import { SlideNavigationService } from '../../services/slide-navigation.service';
+import { SlideEmptyModuleComponent } from '../../components/slide-custom-component/slide-empty-module/slide-empty-module.component';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -23,6 +24,7 @@ import { SlideNavigationService } from '../../services/slide-navigation.service'
     SlideVideoComponentComponent,
     SlideDocumentComponentComponent,
     SlideCustomComponentComponent,
+    SlideEmptyModuleComponent
   ],
   animations: [ slideAnimations ],
   templateUrl: './activity-orchestrator.component.html',
