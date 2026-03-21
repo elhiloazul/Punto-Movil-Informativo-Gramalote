@@ -205,15 +205,12 @@
   font-size: 2.5vh;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-family: "Georgia", serif;
 }
 
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12vh, 1fr));
-  gap: 1.5vh;
   justify-items: center;
-  margin-bottom: 1.5vh;
   flex: 1;
   overflow: hidden;
 }
@@ -296,7 +293,7 @@
 }
 
 .continue-btn {
-  background: linear-gradient(145deg, #7fbccc, #5a9fb8);
+  background-color: #0A6B5F;
   color: white;
   border: none;
   padding: 1vh 2vh;
@@ -353,8 +350,8 @@
   padding: 3vh 4vh;
   width: 27vh;
   align-self: flex-start;
-  top: 10vh;
-  left: 20vh;
+  top: 15vh;
+  left: 21vh;
   z-index: 2;
 }
 
@@ -477,16 +474,11 @@
   .camera-container,
   .album-container {
     width: 80vw;
-    height: 25vh;
+    height: 40vh;
   }
 
   .album-cover {
     padding: 10px;
-  }
-
-  .photos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(10vh, 1fr));
-    gap: 1vh;
   }
 
   .photo-frame {

@@ -30,11 +30,20 @@
     </button>
     }
 
+    @if (showAlbum) {
+    <div class="camera-button">
+        <button class="continue-btn" (click)="continueToNextSlide()">
+            Continuar
+        </button>
+    </div>
+    }
+
+
     <!-- Photo Album -->
     @if (showAlbum) {
     <div class="album-container" [ngClass]="{ 'fade-out-animation': isFadingOut }">
         <div class="album-cover">
-            <h2>Álbum de Fotos</h2>
+            <p style="display: flex; justify-content: center;">Álbum de Fotos</p>
             <div class="photos-grid">
                 @for (photo of capturedPhotos; track photo.id) {
                 <div class="album-photo">
@@ -45,11 +54,6 @@
                     </div>
                 </div>
                 }
-            </div>
-            <div class="album-actions">
-                <button class="continue-btn" (click)="continueToNextSlide()">
-                    Continuar
-                </button>
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@ export class SlidePhotoCaptureGameComponent
   @ViewChild('canvasElement', { static: false })
   canvasElement?: ElementRef<HTMLCanvasElement>;
 
-  private videoUrl = 'images/video-prueba.mp4'; 
+  private videoUrl = 'videos/presente-futuro.mp4'; 
 
   text: string = '';
   capturedPhotos: Photo[] = [];
