@@ -22,7 +22,6 @@ import { InactivityService } from '../../services/inactivity.service';
     MatIconModule,
     FormsModule,
     FooterComponent,
-    MicComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -191,7 +190,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   startTutorial() {
     this.saySequence(['iniciarTutorial1', 'iniciarTutorial2'], () => {
-      const steps = this.tutorialService.stepsTutorialsFooter;
+      const steps = this.tutorialService.getStepsTutorialsFooter();
       let currentStepIndex = 0;
 
       const driverObj = driver({

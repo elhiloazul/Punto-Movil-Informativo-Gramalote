@@ -84,4 +84,13 @@ export class TutorialService {
       },
     },
   ];
+
+  public getStepsTutorialsMenu() {
+    return this.stepsTutorialsMenu;
+  }
+
+  public getStepsTutorialsFooter() {
+    return this.stepsTutorialsFooter;
+  }
+
 }

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { ActivityService } from '../../services/activity.service';
-import { Activity } from '../../models/activity.model';
 import { RouterModule } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
 import { TutorialService } from '../../services/tutorial.service';
@@ -15,7 +13,6 @@ import { UserProgressService } from '../../services/user-progress.service';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  activities: Activity[] = [];
   protected audio?: HTMLAudioElement;
 
   private voiceMap: Record<string, string> = {
@@ -23,15 +20,12 @@ export class MenuComponent {
   };
 
   constructor(
-    private activityService: ActivityService,
     private logger: LoggerService,
     private tutorialService: TutorialService,
     private userProgressService: UserProgressService,
   ) {}
 
   ngOnInit() {
-    this.activities = this.activityService.getActivities();
-
     if (!this.userProgressService.isMenuSeen()) {
       this.saySequence(['bienvenida'], () => this.startTutorial());
     } else {
@@ -89,7 +83,7 @@ export class MenuComponent {
   }
 
   startTutorial() {
-    const steps = this.tutorialService.stepsTutorialsMenu;
+    const steps = this.tutorialService.getStepsTutorialsMenu();
     let currentStepIndex = 0;
 
     const driverObj = driver({

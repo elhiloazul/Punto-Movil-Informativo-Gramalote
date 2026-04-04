@@ -35,7 +35,7 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-4',
         type: 'text',
-        text: 'Un paso clave en nuestra historia fue la obtención de la Licencia Ambiental otorgada por la Autoridad Nacional de Licencias Ambientales (ANLA) el 25 de noviembre de 2015, la cual habilitó formalmente la actividad minera bajo estrictos parámetros ambientales y de planificación. ',
+        text: 'Un paso clave en nuestra historia fue la obtención de la Licencia Ambiental otorgada por la Autoridad Nacional de Licencias Ambientales (ANLA) el 25 de noviembre de 2015, la cual habilitó formalmente la actividad minera bajo estrictos parámetros ambientales y de planificación.',
         audio: 'audio/actividades/modulo-1/slide-4.mp3',
         backgroundImage:
           'https://elhiloazul.com/wp-content/uploads/2026/03/animal-1.gif',
@@ -70,7 +70,7 @@ export const ACTIVITIES: Activity[] = [
         id: 'slide-7',
         type: 'video',
         videoUrl: 'https://www.youtube.com/watch?v=cR8T-S8zfNw',
-        text: 'Si quiees conocer un un poco más, acompáñame a ver “Gramalote, presente y futuro” un video que nos muestra los aportes que el proyecto ha realizado a la comunidad.',
+        text: 'Si quieres conocer un un poco más, acompáñame a ver “Gramalote, presente y futuro” un video que nos muestra los aportes que el proyecto ha realizado a la comunidad.',
         audio: 'audio/actividades/modulo-1/slide-7.mp3',
         backgroundImage: '',
       },
