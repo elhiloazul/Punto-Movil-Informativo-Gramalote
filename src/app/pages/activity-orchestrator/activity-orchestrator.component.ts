@@ -45,13 +45,13 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.logger.debug("Starting activity ", id)
+    this.logger.debug('Starting activity', id);
 
-    this.activity = this.activityService.getById(id);
-    
-    // Configurar el servicio de navegación
-    this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
-    this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+    this.activityService.getActivityById(id).subscribe((activity) => {
+      this.activity = activity;
+      this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+      this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+    });
   }
 
   ngOnDestroy(): void {
