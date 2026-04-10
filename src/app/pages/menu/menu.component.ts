@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
-import { TutorialService } from '../../services/tutorial.service';
+import { MenuService } from '../../services/menu.service';
 import { driver } from 'driver.js';
 import { UserProgressService } from '../../services/user-progress.service';
 
@@ -15,17 +15,23 @@ import { UserProgressService } from '../../services/user-progress.service';
 export class MenuComponent {
   protected audio?: HTMLAudioElement;
 
+  private menuService = inject(MenuService);
+
+  readonly menuActivities = this.menuService.menuActivities;
+  readonly isLoadingMenu = this.menuService.isLoading;
+
   private voiceMap: Record<string, string> = {
     bienvenida: 'audio/menu/bienvenida.mp3',
   };
 
   constructor(
     private logger: LoggerService,
-    private tutorialService: TutorialService,
     private userProgressService: UserProgressService,
   ) {}
 
   ngOnInit() {
+    this.menuService.loadMenu().subscribe();
+
     if (!this.userProgressService.isMenuSeen()) {
       this.saySequence(['bienvenida'], () => this.startTutorial());
     } else {
@@ -83,7 +89,19 @@ export class MenuComponent {
   }
 
   startTutorial() {
-    const steps = this.tutorialService.getStepsTutorialsMenu();
+    const steps = this.menuActivities()
+      .filter((a) => a.menuConfig?.audio || a.menuConfig?.popoverDescription)
+      .map((a) => ({
+        element: `.activity-${a.id}`,
+        audio: a.menuConfig.audio,
+        popover: { description: a.menuConfig.popoverDescription },
+      }));
+
+    if (!steps.length) {
+      this.userProgressService.markMenuSeen();
+      return;
+    }
+
     let currentStepIndex = 0;
 
     const driverObj = driver({
