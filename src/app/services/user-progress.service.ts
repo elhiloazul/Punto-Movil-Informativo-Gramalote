@@ -5,17 +5,21 @@ import { UserProgress } from "../models/user-progress.model";
 export class UserProgressService {
     private readonly KEY = 'user_progress';
 
+    private get storage(): Storage | null {
+        return typeof localStorage !== 'undefined' ? localStorage : null;
+    }
+
     get(): UserProgress {
-        const stored = localStorage.getItem(this.KEY);
+        const stored = this.storage?.getItem(this.KEY);
         return stored ? JSON.parse(stored) : this.default();
     }
 
     save(progress: UserProgress) {
-        localStorage.setItem(this.KEY, JSON.stringify(progress));
+        this.storage?.setItem(this.KEY, JSON.stringify(progress));
     }
 
     clear() {
-        localStorage.removeItem(this.KEY);
+        this.storage?.removeItem(this.KEY);
     }
 
     private default(): UserProgress {
