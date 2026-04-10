@@ -7,6 +7,7 @@ import { FooterConfig } from './models/footer.model';
 import { InactivityService } from '../../services/inactivity.service';
 import { VoiceService } from '../../services/voice.service';
 import { SlideNavigationService } from '../../services/slide-navigation.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -19,7 +20,7 @@ export class FooterComponent {
   @Input() config: FooterConfig = {
     home: { enabled: true, route: '/home' },
     repeat: { enabled: true, route: '/menu' },
-    gamepad: { enabled: true, route: '/activity/modulo-6' },
+    gamepad: { enabled: true, route: `/activity/${environment.gamesActivityId}` },
     volume: { enabled: true }
   };
 

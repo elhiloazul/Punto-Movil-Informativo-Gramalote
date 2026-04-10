@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { ActivityService } from '../../services/activity.service';
 import { Activity, ActivitySlide } from '../../models/activity.model';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -31,6 +32,7 @@ import { SlideNavigationService } from '../../services/slide-navigation.service'
 export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   
   private readonly TRANSITION_DELAY_MS = 800;
+  readonly gamesActivityId = environment.gamesActivityId;
   activity: Activity | undefined;
   currentSlideIndex: number = 0;
 

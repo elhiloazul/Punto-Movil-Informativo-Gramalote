@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   menuConfigFromHome = {
     home: { enabled: false, route: '/home' },
     repeat: { enabled: false, route: '/menu' },
-    gamepad: { enabled: false, route: '/activity/modulo-6' },
+    gamepad: { enabled: false, route: `/activity/${environment.gamesActivityId}` },
     volume: { enabled: true }
   }
 
