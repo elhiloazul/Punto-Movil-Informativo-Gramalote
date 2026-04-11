@@ -15,6 +15,7 @@ import { LoggerService } from '../../core/logger/logger.service';
 import { UserProgress } from '../../models/user-progress.model';
 import { UserProgressService } from '../../services/user-progress.service';
 import { InactivityService } from '../../services/inactivity.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -82,6 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private userProgressService: UserProgressService,
     private inactivityService: InactivityService,
+    private sessionService: SessionService,
   ) {}
 
   /* =========================
@@ -283,7 +285,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   finishTutorial() {
+    this.userProgressService.initSession();
+    this.userProgressService.savePersonalInfo(this.name, this.age, this.address);
     this.userProgressService.markIntroSeen();
+    this.sessionService.sync();
     this.inactivityService.start();
     this.router.navigate(['/menu']);
   }

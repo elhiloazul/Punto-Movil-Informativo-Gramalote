@@ -14,6 +14,7 @@ import { SlideDocumentComponentComponent } from '../../components/slide-document
 import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
 import { UserProgressService } from '../../services/user-progress.service';
 import { SlideNavigationService } from '../../services/slide-navigation.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -42,7 +43,8 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private router: Router,
     private userProgressService: UserProgressService,
-    private slideNavigationService: SlideNavigationService
+    private slideNavigationService: SlideNavigationService,
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +75,7 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   private goToNextSlide() {
     this.currentSlideIndex++;
     this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+    this.userProgressService.updateActivityProgress(this.activity!.id, this.activity!.title, this.currentSlideIndex);
 
     if (this.currentSlideIndex >= this.activity!.slides.length) {
       this.finishActivity();
@@ -89,7 +92,8 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
 
   private finishActivity() {
     this.logger.debug('Activity finished, redirecting to menu');
-    this.userProgressService.markActivityCompleted(this.activity!.id);
+    this.userProgressService.markActivityCompleted(this.activity!.id, this.activity!.title);
+    this.sessionService.sync();
     this.router.navigate(['/menu']);
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserProgressService } from './user-progress.service';
+import { SessionService } from './session.service';
 import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -11,12 +12,15 @@ export class InactivityService {
   private inactiveSubject = new Subject<void>();
   inactive$ = this.inactiveSubject.asObservable();
 
-  constructor(private userProgress: UserProgressService) {}
+  constructor(
+    private userProgress: UserProgressService,
+    private sessionService: SessionService,
+  ) {}
 
   start() {
     if(this.userProgress.isIntroSeen()){
         this.resetTimer();
-        
+
         ['click', 'mousemove', 'keydown', 'touchstart'].forEach(event =>
           window.addEventListener(event, () => this.resetTimer())
         );
@@ -28,6 +32,7 @@ export class InactivityService {
   }
 
   restart() {
+    this.sessionService.sync();
     this.userProgress.clear();
   }
 
