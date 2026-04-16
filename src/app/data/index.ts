@@ -313,8 +313,8 @@ export const ACTIVITIES: Activity[] = [
     ],
   },
   {
-    id: 'modulo-4',
-    title: 'Tu cuentas SQR',
+    id: 'modulo-4-v1',
+    title: 'Tu cuentas SQR - v1',
     slides: [
       {
         id: 'slide-1',
@@ -491,6 +491,85 @@ export const ACTIVITIES: Activity[] = [
         text: '● Cartilla de Escazú \n● Glosario comunitario \n● Carteleras informativas \n●  Programas radiales \n● Presentación power point',
         audio: 'audio/actividades/modulo-4/slide-27.mp3',
       },
+    ],
+  },
+  {
+    id: 'modulo-4',
+    title: 'Tu cuentas SQR',
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: 'Hola, si quieres comunicarte con el proyecto Gramalote  ¡Conozcamos juntos el mecanismo S-Q-R!, una herramienta no judicial que nos facilita la constante comunicación con la comunidad',
+        audio: 'audio/actividades/modulo-4-v2/slide-1.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-2',
+        type: 'text',
+        text: 'el S-Q-R nos permite conocer diferentes tipos de sitaciones que se puedan presentar alrededor de las acciones de gramalote',
+        audio: 'audio/actividades/modulo-4-v2/slide-2.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-3',
+        type: 'text',
+        text: 'y darles un manejo oportuno y transparente, y si es necesario, tomar acciones de prevención o reparación',
+        audio: 'audio/actividades/modulo-4-v2/slide-3.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-4',
+        type: 'text',
+        text: 'Bajo este recurso, nos aseguramos de que seas y te sientas escuchado, asegurando una respuesta o solución',
+        audio: 'audio/actividades/modulo-4-v2/slide-4.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-5',
+        type: 'text',
+        text: 'si requieres información, documentos, reunión, apoyo, ingreso a los predios del proyecto o usar un espacio puedes realizar una solicitud',
+        audio: 'audio/actividades/modulo-4-v2/slide-5.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-6',
+        type: 'text',
+        text: 'Cuando tengas una inconformidad o sepas sobre una afectación social ambiental o de derechos humanos debes emplear el recurso de la queja',
+        audio: 'audio/actividades/modulo-4-v2/slide-6.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-7',
+        type: 'text',
+        text: 'En el caso de daño, pérdida, o petición de una solicitud, o una situación asociada a trabajadores, contratistas, subcontratistas, debes emplear el reclamo o denuncia',
+        audio: 'audio/actividades/modulo-4-v2/slide-7.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-8',
+        type: 'text',
+        text: 'Y recuerda bien, para poder resolver cualquier tipo de S-Q-R, debe cumplir con las siguientes caracteristicas',
+        audio: 'audio/actividades/modulo-4-v2/slide-8.mp3',
+        backgroundImage:
+          '',
+      },
+      {
+        id: 'slide-9',
+        type: 'text',
+        text: '- Tener relación con actividades de GRAMALOTE \n- Una descripción clara del hecho o situación, es necesario que seas lo mas especifico posible para saber como ayudarte \n- Ser especifico con la ubicación o contexto del caso',
+        audio: 'audio/actividades/modulo-4-v2/slide-9.mp3',
+        backgroundImage:
+          '',
+      },
+
     ],
   },
   {
