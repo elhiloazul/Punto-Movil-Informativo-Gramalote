@@ -6,6 +6,16 @@
   flex-direction: column;
 }
 
+.izquierda-img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30vh;
+  width: auto;
+  z-index: 1;
+}
+
 .personaje {
   position: absolute;
   bottom: 9vh;

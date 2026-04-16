@@ -13,6 +13,8 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
   text: string = '';
   currentTarget!: Mineral;
   finished = false;
+  protected isAudioPlaying = false;
+  private audio?: HTMLAudioElement;
 
    minerals: Mineral[] = [
     { id: 'gold', name: 'Oro', nameWithPronoun: 'el oro', image: 'images/actividades/modulo-5/searching-minerals/oro.png', found: false },
@@ -43,9 +45,12 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
     this.currentTarget = this.minerals[0];
     this.text = 'Genial, ahora que los encontramos, debemos saber ¿Cuales son?.';
     const audio = this.playAudio('audio/actividades/modulo-5/describe-minerals/initial-instructions.mp3');
-    audio.onended = () => {
-      this.text = 'dime, ¿Cuál es el oro entre los minerales que encontraste? Por favor, selecciona el que crees que es el oro.'
-    };
+    if (audio) {
+      audio.onended = () => {
+        this.isAudioPlaying = false;
+        this.text = 'dime, ¿Cuál es el oro entre los minerales que encontraste? Por favor, selecciona el que crees que es el oro.';
+      };
+    }
   }
 
   private pickNextMineral() {
@@ -61,8 +66,13 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
     this.currentTarget =
       remaining[Math.floor(Math.random() * remaining.length)];
     
-      this.playAudio(this.audioMineralsToFind.find(a => a.id === this.currentTarget.id)?.audio);
-      this.text = 'dime, ¿Cuál es ' + this.currentTarget.nameWithPronoun + ' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
+    const audio = this.playAudio(this.audioMineralsToFind.find(a => a.id === this.currentTarget.id)?.audio);
+    if (audio) {
+      audio.onended = () => {
+        this.isAudioPlaying = false;
+      };
+    }
+    this.text = 'dime, ¿Cuál es ' + this.currentTarget.nameWithPronoun + ' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
   }
 
   onMineralSelected(mineral: Mineral) {
@@ -76,19 +86,37 @@ export class SlideDescribeMineralsGameComponent implements InteractiveSlide {
     } else {
       this.text = 'Ooops, este no es ' + this.currentTarget.nameWithPronoun + ', Vuelve a intentarlo.';
       const audio = this.playAudio(this.audioErrors.find(a => a.id === this.currentTarget.id)?.audio);
-      audio.onended = () => {
-        this.text = '¿Cuál es '+ this.currentTarget.nameWithPronoun +' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
-      };
+      if (audio) {
+        audio.onended = () => {
+          this.isAudioPlaying = false;
+          this.text = '¿Cuál es '+ this.currentTarget.nameWithPronoun +' entre los minerales que encontraste? Por favor, selecciona el que crees que es ' + this.currentTarget.nameWithPronoun + '.';
+        };
+      }
     }
   }
 
-  private playAudio(audioUrl: string) : HTMLAudioElement {
-    if (!audioUrl) return undefined as any;
+  private playAudio(audioUrl: string) : HTMLAudioElement | undefined {
+    if (!audioUrl) return undefined;
 
-    const audio = new Audio(audioUrl);
-    audio.currentTime = 0;
-    audio.play();
-    return audio;
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = undefined;
+      this.isAudioPlaying = false;
+    }
+
+    this.audio = new Audio(audioUrl);
+    this.audio.currentTime = 0;
+    this.isAudioPlaying = true;
+    this.audio.play();
+    
+    return this.audio;
+  }
+
+  ngOnDestroy() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = undefined;
+    }
   }
 
 }
