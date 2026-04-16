@@ -95,6 +95,7 @@ export class MenuComponent {
     const driverObj = driver({
       popoverClass: 'driverjs-theme',
       allowClose: false,
+      disableActiveInteraction: true,
       onHighlightStarted: () => {
         const step = steps[currentStepIndex];
 
