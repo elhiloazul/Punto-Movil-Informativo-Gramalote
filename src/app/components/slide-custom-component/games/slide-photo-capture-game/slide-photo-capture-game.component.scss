@@ -180,7 +180,7 @@
 .album-container {
   position: relative;
     top: 4vh;
-    left: 27vh;
+    left: 30vh;
     transform: translateX(-50%);
     width: 69vw;
     z-index: 2;
@@ -192,8 +192,8 @@
   padding: 15px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border: 3px solid #7fbccc;
-  width: 100%;
-  height: 100%;
+  width: 35vh;
+  height: 49vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -345,7 +345,7 @@
 ========================= */
 .thought-bubble-text {
   position: relative;
-  background: #7fbccc;
+  background: #62B8D2;
   border-radius: 5vh;
   padding: 3vh 4vh;
   width: 27vh;
@@ -365,15 +365,17 @@
 }
 
 .thought-bubble-text::after {
-  content: "";
-  position: absolute;
-  top: -1vh;
-  left: -2%;
-  width: 4vh;
-  height: 4vh;
-  background: #7fbccc;
-  border-radius: 4vh 0 0 0;
-  transform: rotate(32deg);
+      content: "";
+    position: absolute;
+    top: -1vh;
+    right: -5%;
+    width: 72vh;
+    height: 4vh;
+    rotate: 490deg;
+    background-image: url(/images/otros/imagen-3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* =========================
@@ -494,3 +496,24 @@
     font-size: 1.8vh;
   }
 }
+
+
+
+.continue-button {
+    background: linear-gradient(to right, #f2c94c, #f2994a);
+    border: none;
+    border-radius: 2vh;
+    padding: 1vh 3vh;
+    font-size: 2.5vh;
+    font-weight: 400;
+    cursor: pointer;
+    color: #004d40;
+    animation: next-btn-scale-up-center 1s ease-in-out infinite;
+    position: relative;
+    z-index: 3;
+    top: 3vh;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }

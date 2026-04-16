@@ -49,6 +49,8 @@ export class SlidePhotoCaptureGameComponent
   private currentAudio?: HTMLAudioElement;
   isVideoReady: boolean = false;
   isFadingOut: boolean = false;
+  protected isAudioPlaying = false;
+  private videoLoaded: boolean = false;
 
   constructor(private logger: LoggerService) {}
 
@@ -72,25 +74,35 @@ export class SlidePhotoCaptureGameComponent
       // Cargar video local
       if (this.videoElement?.nativeElement) {
         const video = this.videoElement.nativeElement;
-        video.src = this.videoUrl || '';
         
-        this.logger.debug('Intentando cargar video:', this.videoUrl);
-        
-        // Esperar a que el video esté listo
-        video.onloadedmetadata = () => {
-          this.logger.debug('Video cargado exitosamente');
-          this.isVideoReady = true;
-          // Intentar reproducir
-          video.play().catch(err => {
-            this.logger.error('Error al reproducir video:', err);
-            this.cameraError = `No se pudo reproducir el video: ${err.message}`;
+        // Solo cargar el video si no se ha cargado antes
+        if (!this.videoLoaded) {
+          this.logger.debug('Cargando video por primera vez:', this.videoUrl);
+          video.src = this.videoUrl || '';
+          this.videoLoaded = true;
+          
+          // Esperar a que el video esté listo antes de reproducir
+          await new Promise<void>((resolve, reject) => {
+            video.onloadedmetadata = () => {
+              this.logger.debug('Video cargado exitosamente');
+              this.isVideoReady = true;
+              resolve();
+            };
+            
+            video.onerror = (error) => {
+              this.logger.error('Error cargando video:', error);
+              this.cameraError = `Error al cargar el video. Verifica que el archivo exista en: public/videos/presente-futuro.mp4`;
+              reject(error);
+            };
           });
-        };
+        }
         
-        video.onerror = (error) => {
-          this.logger.error('Error cargando video:', error);
-          this.cameraError = `Error al cargar el video. Verifica que el archivo exista en: public/images/video-prueba.mp4`;
-        };
+        // Reproducir el video
+        this.logger.debug('Reproduciendo video...');
+        await video.play().catch(err => {
+          this.logger.error('Error al reproducir video:', err);
+          this.cameraError = `No se pudo reproducir el video: ${err.message}`;
+        });
       }
     } catch (error) {
       this.logger.error('Error en startVideoPlayback:', error);
@@ -111,6 +123,7 @@ export class SlidePhotoCaptureGameComponent
     this.showCameraInstruction = false;
     this.gamePhase = 'intro';
     this.cameraError = '';
+    this.videoLoaded = false;
 
     // Limpiar localStorage para empezar fresco
     localStorage.removeItem('gramalote-captured-photos');
@@ -125,15 +138,14 @@ export class SlidePhotoCaptureGameComponent
     this.gamePhase = 'playing';
     this.showCameraButton = true;
 
-    // Reproducir audio primero
+    // Reproducir audio primero y esperar a que termine
     await this.playAudio(
       'audio/actividades/modulo-5/photo-capture/slide-2.mp3',
     );
 
     // Después de que el audio termine, cargar y reproducir el video
-    setTimeout(async () => {
-      await this.startVideoPlayback();
-    }, 100);
+    this.logger.debug('Audio terminado, iniciando video...');
+    await this.startVideoPlayback();
   }
 
   // Métodos de video cargados dinámicamente (no usados actualmente)
@@ -303,16 +315,20 @@ export class SlidePhotoCaptureGameComponent
       this.stopAudio();
       console.log('Intentando reproducir:', audioPath);
       this.currentAudio = new Audio(audioPath);
+      this.isAudioPlaying = true;
       this.currentAudio.onended = () => {
         console.log('Audio terminado:', audioPath);
+        this.isAudioPlaying = false;
         resolve();
       };
       this.currentAudio.onerror = (error) => {
         console.error('Error reproduciendo audio:', audioPath, error);
+        this.isAudioPlaying = false;
         resolve();
       };
       this.currentAudio.play().catch((error) => {
         console.error('Error al iniciar audio:', audioPath, error);
+        this.isAudioPlaying = false;
         resolve();
       });
     });
@@ -323,6 +339,7 @@ export class SlidePhotoCaptureGameComponent
       this.currentAudio.pause();
       this.currentAudio.currentTime = 0;
       this.currentAudio = undefined;
+      this.isAudioPlaying = false;
     }
   }
 }

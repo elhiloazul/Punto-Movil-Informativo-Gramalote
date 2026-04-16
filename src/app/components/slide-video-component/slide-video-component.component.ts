@@ -24,6 +24,8 @@ export class SlideVideoComponentComponent {
   private player!: any;
   protected audio?: HTMLAudioElement;
   protected showTicoImage = true;
+  protected isAudioPlaying = false;
+  protected isVideoPlaying = false;
   constructor(private logger: LoggerService) { }
   
   ngOnInit() {
@@ -41,10 +43,12 @@ export class SlideVideoComponentComponent {
 
     this.audio = new Audio(this.slide.audio);
     this.audio.currentTime = 0;
-    this.audio.play()
+    this.audio.play();
+    this.isAudioPlaying = true;
     this.audio.onended = () => {
         this.logger.debug("Audio ended for slide ", this.slide.id);
-        this.createPlayer()
+        this.isAudioPlaying = false;
+        this.createPlayer();
       };
   }
 
@@ -62,8 +66,10 @@ export class SlideVideoComponentComponent {
 
     if (this.audio.paused) {
       this.audio.play();
+      this.isAudioPlaying = true;
     } else {
       this.audio.pause();
+      this.isAudioPlaying = false;
     }
   }
 
@@ -106,6 +112,10 @@ export class SlideVideoComponentComponent {
   private onPlayerStateChange(event: any) {
     if (event.data === window.YT.PlayerState.PLAYING) {
       this.showTicoImage = false;
+      this.isVideoPlaying = true;
+    }
+    if (event.data === window.YT.PlayerState.PAUSED || event.data === window.YT.PlayerState.ENDED) {
+      this.isVideoPlaying = false;
     }
     if (event.data === window.YT.PlayerState.ENDED) {
       this.completed.emit();

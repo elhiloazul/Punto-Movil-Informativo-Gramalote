@@ -24,7 +24,7 @@
   height: 40vh;
   margin: auto;
       margin-top: 5vh;
-  background: #7fbccc;
+  background: #5fb9ce;
   border-radius: 24px;
   padding: 20px;
   position: relative;
@@ -90,7 +90,7 @@
 
 .thought-bubble-text {
     position: relative;
-    background: #7fbccc;
+    background: #5fb9ce;
     border-radius: 5vh;
     padding: 3vh 4vh;
     width: 27vh;
@@ -109,13 +109,15 @@
 }
 
 .thought-bubble-text::after {
-    content: "";
-    position: absolute;
-    top: -1vh;
-    left: -2%;
-    width: 4vh;
-    height: 4vh;
-    background: #7fbccc;
-    border-radius: 4vh 0 0 0;
-    transform: rotate(32deg);
+  content: "";
+  position: absolute;
+  top: -1vh;
+  right: 88%;
+  width: 7vh;
+  height: 4vh;
+  rotate: 130deg;
+  background-image: url(/images/otros/imagen-3.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 } 

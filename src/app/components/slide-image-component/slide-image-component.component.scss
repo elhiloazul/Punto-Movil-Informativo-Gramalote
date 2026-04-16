@@ -23,7 +23,7 @@
 ========================= */
 .thought-bubble-image {
   position: relative;
-  background: #7fbccc;
+  background: #61B9CF;
   border-radius: 6vh; /* Bordes muy redondeados */
   padding: 3vh;
   width: 57vh; /* Más ancho que el de texto */
@@ -42,16 +42,14 @@
 .thought-bubble-image::after {
   content: "";
   position: absolute;
-
-  bottom: -2.5vh;
-  right: 8%;
-
+  bottom: -3vh;
+  left: 38vh;
   width: 4vh;
   height: 4vh;
-
-  background: #7fbccc;
-  border-radius: 0vh 16vh 0vh 16vh;
-  transform: rotate(0deg);
+  background-image: url('/images/otros/imagen-3.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* =========================
@@ -59,7 +57,7 @@
 ========================= */
 .thought-bubble-text {
   position: relative;
-  background: #7fbccc;
+  background: #62B8D2;
   border-radius: 5vh;
   padding: 3vh 4vh;
   width: 25vh;
@@ -91,12 +89,14 @@
   content: "";
   position: absolute;
   top: -1vh;
-  right: -2%;
+  right: -5%;
   width: 4vh;
   height: 4vh;
-  background: #7fbccc;
-  border-radius: 16vh 0vh 16vh 0vh;
-  transform: rotate(32deg);
+  rotate: 231deg;
+  background-image: url('/images/otros/imagen-1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* =========================

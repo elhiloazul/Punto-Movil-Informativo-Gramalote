@@ -496,9 +496,7 @@ export const ACTIVITIES: Activity[] = [
   {
     id: 'modulo-5',
     title: 'Agendate',
-    slides: [
-
-    ],
+    slides: [],
   },
   {
     id: 'modulo-6',
