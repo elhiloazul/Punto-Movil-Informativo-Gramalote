@@ -35,7 +35,7 @@ export class SlidePhotoCaptureGameComponent
   @ViewChild('canvasElement', { static: false })
   canvasElement?: ElementRef<HTMLCanvasElement>;
 
-  private videoUrl = 'videos/presente-futuro.mp4'; 
+  private videoUrl = 'C:/presente-futuro.mp4';
 
   text: string = '';
   capturedPhotos: Photo[] = [];
@@ -77,32 +77,34 @@ export class SlidePhotoCaptureGameComponent
         
         // Solo cargar el video si no se ha cargado antes
         if (!this.videoLoaded) {
-          this.logger.debug('Cargando video por primera vez:', this.videoUrl);
           video.src = this.videoUrl || '';
           this.videoLoaded = true;
           
-          // Esperar a que el video esté listo antes de reproducir
-          await new Promise<void>((resolve, reject) => {
-            video.onloadedmetadata = () => {
-              this.logger.debug('Video cargado exitosamente');
-              this.isVideoReady = true;
-              resolve();
-            };
-            
-            video.onerror = (error) => {
-              this.logger.error('Error cargando video:', error);
-              this.cameraError = `Error al cargar el video. Verifica que el archivo exista en: public/videos/presente-futuro.mp4`;
-              reject(error);
-            };
+          this.logger.debug('Intentando cargar video:', this.videoUrl);
+          
+          // Esperar a que el video esté listo
+          video.onloadedmetadata = () => {
+            this.logger.debug('Video cargado exitosamente');
+            this.isVideoReady = true;
+            // Intentar reproducir
+            video.play().catch(err => {
+              this.logger.error('Error al reproducir video:', err);
+              this.cameraError = `No se pudo reproducir el video: ${err.message}`;
+            });
+          };
+          
+          video.onerror = (error) => {
+            this.logger.error('Error cargando video:', error);
+            this.cameraError = `Error al cargar el video. Verifica que el archivo exista en: public/images/video-prueba.mp4`;
+          };
+        } else {
+          // Si ya está cargado, solo reproducir
+          this.logger.debug('Video ya cargado, reproduciendo...');
+          video.play().catch(err => {
+            this.logger.error('Error al reproducir video:', err);
+            this.cameraError = `No se pudo reproducir el video: ${err.message}`;
           });
         }
-        
-        // Reproducir el video
-        this.logger.debug('Reproduciendo video...');
-        await video.play().catch(err => {
-          this.logger.error('Error al reproducir video:', err);
-          this.cameraError = `No se pudo reproducir el video: ${err.message}`;
-        });
       }
     } catch (error) {
       this.logger.error('Error en startVideoPlayback:', error);
@@ -138,13 +140,12 @@ export class SlidePhotoCaptureGameComponent
     this.gamePhase = 'playing';
     this.showCameraButton = true;
 
-    // Reproducir audio primero y esperar a que termine
+    // Reproducir audio primero
     await this.playAudio(
       'audio/actividades/modulo-5/photo-capture/slide-2.mp3',
     );
 
     // Después de que el audio termine, cargar y reproducir el video
-    this.logger.debug('Audio terminado, iniciando video...');
     await this.startVideoPlayback();
   }
 
