@@ -17,6 +17,7 @@ import { UserProgressService } from '../../services/user-progress.service';
 export class MenuComponent {
   activities: Activity[] = [];
   protected audio?: HTMLAudioElement;
+  protected isAudioPlaying = false;
 
   private voiceMap: Record<string, string> = {
     bienvenida: 'audio/menu/bienvenida.mp3',
@@ -68,6 +69,7 @@ export class MenuComponent {
 
     this.audio = new Audio(audioPath);
     this.audio.currentTime = 0;
+    this.isAudioPlaying = true;
 
     this.audio.play().catch((err) => {
       console.error('Error reproduciendo audio', err);
@@ -75,6 +77,7 @@ export class MenuComponent {
 
     this.audio.onended = () => {
       this.logger.debug('Audio terminado');
+      this.isAudioPlaying = false;
       if (callback) callback();
     };
   }
@@ -85,6 +88,7 @@ export class MenuComponent {
       this.audio.currentTime = 0;
       this.audio.src = '';
       this.audio = undefined;
+      this.isAudioPlaying = false;
     }
   }
 

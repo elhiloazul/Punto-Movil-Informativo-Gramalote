@@ -26,6 +26,10 @@ export class SlideCustomComponentComponent {
     const ref = this.host.createComponent(this.slide.component);
     this.instance = ref.instance as InteractiveSlide;
 
+    if ('slide' in this.instance) {
+      ref.setInput('slide', this.slide);
+    }
+
     this.instance.completed.subscribe(() => {
       this.completed.emit();
     });

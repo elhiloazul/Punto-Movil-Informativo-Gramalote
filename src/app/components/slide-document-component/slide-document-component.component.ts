@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { DocumentSlide } from '../../models/slide.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LoggerService } from '../../core/logger/logger.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-slide-document-component',
+  imports: [CommonModule],
   templateUrl: './slide-document-component.component.html',
   styleUrl: './slide-document-component.component.scss'
 })
@@ -14,13 +16,12 @@ export class SlideDocumentComponentComponent {
 
   protected audio?: HTMLAudioElement;
   protected isAudioPaused = false;
+  protected isAudioPlaying = false;
   private readonly PDF_PARAMS = '#toolbar=0&navpanes=0&scrollbar=0&view=FitH&statusbar=0&messages=0';
   pdfUrl!: SafeResourceUrl;
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private logger: LoggerService
-  ) {}
+  private sanitizer = inject(DomSanitizer);
+  private logger = inject(LoggerService);
 
   ngOnInit() {
 
@@ -39,9 +40,11 @@ export class SlideDocumentComponentComponent {
 
     this.audio = new Audio(this.slide.audio);
     this.audio.currentTime = 0;
-    this.audio.play()
+    this.isAudioPlaying = true;
+    this.audio.play();
     this.audio.onended = () => {
         this.logger.debug("Audio ended for slide ", this.slide.id);
+        this.isAudioPlaying = false;
         this.completed.emit();
       };
   }
@@ -61,9 +64,11 @@ export class SlideDocumentComponentComponent {
     if (this.audio.paused) {
       this.audio.play();
       this.isAudioPaused = false;
+      this.isAudioPlaying = true;
     } else {
       this.audio.pause();
       this.isAudioPaused = true;
+      this.isAudioPlaying = false;
     }
   }
 

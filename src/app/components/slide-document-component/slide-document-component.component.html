@@ -9,8 +9,12 @@
     </div>
 
     <div class="thought-bubble-text">
-        <p [innerHTML]="slide.text"></p>
-    </div>
+            <p class="text-white slide-text" [ngClass]="{
+        'text-small': (slide.text?.length || 0) > 200,
+        'text-medium': (slide.text?.length || 0) > 70 && (slide.text?.length || 0) <= 200,
+        'text-large': (slide.text?.length || 0) <= 70
+      }">{{ slide.text }}</p>
+        </div>
 
     @if (audio) {
         <button 
@@ -24,11 +28,11 @@
         </button>
     }
 
-    <img
-    src="images/tico-lado-derecho.png"
-    alt=""
-    class="tico-img"
-    (click)="toggleAudio()" 
-    >
+    @if (isAudioPlaying) {
+        <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Izquierda.gif" alt="Personaje" class="tico-img" (click)="toggleAudio()">
+    }
+    @if (!isAudioPlaying) {
+        <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Der-No-habla.gif" alt="Personaje" class="tico-img" (click)="toggleAudio()">
+    }
 
 </div>
