@@ -1,6 +1,12 @@
 <main class="main" [style.background-image]="'url(https://elhiloazul.com/wp-content/uploads/2026/03/animal-2.gif)'"
   [style.height]="'100vh'" [style.background-size]="'cover'" [style.background-position]="'center'">
-  <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Derecha.gif" alt="" class="bg-img">
+  
+  @if (isAudioPlaying) {
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Derecha.gif" alt="" class="bg-img">
+  }
+  @if (!isAudioPlaying) {
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Izq-No-habla.gif" alt="" class="bg-img">
+  }
 
   <div class="content">
     <button class="pill conoce-nuestro-proyecto-btn" [routerLink]="['/activity', 'modulo-1']">
