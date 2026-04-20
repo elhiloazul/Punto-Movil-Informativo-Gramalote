@@ -1,0 +1,54 @@
+.empty-module-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .empty-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+    text-align: center;
+    border-radius: 2vh;
+    padding: 5vh 4vh;
+    max-width: 90%;
+    color: #ffffff;
+    box-shadow: 0 0.8vh 2vh rgba(0, 0, 0, 0.15);
+    height: 25vh;
+    width: 32vh;
+
+    .empty-message {
+      color: black;
+      font-size: 1.8rem;
+      margin: 0;
+      text-shadow: 0.2vh 0.2vh 0.4vh rgba(0, 0, 0, 0.3);
+      line-height: 1.4;
+    }
+
+    .menu-button {
+      background: #0a6b5f;
+      color: #ffffff;
+      border: none;
+      padding: 1.5vh 4vh;
+      font-size: 1.3rem;
+      border-radius: 5vh;
+      cursor: pointer;
+      font-family: "Just Another Hand", cursive;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0.5vh 1.5vh rgba(10, 107, 95, 0.4);
+
+      &:hover {
+        transform: translateY(-0.3vh);
+        box-shadow: 0 0.8vh 2vh rgba(10, 107, 95, 0.6);
+      }
+
+      &:active {
+        transform: translateY(-0.1vh);
+        box-shadow: 0 0.3vh 1vh rgba(10, 107, 95, 0.4);
+      }
+    }
+  }
+}

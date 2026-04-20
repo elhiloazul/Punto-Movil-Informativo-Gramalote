@@ -30,11 +30,20 @@
     </button>
     }
 
+    @if (showAlbum) {
+    <div class="camera-button">
+        <button class="continue-button" (click)="continueToNextSlide()">
+            Continuar
+        </button>
+    </div>
+    }
+
+
     <!-- Photo Album -->
     @if (showAlbum) {
     <div class="album-container" [ngClass]="{ 'fade-out-animation': isFadingOut }">
         <div class="album-cover">
-            <h2>Álbum de Fotos</h2>
+            <p style="display: flex; justify-content: center; font-size: 2.2vh;">Álbum de Fotos</p>
             <div class="photos-grid">
                 @for (photo of capturedPhotos; track photo.id) {
                 <div class="album-photo">
@@ -46,11 +55,6 @@
                 </div>
                 }
             </div>
-            <div class="album-actions">
-                <button class="continue-btn" (click)="continueToNextSlide()">
-                    Continuar
-                </button>
-            </div>
         </div>
     </div>
     }
@@ -61,6 +65,11 @@
     </div>
 
     <!-- Tico Character -->
-    <img [ngClass]="{ 'fade-out-animation': isFadingOut }" src="images/tico/Tico-Derecha.gif" alt="" class="tico-img">
+    @if (isAudioPlaying) {
+        <img [ngClass]="{ 'fade-out-animation': isFadingOut }" src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Derecha.gif" alt="" class="tico-img">
+    }
+    @if (!isAudioPlaying) {
+        <img [ngClass]="{ 'fade-out-animation': isFadingOut }" src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Izq-No-habla.gif" alt="" class="tico-img">
+    }
 
 </div>

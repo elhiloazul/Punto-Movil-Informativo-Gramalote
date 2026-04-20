@@ -178,7 +178,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.say('saludo', () => {
       this.startExperienced = false;
       this.currentStep = 'name';
-      this.text = '¿Cuál es tu nombre? Dilo en voz alta, por favor.';
+      this.text = '¿Cuál es tu nombre? \nDilo en voz alta, por favor.';
       this.cd.markForCheck();
       
       this.saySequence(['conocer_de_ti'], () => {
@@ -199,6 +199,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       const driverObj = driver({
         popoverClass: 'driverjs-theme',
         allowClose: false,
+        disableActiveInteraction: true,
         onHighlightStarted: () => {
           const step = steps[currentStepIndex];
 
@@ -263,7 +264,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.currentStep === 'name') {
       this.speakValue(this.name, () => {
         this.currentStep = 'age';
-        this.text = '¿Cuál es tu edad? Dilo en voz alta, por favor.';
+        this.text = '¿Cuál es tu edad? \nDilo en voz alta, por favor.';
         this.playAudio(() => this.listenFor('age'), this.messages.age.audio);
         this.cd.markForCheck();
       });
@@ -271,7 +272,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else if (this.currentStep === 'age') {
       this.speakValue(this.age, () => {
         this.currentStep = 'address';
-        this.text = '¿Dónde vives? Dilo en voz alta, por favor.';
+        this.text = '¿Dónde vives? \nDilo en voz alta, por favor.';
         this.playAudio(() => this.listenFor('address'), this.messages.address.audio);
         this.cd.markForCheck();
       });
@@ -300,7 +301,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private speakValue(value: string, callback: () => void) {
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance("Acabas de decir: " + value);
+      const utterance = new SpeechSynthesisUtterance(value);
       utterance.lang = 'es-ES';
       utterance.rate = 0.8;
       utterance.onend = callback;

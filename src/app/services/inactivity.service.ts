@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class InactivityService {
 
   private timeoutId: any;
-  private readonly TIMEOUT = 3 * 60 * 1000;
+  private readonly TIMEOUT = 5 * 60 * 1000;
 
   private inactiveSubject = new Subject<void>();
   inactive$ = this.inactiveSubject.asObservable();

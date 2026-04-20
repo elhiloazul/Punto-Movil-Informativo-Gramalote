@@ -13,6 +13,7 @@
       }">{{ slide.text }}</p>
     </div>
 
-    <img src="images/tico/Tico-Derecha.gif" alt="" class="tico-img" (click)="toggleAudio()" *ngIf="showTicoImage">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Derecha.gif" alt="" class="tico-img" (click)="toggleAudio()" *ngIf="showTicoImage && (isAudioPlaying || isVideoPlaying)">
+    <img src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Izq-No-habla.gif" alt="" class="tico-img" (click)="toggleAudio()" *ngIf="showTicoImage && !isAudioPlaying && !isVideoPlaying">
     <img src="images/tico/Tico-Espalda.png" alt="" class="tico-img"  *ngIf="!showTicoImage">
 </main>

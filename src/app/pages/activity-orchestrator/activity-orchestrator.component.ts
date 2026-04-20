@@ -15,6 +15,7 @@ import { SlideCustomComponentComponent } from '../../components/slide-custom-com
 import { UserProgressService } from '../../services/user-progress.service';
 import { SlideNavigationService } from '../../services/slide-navigation.service';
 import { SessionService } from '../../services/session.service';
+import { SlideEmptyModuleComponent } from '../../components/slide-custom-component/slide-empty-module/slide-empty-module.component';
 
 @Component({
   selector: 'app-activity-orchestrator',
@@ -25,6 +26,7 @@ import { SessionService } from '../../services/session.service';
     SlideVideoComponentComponent,
     SlideDocumentComponentComponent,
     SlideCustomComponentComponent,
+    SlideEmptyModuleComponent
   ],
   animations: [ slideAnimations ],
   templateUrl: './activity-orchestrator.component.html',

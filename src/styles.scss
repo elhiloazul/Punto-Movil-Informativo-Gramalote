@@ -128,16 +128,14 @@ body {
 .thought-bubble::after {
   content: "";
   position: absolute;
-
-  bottom: -2.5vh;
+  bottom: -3vh;
   left: 27vh;
-
   width: 4vh;
   height: 4vh;
-
-  background: #5fb9ce;
-  border-radius: 16vh 0vh 16vh 0vh;
-  transform: rotate(0deg);
+  background-image: url('https://elhiloazul.com/wp-content/uploads/2026/04/imagen-1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Texto */

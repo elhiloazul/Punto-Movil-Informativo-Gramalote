@@ -2,10 +2,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { InteractiveSlide } from '../../interactive-slide';
 import { LoggerService } from '../../../../core/logger/logger.service';
 import { Mineral } from './models/Mineral';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-slide-sarching-minerals-game',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './slide-sarching-minerals-game.component.html',
   styleUrl: './slide-sarching-minerals-game.component.scss'
 })
@@ -15,6 +16,8 @@ export class SlideSarchingMineralsGameComponent implements InteractiveSlide{
   foundMineral: Mineral | null = null;
   minerals: Mineral[] = [];
   message: string | null = null;
+  protected isAudioPlaying = false;
+  private audio?: HTMLAudioElement;
 
   private readonly AVAILABLE_MINERALS = [
     { name: 'Oro', image: 'images/actividades/modulo-5/searching-minerals/oro.png' },
@@ -68,9 +71,24 @@ export class SlideSarchingMineralsGameComponent implements InteractiveSlide{
   }
 
   private playAudio(audioUrl: string) {
-    const audio = new Audio(audioUrl);
-    audio.currentTime = 0;
-    audio.play();
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = undefined;
+    }
+    
+    this.audio = new Audio(audioUrl);
+    this.audio.currentTime = 0;
+    this.isAudioPlaying = true;
+    this.audio.play();
+    this.audio.onended = () => {
+      this.isAudioPlaying = false;
+    };
   }
   
+  ngOnDestroy() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = undefined;
+    }
+  }
 }

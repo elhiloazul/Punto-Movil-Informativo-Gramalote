@@ -22,7 +22,7 @@ export class FooterComponent {
     repeat: { enabled: true, route: '/menu' },
     gamepad: { enabled: true, route: `/activity/${environment.gamesActivityId}` },
     volume: { enabled: true }
-  };
+    };
 
   
   volume: number = 1;
@@ -88,6 +88,10 @@ export class FooterComponent {
       this.router.navigate([route]);
     }
   }
+
+  irMenu() {
+    this.router.navigate(['/menu']);
+    }
 
   continue() {
     this.resetModalVisible = false;

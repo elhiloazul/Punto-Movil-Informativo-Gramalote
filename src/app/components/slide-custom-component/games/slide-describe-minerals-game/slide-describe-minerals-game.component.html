@@ -16,10 +16,19 @@
         <p [innerHTML]="text"></p>
     </div>
 
-    <img
-    src="images/tico/Tico-Derecha.gif"
-    alt=""
-    class="tico-img"
-    >
+    @if (isAudioPlaying) {
+        <img
+        src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Derecha.gif"
+        alt=""
+        class="tico-img"
+        >
+    }
+    @if (!isAudioPlaying) {
+        <img
+        src="https://elhiloazul.com/wp-content/uploads/2026/04/Tico-Izq-No-habla.gif"
+        alt=""
+        class="tico-img"
+        >
+    }
 
 </div>

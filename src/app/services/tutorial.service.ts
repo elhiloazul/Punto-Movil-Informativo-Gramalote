@@ -16,7 +16,7 @@ export class TutorialService {
           'Para iniciar, si el volumen de mi voz es muy bajo o muy alto, da un toque al símbolo de la bocina, de allí saldrá una pequeña barra, con la cual podrás controlar el volumen de mi voz.',
       },
     },
-        {
+    {
       element: '.repeat-btn',
       audio: 'audio/home/tutorial-repeat.mp3',
       popover: {
@@ -75,14 +75,14 @@ export class TutorialService {
           'Tú cuentas. Aquí, te escuchamos, por lo que te contaré como te puedes comunicar con nosotros a través de diferentes medios, para resolver todas tus dudas, quejas o reclamos.',
       },
     },
-    {
+    /* {
       element: '.agendate-btn',
       audio: 'audio/menu/agendate.mp3',
       popover: {
         description:
           'Agéndate. En Gramalote estamos siempre en contacto con la comunidad, por lo que tenemos diferentes jornadas donde nos encantaría que nos acompañes, aquí podrás conocer toda nuestra programación.',
       },
-    },
+    }, */
   ];
 
   public getStepsTutorialsMenu() {

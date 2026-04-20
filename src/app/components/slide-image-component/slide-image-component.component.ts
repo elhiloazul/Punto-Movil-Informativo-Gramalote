@@ -13,6 +13,7 @@ export class SlideImageComponentComponent {
   @Input({ required: true }) slide!: ImageSlide;
   @Output() completed = new EventEmitter<void>(); 
   isAudioPaused = false;
+  protected isAudioPlaying = false;
   
   constructor(private logger: LoggerService) { }
   protected audio?: HTMLAudioElement;
@@ -27,9 +28,11 @@ export class SlideImageComponentComponent {
     this.logger.debug("Playing audio for slide ", this.slide.id);
     this.audio = new Audio(this.slide.audio);
     this.audio.currentTime = 0;
-    this.audio.play()
+    this.isAudioPlaying = true;
+    this.audio.play();
     this.audio.onended = () => {
         this.logger.debug("Audio ended for slide ", this.slide.id);
+        this.isAudioPlaying = false;
         this.completed.emit();
       };
   }
@@ -50,9 +53,11 @@ export class SlideImageComponentComponent {
     if (this.audio.paused) {
       this.audio.play();
       this.isAudioPaused = false;
+      this.isAudioPlaying = true;
     } else {
       this.audio.pause();
       this.isAudioPaused = true;
+      this.isAudioPlaying = false;
     }
   }
 
