@@ -3,6 +3,7 @@ import { SlideSarchingMineralsGameComponent } from '../components/slide-custom-c
 import { SlidePhotoCaptureGameComponent } from '../components/slide-custom-component/games/slide-photo-capture-game/slide-photo-capture-game.component';
 import { Activity } from '../models/activity.model';
 import { SlideContactFormComponent } from '../components/slide-custom-component/slide-contact-form/slide-contact-form.component';
+import { SlideAgendaComponent } from '../components/slide-custom-component/slide-agenda/slide-agenda.component';
 
 export const ACTIVITIES: Activity[] = [
   {
@@ -723,7 +724,20 @@ export const ACTIVITIES: Activity[] = [
   {
     id: 'modulo-5',
     title: 'Agendate',
-    slides: [],
+    slides: [
+      {
+        id: 'slide-1',
+        type: 'text',
+        text: 'Bienvenido a Agendate, aqui te siempre estare listo para contarte de nuestras reuniones y eventos, conla fecha, la hora y el lugar para que nos acompañes',
+        audio: 'audio/actividades/modulo-5/slide-1.mp3',
+        backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/animal-5.gif',
+      },
+      {
+        id: 'slide-4',
+        type: 'custom',
+        component: SlideAgendaComponent,
+      },
+    ],
   },
   {
     id: 'modulo-6',
