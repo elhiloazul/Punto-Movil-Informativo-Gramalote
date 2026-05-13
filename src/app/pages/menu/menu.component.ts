@@ -100,6 +100,17 @@ export class MenuComponent {
       popoverClass: 'driverjs-theme',
       allowClose: false,
       disableActiveInteraction: true,
+      onPopoverRender: (popover) => {
+          const skipButton = document.createElement('button');
+          skipButton.innerText = 'Saltar tutorial';
+          skipButton.style.cssText = 'margin-top: 1vh; margin-bottom: 1vh; width: 100%;';
+          skipButton.onclick = () => {
+            this.stopAudio();
+            driverObj.destroy();
+            this.skipTutorial();
+          };
+          popover.wrapper.appendChild(skipButton);
+        },
       onHighlightStarted: () => {
         const step = steps[currentStepIndex];
 
@@ -126,4 +137,10 @@ export class MenuComponent {
   ngOnDestroy() {
     this.stopAudio();
   }
+
+  skipTutorial() {
+    this.userProgressService.markMenuSeen();
+  }
+  
+
 }
