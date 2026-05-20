@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InteractiveSlide } from '../interactive-slide';
 
@@ -8,9 +8,10 @@ import { InteractiveSlide } from '../interactive-slide';
   templateUrl: './slide-agenda.component.html',
   styleUrl: './slide-agenda.component.scss'
 })
-export class SlideAgendaComponent implements InteractiveSlide {
+export class SlideAgendaComponent implements InteractiveSlide, OnInit, OnDestroy {
   @Output() completed = new EventEmitter<void>();
   selectedImage: string | null = null;
+  private audio?: HTMLAudioElement;
 
   eventos = [
     { name: 'Evento 1', imagen: 'images/actividades/modulo-6/evento-1.jpeg' },
@@ -28,5 +29,22 @@ export class SlideAgendaComponent implements InteractiveSlide {
 
   closeImage() {
     this.selectedImage = null;
+  }
+
+  ngOnInit() {
+    this.playAudio('audio/actividades/modulo-agendate/slide-2.mp3');
+  }
+
+  private playAudio(audioPath: string) {
+    this.audio = new Audio(audioPath);
+    this.audio.play().catch(err => console.error('Error reproduciendo audio', err));
+  }
+
+  ngOnDestroy() {
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.src = '';
+      this.audio = undefined;
+    }
   }
 }

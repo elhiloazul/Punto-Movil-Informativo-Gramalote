@@ -728,12 +728,12 @@ export const ACTIVITIES: Activity[] = [
       {
         id: 'slide-1',
         type: 'text',
-        text: 'Bienvenido a Agendate, aqui te siempre estare listo para contarte de nuestras reuniones y eventos, conla fecha, la hora y el lugar para que nos acompañes',
-        audio: 'audio/actividades/modulo-5/slide-1.mp3',
+        text: 'Bienvenido a Agendate, aqui siempre estare listo para contarte de nuestras reuniones y eventos, con la fecha, la hora y el lugar para que nos acompañes',
+        audio: 'audio/actividades/modulo-agendate/slide-1.mp3',
         backgroundImage: 'https://elhiloazul.com/wp-content/uploads/2026/03/animal-5.gif',
       },
       {
-        id: 'slide-4',
+        id: 'slide-2',
         type: 'custom',
         component: SlideAgendaComponent,
       },
