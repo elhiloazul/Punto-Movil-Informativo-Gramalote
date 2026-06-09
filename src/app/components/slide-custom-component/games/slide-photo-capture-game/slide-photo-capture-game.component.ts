@@ -35,7 +35,7 @@ export class SlidePhotoCaptureGameComponent
   @ViewChild('canvasElement', { static: false })
   canvasElement?: ElementRef<HTMLCanvasElement>;
 
-  private videoUrl = 'C:/250529_Gramalote_Video_MEIA_V11.mp4';
+  private videoUrl = 'video/Video_MEIA.mp4';
 
   text: string = '';
   capturedPhotos: Photo[] = [];
