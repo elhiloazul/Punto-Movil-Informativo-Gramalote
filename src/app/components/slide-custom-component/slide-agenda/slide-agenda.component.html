@@ -1,0 +1,22 @@
+<div class="agenda-container">
+  <div class="agenda-header">
+    <h1>Agenda Gramalote:</h1>
+  </div>
+
+  <div class="eventos-grid">
+    <div class="evento-card" *ngFor="let evento of eventos">
+      <div class="evento-wrapper">
+        <div class="evento-content">
+          <img [src]="evento.imagen" [alt]="evento.name" (click)="openImage(evento.imagen)">
+        </div>
+        <div class="evento-label">{{ evento.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="selectedImage" (click)="closeImage()">
+    <div class="modal-content">
+      <img [src]="selectedImage" alt="Imagen ampliada">
+    </div>
+  </div>
+</div>
