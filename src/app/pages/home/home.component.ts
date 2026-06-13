@@ -4,15 +4,12 @@ import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { driver } from "driver.js";
-import "driver.js/dist/driver.css";
 import { TutorialService } from '../../services/tutorial.service';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { VoiceService } from '../../services/voice.service';
-import { MicComponent } from '../../components/mic/mic.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
-import { UserProgress } from '../../models/user-progress.model';
 import { UserProgressService } from '../../services/user-progress.service';
 import { InactivityService } from '../../services/inactivity.service';
 import { SessionService } from '../../services/session.service';
@@ -23,7 +20,7 @@ import { SessionService } from '../../services/session.service';
     CommonModule,
     MatIconModule,
     FormsModule,
-    FooterComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -200,6 +197,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         popoverClass: 'driverjs-theme',
         allowClose: false,
         disableActiveInteraction: true,
+        onPopoverRender: (popover) => {
+          const skipButton = document.createElement('button');
+          skipButton.innerText = 'Saltar tutorial';
+          skipButton.style.cssText = 'margin-top: 1vh; margin-bottom: 1vh; width: 100%;';
+          skipButton.onclick = () => {
+            this.stopAudio();
+            driverObj.destroy();
+            this.skipTutorial();
+          };
+          popover.wrapper.appendChild(skipButton);
+        },
         onHighlightStarted: () => {
           const step = steps[currentStepIndex];
 
