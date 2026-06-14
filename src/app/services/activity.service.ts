@@ -8,6 +8,7 @@ import { SlideDescribeMineralsGameComponent } from '../components/slide-custom-c
 import { SlideSarchingMineralsGameComponent } from '../components/slide-custom-component/games/slide-sarching-minerals-game/slide-sarching-minerals-game.component';
 import { SlidePhotoCaptureGameComponent } from '../components/slide-custom-component/games/slide-photo-capture-game/slide-photo-capture-game.component';
 import { SlideContactFormComponent } from '../components/slide-custom-component/slide-contact-form/slide-contact-form.component';
+import { SlideAgendaComponent } from '../components/slide-custom-component/slide-agenda/slide-agenda.component';
 
 interface KioskSlide {
   id: string;
@@ -33,6 +34,7 @@ export class ActivityService {
     SlideSarchingMineralsGameComponent,
     SlideDescribeMineralsGameComponent,
     SlidePhotoCaptureGameComponent,
+    SlideAgendaComponent,
   };
 
   getById(id: string): Activity | undefined {
@@ -63,6 +65,7 @@ export class ActivityService {
         component: this.componentRegistry[content['component'] as string] ?? null,
         audio: content['audio'] as string | undefined,
         backgroundImage: content['backgroundImage'] as string | undefined,
+        metadata: content['metadata'] as Record<string, unknown> | undefined,
       };
     }
 
