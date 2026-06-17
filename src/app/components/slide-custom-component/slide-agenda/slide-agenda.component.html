@@ -7,7 +7,7 @@
     <div class="evento-card" *ngFor="let evento of eventos">
       <div class="evento-wrapper">
         <div class="evento-content">
-          <img [src]="evento.imagen" [alt]="evento.name" (click)="openImage(evento.imagen)">
+          <img [src]="evento.imageUrl" [alt]="evento.name" (click)="openImage(evento.imageUrl)">
         </div>
         <div class="evento-label">{{ evento.name }}</div>
       </div>

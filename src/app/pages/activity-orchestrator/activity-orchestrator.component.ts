@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { ActivityService } from '../../services/activity.service';
 import { Activity, ActivitySlide } from '../../models/activity.model';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -13,6 +14,7 @@ import { SlideDocumentComponentComponent } from '../../components/slide-document
 import { SlideCustomComponentComponent } from '../../components/slide-custom-component/slide-custom-component.component';
 import { UserProgressService } from '../../services/user-progress.service';
 import { SlideNavigationService } from '../../services/slide-navigation.service';
+import { SessionService } from '../../services/session.service';
 import { SlideEmptyModuleComponent } from '../../components/slide-custom-component/slide-empty-module/slide-empty-module.component';
 
 @Component({
@@ -33,6 +35,7 @@ import { SlideEmptyModuleComponent } from '../../components/slide-custom-compone
 export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   
   private readonly TRANSITION_DELAY_MS = 800;
+  readonly gamesActivityId = environment.gamesActivityId;
   activity: Activity | undefined;
   currentSlideIndex: number = 0;
 
@@ -42,18 +45,19 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private router: Router,
     private userProgressService: UserProgressService,
-    private slideNavigationService: SlideNavigationService
+    private slideNavigationService: SlideNavigationService,
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.logger.debug("Starting activity ", id)
+    this.logger.debug('Starting activity', id);
 
-    this.activity = this.activityService.getById(id);
-    
-    // Configurar el servicio de navegación
-    this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
-    this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+    this.activityService.getActivityById(id).subscribe((activity) => {
+      this.activity = activity;
+      this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+      this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+    });
   }
 
   ngOnDestroy(): void {
@@ -73,6 +77,7 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   private goToNextSlide() {
     this.currentSlideIndex++;
     this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+    this.userProgressService.updateActivityProgress(this.activity!.id, this.activity!.title, this.currentSlideIndex);
 
     if (this.currentSlideIndex >= this.activity!.slides.length) {
       this.finishActivity();
@@ -89,7 +94,8 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
 
   private finishActivity() {
     this.logger.debug('Activity finished, redirecting to menu');
-    this.userProgressService.markActivityCompleted(this.activity!.id);
+    this.userProgressService.markActivityCompleted(this.activity!.id, this.activity!.title);
+    this.sessionService.sync();
     this.router.navigate(['/menu']);
   }
 

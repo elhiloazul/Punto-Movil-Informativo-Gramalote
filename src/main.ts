@@ -1,9 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes';
+import { appConfig } from './app/app.config';
 
 // Interceptar Audio globalmente antes de que se inicialice la aplicación
 if (typeof window !== 'undefined') {
@@ -57,9 +55,4 @@ if (typeof window !== 'undefined') {
   };
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes),
-    provideAnimationsAsync() // ⬅️ Cambiado a Async
-  ]
-}).catch(err => console.error(err));
+bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));

@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 import { LoggerService } from '../../core/logger/logger.service';
 import { UserProgressService } from '../../services/user-progress.service';
 import { InactivityService } from '../../services/inactivity.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -66,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   menuConfigFromHome = {
     home: { enabled: false, route: '/home' },
     repeat: { enabled: false, route: '/menu' },
-    gamepad: { enabled: false, route: '/activity/modulo-6' },
+    gamepad: { enabled: false, route: `/activity/${environment.gamesActivityId}` },
     volume: { enabled: true }
   }
 
@@ -78,6 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private userProgressService: UserProgressService,
     private inactivityService: InactivityService,
+    private sessionService: SessionService,
   ) {}
 
   /* =========================
@@ -187,7 +190,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   startTutorial() {
     this.saySequence(['iniciarTutorial1', 'iniciarTutorial2'], () => {
-      const steps = this.tutorialService.stepsTutorialsFooter;
+      const steps = this.tutorialService.getStepsTutorialsFooter();
       let currentStepIndex = 0;
 
       const driverObj = driver({
@@ -291,7 +294,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   finishTutorial() {
+    this.userProgressService.initSession();
+    this.userProgressService.savePersonalInfo(this.name, this.age, this.address);
     this.userProgressService.markIntroSeen();
+    this.sessionService.sync();
     this.inactivityService.start();
     this.router.navigate(['/menu']);
   }

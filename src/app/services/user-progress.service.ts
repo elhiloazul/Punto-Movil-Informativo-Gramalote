@@ -1,49 +1,93 @@
 import { Injectable } from "@angular/core";
-import { UserProgress } from "../models/user-progress.model";
+import { ActivityProgress, UserProgress } from "../models/user-progress.model";
 
 @Injectable({ providedIn: 'root' })
 export class UserProgressService {
     private readonly KEY = 'user_progress';
 
+    private get storage(): Storage | null {
+        return typeof localStorage !== 'undefined' ? localStorage : null;
+    }
+
     get(): UserProgress {
-        const stored = localStorage.getItem(this.KEY);
-        return stored ? JSON.parse(stored) : this.default();
+        const stored = this.storage?.getItem(this.KEY);
+        if (!stored) return this.default();
+        return { ...this.default(), ...JSON.parse(stored) };
     }
 
     save(progress: UserProgress) {
-        localStorage.setItem(this.KEY, JSON.stringify(progress));
+        this.storage?.setItem(this.KEY, JSON.stringify(progress));
     }
 
     clear() {
-        localStorage.removeItem(this.KEY);
+        this.storage?.removeItem(this.KEY);
+    }
+
+    initSession(): void {
+        const progress = this.get();
+        progress.sessionId = crypto.randomUUID();
+        progress.startedAt = Date.now();
+        this.save(progress);
     }
 
     private default(): UserProgress {
         return {
+            sessionId: '',
             introSeen: false,
             menuSeen: false,
-            completedActivities: {},
-            lastActivityAt: Date.now()
+            name: '',
+            age: '',
+            neighborhood: '',
+            activities: {},
+            startedAt: Date.now(),
+            lastActivityAt: Date.now(),
         };
     }
 
-    markActivityCompleted(activityId: string): void {
+    savePersonalInfo(name: string, age: string, neighborhood: string): void {
         const progress = this.get();
+        progress.name = name;
+        progress.age = age;
+        progress.neighborhood = neighborhood;
+        this.save(progress);
+    }
 
-        progress.completedActivities[activityId] = true;
+    updateActivityProgress(activityId: string, name: string, lastSlideIndex: number): void {
+        const progress = this.get();
+        const existing = progress.activities[activityId];
+        progress.activities[activityId] = {
+            name,
+            lastSlideIndex,
+            completed: existing?.completed ?? false,
+            completedAt: existing?.completedAt,
+        };
         progress.lastActivityAt = Date.now();
+        this.save(progress);
+    }
 
+    markActivityCompleted(activityId: string, name: string): void {
+        const progress = this.get();
+        const existing = progress.activities[activityId];
+        progress.activities[activityId] = {
+            name,
+            lastSlideIndex: existing?.lastSlideIndex ?? 0,
+            completed: true,
+            completedAt: Date.now(),
+        };
+        progress.lastActivityAt = Date.now();
         this.save(progress);
     }
 
     isActivityCompleted(activityId: string): boolean {
-        const progress = this.get();
-        return !!progress.completedActivities[activityId];
+        return !!this.get().activities[activityId]?.completed;
+    }
+
+    getActivityProgress(activityId: string): ActivityProgress | undefined {
+        return this.get().activities[activityId];
     }
 
     isMenuSeen(): boolean {
-        const progress = this.get();
-        return progress.menuSeen;
+        return this.get().menuSeen;
     }
 
     markMenuSeen(): void {
@@ -52,9 +96,8 @@ export class UserProgressService {
         this.save(progress);
     }
 
-    isIntroSeen(): boolean{
-        const progress = this.get();
-        return progress.introSeen;
+    isIntroSeen(): boolean {
+        return this.get().introSeen;
     }
 
     markIntroSeen(): void {
@@ -62,5 +105,4 @@ export class UserProgressService {
         progress.introSeen = true;
         this.save(progress);
     }
-
 }

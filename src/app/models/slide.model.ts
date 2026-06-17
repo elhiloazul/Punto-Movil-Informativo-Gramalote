@@ -32,7 +32,13 @@ export interface DocumentSlide extends Slide {
     text?: string;  
 }
 
+export interface AgendaEvent {
+    name: string;
+    imageUrl: string;
+}
+
 export interface CustomSlide extends Slide {
     type: 'custom';
     component: any;
+    metadata?: Record<string, unknown>;
 }

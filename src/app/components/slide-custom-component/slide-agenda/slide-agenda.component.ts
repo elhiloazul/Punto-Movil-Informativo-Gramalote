@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InteractiveSlide } from '../interactive-slide';
+import { AgendaEvent, CustomSlide } from '../../../models/slide.model';
 
 @Component({
   selector: 'app-slide-agenda',
@@ -9,22 +10,18 @@ import { InteractiveSlide } from '../interactive-slide';
   styleUrl: './slide-agenda.component.scss'
 })
 export class SlideAgendaComponent implements InteractiveSlide, OnInit, OnDestroy {
+  @Input() slide!: CustomSlide;
   @Output() completed = new EventEmitter<void>();
   selectedImage: string | null = null;
   private audio?: HTMLAudioElement;
 
-  eventos = [
-    { name: 'Evento 1', imagen: 'images/actividades/modulo-6/evento-1.jpeg' },
-    { name: 'Evento 2', imagen: 'images/actividades/modulo-6/evento-2.jpeg' },
-    { name: 'Evento 3', imagen: 'images/actividades/modulo-6/evento-3.jpeg' },
-    { name: 'Evento 4', imagen: 'images/actividades/modulo-6/evento-4.jpeg' },
-    { name: 'Evento 5', imagen: 'images/actividades/modulo-6/evento-5.jpeg' },
-    { name: 'Evento 6', imagen: 'images/actividades/modulo-6/evento-6.jpeg' },
-    
-  ];
+  get eventos(): AgendaEvent[] {
+    const events = this.slide?.metadata?.['events'];
+    return Array.isArray(events) ? (events as AgendaEvent[]) : [];
+  }
 
-  openImage(imagen: string) {
-    this.selectedImage = imagen;
+  openImage(imageUrl: string) {
+    this.selectedImage = imageUrl;
   }
 
   closeImage() {
