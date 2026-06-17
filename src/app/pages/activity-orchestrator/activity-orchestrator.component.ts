@@ -37,6 +37,7 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
   private readonly TRANSITION_DELAY_MS = 800;
   readonly gamesActivityId = environment.gamesActivityId;
   activity: Activity | undefined;
+  loading = true;
   currentSlideIndex: number = 0;
 
   constructor(
@@ -53,10 +54,16 @@ export class ActivityOrchestratorComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.logger.debug('Starting activity', id);
 
-    this.activityService.getActivityById(id).subscribe((activity) => {
-      this.activity = activity;
-      this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
-      this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+    this.activityService.getActivityById(id).subscribe({
+      next: (activity) => {
+        this.activity = activity;
+        this.loading = false;
+        this.slideNavigationService.setCurrentSlideIndex(this.currentSlideIndex);
+        this.slideNavigationService.setGoToPreviousSlideCallback(() => this.goToPreviousSlide());
+      },
+      error: () => {
+        this.loading = false;
+      },
     });
   }
 
